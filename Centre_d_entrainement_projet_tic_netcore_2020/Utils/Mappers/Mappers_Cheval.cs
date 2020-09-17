@@ -25,6 +25,7 @@ namespace Centre_d_entrainement_projet_tic_netcore_2020.Models.Utils.Mappers
                 ID_Soins = cheval.ID_Soins,
                 Poids = cheval.Poids,
                 Race = cheval.Race,
+                Age = cheval.Age,
             };
         }
         public static DAL.Models.Cheval Consumme_to_dal (this Centre_d_entrainement_projet_tic_netcore_2020.Models.Cheval cheval)
@@ -41,6 +42,7 @@ namespace Centre_d_entrainement_projet_tic_netcore_2020.Models.Utils.Mappers
                 ID_Soins = cheval.ID_Soins,
                 Poids = cheval.Poids,
                 Race = cheval.Race,
+                Age=cheval.Age,
             };
         }
 

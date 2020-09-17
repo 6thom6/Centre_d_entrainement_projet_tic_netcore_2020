@@ -1,9 +1,10 @@
 ﻿CREATE TABLE [dbo].[Employé]
 (
-	[Id_Employé] INT NOT NULL PRIMARY KEY, 
-    [Nom_Employé] NVARCHAR(50) NOT NULL, 
+	[Id_Employe] INT NOT NULL IDENTITY, 
+    [Nom_Employe] NVARCHAR(50) NOT NULL, 
     [Date_Embauche] DATE NULL, 
-    [Statuts_Employé] NVARCHAR(50) NOT NULL, 
+    [Statuts_Employe] NVARCHAR(50) NOT NULL, 
+    CONSTRAINT [PK_Employé] PRIMARY KEY ([Id_Employe]), 
 
 
 )

@@ -16,5 +16,6 @@ namespace Centre_d_entrainement_projet_tic_netcore_2020.Models
         public int ID_Soins { get; set; }
         public int Poids { get; set; }
         public string Race { get; set; }
+        public int Age { get; set; }
     }
 }

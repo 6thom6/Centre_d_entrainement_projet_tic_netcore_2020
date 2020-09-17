@@ -1,0 +1,136 @@
+﻿using DAL.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Text;
+using DAL.IRepository;
+
+namespace DAL.Repository
+{
+    class VaccinationRepository : IVaccinationRepository
+    {
+        public SqlConnection _connection;
+
+        public VaccinationRepository(SqlConnection sqlConnection)
+        {
+            _connection = sqlConnection;
+        }
+        public List<Vaccination> GetallVaccination()
+        {
+            List<Vaccination> GetallVaccination = new List<Vaccination>();
+
+            using (_connection)
+            {
+                _connection.Open();
+
+                SqlCommand command = new SqlCommand("SELECT * FROM Vaccination", _connection);
+
+                using SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    GetallVaccination.Add(
+                        new Vaccination
+                        {
+                            Id_Vaccination = reader["Id_Vaccination"] == DBNull.Value ? 0 : (int)reader["Id_Vaccination"],
+                            Nom_Vaccin = reader["Nom_Vaccin"] == DBNull.Value ? null : (string)reader["Nom_Vaccin"],
+                            Delai_Indisponibilite = reader["Indisponibilite_Vaccin"] == DBNull.Value ? null : (DateTime?)reader["Indisponibilite_Vaccin"]
+
+                        }
+                        );
+                }
+            }
+            _connection.Close();
+            return GetallVaccination;
+        }
+        public Vaccination Get(int idAChercher)
+        {
+            {
+                Vaccination GetVaccination = new Vaccination();
+
+                using (_connection)
+                {
+                    _connection.Open();
+
+                    SqlCommand command = new SqlCommand("SELECT * FROM Vaccination where id = @idCherch", _connection);
+                    command.Parameters.AddWithValue("idCherch", idAChercher);
+
+                    using SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        new Vaccination
+                        {
+                            Id_Vaccination = reader["Id_Vaccination"] == DBNull.Value ? 0 : (int)reader["Id_Vaccination"],
+                            Nom_Vaccin = reader["Nom_Vaccin"] == DBNull.Value ? null : (string)reader["Nom_Vaccin"],
+                            Delai_Indisponibilite = reader["Indisponibilite_Vaccin"] == DBNull.Value ? null : (DateTime?)reader["Indisponibilite_Vaccin"]
+
+                        };
+
+                    }
+                }
+
+                return GetVaccination;
+            }
+        }
+        public void Create(Vaccination Nouvellevaccination)
+        {
+            using (_connection)
+            {
+                _connection.Open();
+
+                SqlCommand command = new SqlCommand("INSERT INTO Vaccination (Nom_vaccin,Delai_Indisponibilite" //les champs de la table
+                                                     +
+                                                     "VALUES (@nom_vaccin, @delai_indisponibilite)");
+
+
+
+                command.Parameters.AddWithValue("nom_vaccin", Nouvellevaccination.Nom_Vaccin);
+                command.Parameters.AddWithValue("delai_indisponibilite", Nouvellevaccination.Delai_Indisponibilite);
+
+
+
+                command.ExecuteNonQuery();
+
+
+
+                _connection.Close();
+
+            }
+        }
+        public void Update(Vaccination VaccinationAModifier)
+        {
+            using (_connection)
+            {
+                _connection.Open();
+
+                SqlCommand command = new SqlCommand("UPDATE Vaccination SET id_vaccination = @Id_Vaccination, nom_vaccin = @Nom_Vaccin, delai_indisponibilite= @Delai_Indisponibilité ");
+
+
+
+                command.Parameters.AddWithValue("id_vaccination", VaccinationAModifier.Id_Vaccination);
+                command.Parameters.AddWithValue("nom_vaccin", VaccinationAModifier.Nom_Vaccin);
+                command.Parameters.AddWithValue("delai_indisponibilite", VaccinationAModifier.Delai_Indisponibilite);
+
+
+
+                command.ExecuteNonQuery();
+
+
+
+                _connection.Close();
+
+            }
+        }
+        public void Delete(int idADelete)
+        {
+            using (_connection)
+            {
+                _connection.Open();
+                SqlCommand command = new SqlCommand("DELETE FROM Vaccination where ID = @id");
+                command.Parameters.AddWithValue("id", idADelete);
+                command.ExecuteNonQuery();
+                _connection.Close();
+            }
+        }
+    }
+}

@@ -11,7 +11,8 @@ namespace DAL.Models
         public string Plat { get; set; }
         public string Obstacle { get; set; }
         public string Marcheur { get; set; }
-        public string Pré { get; set; }
-        public int Durée { get; set; }
+        public string Pre { get; set; }
+        public int? Duree { get; set; }
+        public int Id_Employe { get; set; }
     }
 }

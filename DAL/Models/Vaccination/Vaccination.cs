@@ -8,6 +8,6 @@ namespace DAL.Models
     {
         public int Id_Vaccination { get; set; }
         public string Nom_Vaccin { get; set; }
-        public DateTime Delai_Indisponibilité { get; set; }
+        public DateTime? Delai_Indisponibilite { get; set; }
     }
 }

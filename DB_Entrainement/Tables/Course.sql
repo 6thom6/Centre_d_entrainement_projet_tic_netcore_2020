@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Course]
 (
-	[Id_Courses] INT NOT NULL, 
+	[Id_Courses] INT NOT NULL identity, 
     [Hippodrome] NVARCHAR(50) NOT NULL, 
     [Date_Courses] DATE NOT NULL, 
     [Distance] INT NOT NULL, 

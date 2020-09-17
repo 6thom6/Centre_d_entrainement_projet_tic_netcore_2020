@@ -8,8 +8,8 @@ namespace DAL.Models
     {
         public int Id_Historique { get; set; }
         public int Id_Cheval { get; set; }
-        public string Débourrage { get; set; }
-        public string Preé_Entrainement { get; set; }
+        public string Debourrage { get; set; }
+        public string Pree_Entrainement { get; set; }
         public string Entraineur_Precedent { get; set; }
         public string Proprietaire_Precedent { get; set; }
     }

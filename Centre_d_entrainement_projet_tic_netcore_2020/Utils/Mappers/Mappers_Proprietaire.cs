@@ -12,7 +12,6 @@ namespace Centre_d_entrainement_projet_tic_netcore_2020.Utils.Mappers
             {
                 Id_Proprietaire = proprietaire.Id_Proprietaire,
                 Nom_Proprietaire = proprietaire.Nom_Proprietaire,
-                Effectif = proprietaire.Effectif,
                 Dernier_Resultats = proprietaire.Dernier_Resultats,
 
             };
@@ -23,7 +22,6 @@ namespace Centre_d_entrainement_projet_tic_netcore_2020.Utils.Mappers
             {
                 Id_Proprietaire = proprietaire.Id_Proprietaire,
                 Nom_Proprietaire = proprietaire.Nom_Proprietaire,
-                Effectif = proprietaire.Effectif,
                 Dernier_Resultats = proprietaire.Dernier_Resultats,
             };
         }

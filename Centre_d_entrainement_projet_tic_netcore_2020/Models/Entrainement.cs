@@ -14,5 +14,7 @@ namespace Centre_d_entrainement_projet_tic_netcore_2020.Models
         public string Marcheur { get; set; }
         public string Pré { get; set; }
         public int Durée { get; set; }
+        public int Id_Employe { get; set; }
+
     }
 }

@@ -6,11 +6,10 @@ namespace DAL.Models
 {
     public class Employé
     {
-        public int Id_Employé { get; set; }
-        public int SoinsId_Cheval { get; set; }
-        public string Nom_Employé  { get; set; }
-        public string Statut_Employé { get; set; }
-        public DateTime Employé_Embauche { get; set; }
+        public int Id_Employe { get; set; }
+        public string Nom_Employe  { get; set; }
+        public string Statut_Employe { get; set; }
+        public DateTime? Employe_Embauche { get; set; }
 
     }
 }

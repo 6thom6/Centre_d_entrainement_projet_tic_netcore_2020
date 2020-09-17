@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Centre_d_entrainement_projet_tic_netcore_2020", "Centre_d_entrainement_projet_tic_netcore_2020\Centre_d_entrainement_projet_tic_netcore_2020.csproj", "{50AC6A18-1970-4287-B2A6-2C74E0886E0C}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_Entrainement", "DB_Entrainement\DB_Entrainement.sqlproj", "{A2F94C73-464F-425D-B641-B917FB131E7E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{37551DC8-6B7E-45B7-AECD-D1398EDDBEC1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api", "api\api.csproj", "{5EFF208C-F7F6-4A06-9B35-69D2967125D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolbox_SQL", "..\..\Toolbox\Toolbox_SQL\Toolbox_SQL.csproj", "{C9034C3B-F347-4BD5-92DD-0B712F879459}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{50AC6A18-1970-4287-B2A6-2C74E0886E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50AC6A18-1970-4287-B2A6-2C74E0886E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50AC6A18-1970-4287-B2A6-2C74E0886E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50AC6A18-1970-4287-B2A6-2C74E0886E0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2F94C73-464F-425D-B641-B917FB131E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2F94C73-464F-425D-B641-B917FB131E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2F94C73-464F-425D-B641-B917FB131E7E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -29,6 +27,14 @@ Global
 		{37551DC8-6B7E-45B7-AECD-D1398EDDBEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37551DC8-6B7E-45B7-AECD-D1398EDDBEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37551DC8-6B7E-45B7-AECD-D1398EDDBEC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EFF208C-F7F6-4A06-9B35-69D2967125D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EFF208C-F7F6-4A06-9B35-69D2967125D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EFF208C-F7F6-4A06-9B35-69D2967125D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EFF208C-F7F6-4A06-9B35-69D2967125D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9034C3B-F347-4BD5-92DD-0B712F879459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9034C3B-F347-4BD5-92DD-0B712F879459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9034C3B-F347-4BD5-92DD-0B712F879459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9034C3B-F347-4BD5-92DD-0B712F879459}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

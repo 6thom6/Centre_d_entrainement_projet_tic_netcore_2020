@@ -15,7 +15,8 @@ namespace Centre_d_entrainement_projet_tic_netcore_2020.Utils.Mappers
                 Plat = entrainement.Plat,
                 Obstacle = entrainement.Obstacle,
                 Marcheur = entrainement.Marcheur,
-                Pré = entrainement.Pré
+                Pré = entrainement.Pré,
+                Id_Employe=entrainement.Id_Employe
             };
         }
         public static DAL.Models.Entrainement Consummme_To_Dal (this Centre_d_entrainement_projet_tic_netcore_2020.Models.Entrainement entrainement)
@@ -27,7 +28,9 @@ namespace Centre_d_entrainement_projet_tic_netcore_2020.Utils.Mappers
                 Plat = entrainement.Plat,
                 Obstacle = entrainement.Obstacle,
                 Marcheur = entrainement.Marcheur,
-                Pré = entrainement.Pré
+                Pré = entrainement.Pré,
+                Id_Employe = entrainement.Id_Employe
+                
             };
         }
     }

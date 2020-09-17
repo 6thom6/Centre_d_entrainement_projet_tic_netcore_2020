@@ -81,4 +81,8 @@
   <ItemGroup>
     <PostDeploy Include="scriptPostDeploiement\insert_Chevaux.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DB_Entrainement.publish.xml" />
+    <None Include="DB_Entrainement_1.publish.xml" />
+  </ItemGroup>
 </Project>
