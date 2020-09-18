@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace DAL.Repository
 {
-    class EmployeRepository : IEmployeRepository
+   public class EmployeRepository : IEmployeRepository
     {
         private static Connection _connection;
 

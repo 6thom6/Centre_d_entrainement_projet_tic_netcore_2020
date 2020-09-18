@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAL.IRepository
 {
-    interface IEmployeRepository
+   public interface IEmployeRepository
     {
         IEnumerable<Employé> GetallEmploye();
         Employé GetById(int id);
