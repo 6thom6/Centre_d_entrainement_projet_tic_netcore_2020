@@ -9,7 +9,7 @@ namespace DAL.Models
         public int Id_Employe { get; set; }
         public string Nom_Employe  { get; set; }
         public string Statut_Employe { get; set; }
-        public DateTime? Employe_Embauche { get; set; }
+        public DateTime? Date_Embauche { get; set; }
 
     }
 }

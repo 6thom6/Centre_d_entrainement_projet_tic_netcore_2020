@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace DAL.Repository
 {
-    class CourseRepository : ICourseRepository
+   public class CourseRepository : ICourseRepository
     {
         private static Connection _connection;
 
@@ -27,7 +27,7 @@ namespace DAL.Repository
         public Course GetById(int id)
         {
 
-            Command command = new Command("SELECT * FROM COURSE where Id_Course = @id");
+            Command command = new Command("SELECT * FROM COURSE where Id_Courses = @id");
             command.AddParameter("id", id);
 
             return _connection.ExecuteReader(command, dr => dr.CourseToDal()).SingleOrDefault();
@@ -46,7 +46,7 @@ namespace DAL.Repository
             command.AddParameter("Discipline", course.Discipline);
             command.AddParameter("Terrain", course.Terrain);
             command.AddParameter("Avis", course.Avis);
-            command.AddParameter("Date_Course", course.Date_Course);
+            command.AddParameter("Date_Courses", course.Date_Courses);
             command.AddParameter("Poids_De_Course", course.Poids_De_Course);
             command.AddParameter("Distance", course.Distance);
 
@@ -60,26 +60,26 @@ namespace DAL.Repository
         {
 
 
-                Command command = new Command("UPDATE COURSE SET Hippodrome = @Hippodrome , " +
-                                                                          "Jockey = @Jockey" + 
+                Command command = new Command("UPDATE COURSE SET Hippodrome = @Hippodrome, " +
+                                                                          "Jockey = @Jockey," + 
                                                                           "Corde = @Corde , " +
-                                                                          "Discipline = @Discipline , " +
+                                                                          "Discipline = @Discipline, "+
                                                                           "Terrain = @Terrain, " +
-                                                                          "Avis = @Avis, " +
-                                                                          "Date_Course = @Date_Course, " +
-                                                                          "Poids_De_Course = @Poids_De_Course, " +
+                                                                          "Avis = @Avis, "+
+                                                                          "Date_Courses = @Date_Courses, "+
+                                                                          "Poids_De_Course = @Poids_De_Course, "+
                                                                           "Distance = @Distance " +
 
-                                                                        "WHERE Id_Course = @Id_Course");
+                                                                        "WHERE Id_Courses = @Id_Courses");
 
-                command.AddParameter("Id_Course", course.Id_Course);
+                command.AddParameter("Id_Courses", id);
                 command.AddParameter("Hippodrome", course.Hippodrome);
                 command.AddParameter("Jockey", course.Jockey);
                 command.AddParameter("Corde", course.Corde);
                 command.AddParameter("Discipline", course.Discipline);
                 command.AddParameter("Terrain", course.Terrain);
                 command.AddParameter("Avis", course.Avis);
-                command.AddParameter("Date_Course", course.Date_Course);
+                command.AddParameter("Date_Courses", course.Date_Courses);
                 command.AddParameter("Poids_De_Course", course.Poids_De_Course);
                 command.AddParameter("Distance", course.Distance);
 
@@ -90,7 +90,7 @@ namespace DAL.Repository
         public int Delete(int id)
         {
 
-            Command command = new Command("DELETE FROM Course where Id_Course = @id");
+            Command command = new Command("DELETE FROM Course where Id_Courses = @id");
             command.AddParameter("id", id);
 
             return _connection.ExecuteNonQuery(command);

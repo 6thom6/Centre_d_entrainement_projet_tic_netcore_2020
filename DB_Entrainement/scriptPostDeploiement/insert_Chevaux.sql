@@ -34,11 +34,11 @@ insert into [dbo].[Course] ([dbo].[Couse].[Hippodrome],
                             [dbo].[Couse].[Jockey],
                             [dbo].[Couse].[Poids_De_Course])
 Values 
-('Auteuil','2020-09-01','4600','8','steeple','lourd','pas degueux','gueguen','68'),
-('Auteuil','2020-09-02','3600','gauche','haie','tres lourd','bien','obrian','68'),
-('Dieppe','2020-10-03','3800','droite','steeple','bon','bof','zuliani','68'),
-('Longchamps','2020-09-04','1600','droite','plat','léger','passable','lestrade','68'),
-('Compiegne','2020-09-05','3900','gauche','steeple','lourd','degueux','masure','68')
+('Auteuil','2020-09-01','4600','8','steeple','lourd','pas degueux','gueguen','68.5'),
+('Auteuil','2020-09-02','3600','gauche','haie','tres lourd','bien','obrian','68.5'),
+('Dieppe','2020-10-03','3800','droite','steeple','bon','bof','zuliani','68.5'),
+('Longchamps','2020-09-04','1600','droite','plat','léger','passable','lestrade','68.5'),
+('Compiegne','2020-09-05','3900','gauche','steeple','lourd','degueux','masure','68.0')
 
 insert into [dbo].[Employé] ([dbo].[Employé].[Nom_Employe],
                              [dbo].[Employé].[Date_Embauche],

@@ -41,6 +41,7 @@ namespace api
             services.AddSingleton(sp => new ConnectionInfo(ConnectionStrings));
             services.AddSingleton<Connection>();
             services.AddSingleton<ChevalRepository>();
+            services.AddSingleton<CourseRepository>();
          
         }
 

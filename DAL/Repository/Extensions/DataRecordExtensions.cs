@@ -28,16 +28,26 @@ namespace DAL.Repository.Extensions
         {
             return new Course()
             {
-                Id_Course = (int)record["Id_Course"],
+                Id_Courses = (int)record["Id_Courses"],
                 Distance = (int)record["Distance"],
                 Hippodrome = (string)record["Hippodrome"],
                 Jockey = (string)record["Jockey"],
                 Corde = (string)record["Corde"],
                 Discipline = (string)record["Discipline"],
                 Terrain = (string)record["Terrain"],
-                Avis = (string)record["Avis"],
-                Poids_De_Course = (float)record["Poids_De_Course"],
-                Date_Course = (DateTime)record["Date_Course"]
+                Avis = record["Avis"] == DBNull.Value ? null :(string)record ["Avis"],
+                Poids_De_Course = (float)(double)record["Poids_De_Course"],
+                Date_Courses = (DateTime)record["Date_Courses"]
+            };
+        }
+        internal static Employé EmployéToDal (this IDataRecord record)
+        {
+            return new Employé()
+            {
+                Id_Employe=(int)record["Id_Employe"],
+                Nom_Employe = (string)record["Nom_Employe"],
+                Date_Embauche = record["Date_Embauche"] == DBNull.Value ?null: (DateTime?) record["Date_Embauche"],
+                Statut_Employe = (string)record["Statut_Employe"]
             };
         }
     }

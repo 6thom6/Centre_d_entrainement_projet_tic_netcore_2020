@@ -7,7 +7,7 @@ namespace DAL.Models
 {
     public class Course
     {
-        public int Id_Course { get; set; }
+        public int Id_Courses { get; set; }
         public int Distance { get; set; }
         public string Hippodrome { get; set; }
         public string Jockey { get; set; }
@@ -16,7 +16,7 @@ namespace DAL.Models
         public string Terrain { get; set; }
         public string Avis { get; set; }
         public float Poids_De_Course { get; set; }
-        public DateTime Date_Course { get; set; }
+        public DateTime Date_Courses { get; set; }
       
 
     }
