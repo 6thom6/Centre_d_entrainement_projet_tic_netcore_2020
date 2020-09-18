@@ -11,6 +11,7 @@
     [Poids] INT NULL, 
     [Race] NVARCHAR(50) NOT NULL,
     [Age] INT NOT NULL, 
+    [Sexe] NVARCHAR(50) NULL, 
     CONSTRAINT [FK_Cheval_Proprietaire] FOREIGN KEY ([Id_Proprietaire]) REFERENCES [dbo].[Proprietaire](Id_Proprietaire), 
     CONSTRAINT [PK_Cheval] PRIMARY KEY ([Id_Cheval]),
     

@@ -5,10 +5,11 @@ namespace DAL.IRepository
 {
     public interface ICourseRepository
     {
-        void Create(Course NouveauCheval);
-        void Delete(int idADelete);
-        List<Course> GetallCourses();
-        Course Get(int idaChercher);
-        void Update(Course ChevalAModifier);
+        IEnumerable<Course> GetallCourses();
+        Course GetById(int idaChercher);
+        int Create(Course NouveauCheval);
+        int Update(int id, Course Cheval); 
+        int Delete(int id);
+
     }
 }

@@ -85,13 +85,16 @@ INSERT INTO [dbo].[Cheval] ([dbo].[Cheval].[Nom_cheval],
                             [dbo].[Cheval].[Id_Soins],
                             [dbo].[Cheval].[Poids],
                             [dbo].[Cheval].[Race],
-                            [dbo].[Cheval].[Age])
+                            [dbo].[Cheval].[Age],
+                            Sexe)
+                            
+                            
 VALUES  
-('dala','dalakhani','zarkava','2020-07-02','repos','1','1','450','PS','4'),
-('khani','dalakhani','zarkava','2020-07-12','repos','2','2','450','PS','5'),
-('zarkandar','dalakhani','zarkava','2020-11-02','repos','3','3','450','PS','3'),
-('dubawi','dalakhani','zarkava','2020-05-02','repos','1','4','450','PS','6'),
-('alpha spirit','zarak','zarkava','2020-09-24','repos','3','5','450','PS','4');
+('dala','dalakhani','zarkava','2020-07-02','repos','1','1','450','PS','4','M'),
+('khani','dalakhani','zarkava','2020-07-12','repos','2','2','450','PS','5','F'),
+('zarkandar','dalakhani','zarkava','2020-11-02','repos','3','3','450','PS','3','H'),
+('dubawi','dalakhani','zarkava','2020-05-02','repos','1','4','450','PS','6','E'),
+('alpha spirit','zarak','zarkava','2020-09-24','repos','3','5','450','PS','4','F');
 
 insert [dbo].[Soins]([dbo].[Soins].[Id_Cheval],
                      [dbo].[Soins].[Id_Employe],

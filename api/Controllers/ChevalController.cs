@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using DAL.IRepository;
 using DAL.Models;
 using DAL.Repository;
@@ -15,19 +14,18 @@ namespace api.Controllers
     [ApiController]
     public class ChevalController : ControllerBase
     {
-        private IChevalRepository _cheval;
+        private IChevalRepository _chevalRepository;
 
         public ChevalController(ChevalRepository cheval)
         {
-            _cheval = cheval;
+            _chevalRepository = cheval;
         }
-
 
         // GET: api/cheval
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Cheval> chevals = _cheval.Get().Select(x => x);
+            IEnumerable<Cheval> chevals = _chevalRepository.Get().Select(x => x);
 
             if (!(chevals is null))
                 return Ok(chevals);
@@ -37,11 +35,14 @@ namespace api.Controllers
 
         // GET api/cheval/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
-            Cheval cheval = this._cheval.GetById(id);
+            Cheval cheval = this._chevalRepository.GetById(id);
 
-            return Ok(cheval);
+            if (!(cheval is null))
+                return Ok(cheval);
+            else 
+                return NotFound();
         }
 
         // POST api/<ChevalController>
@@ -49,23 +50,19 @@ namespace api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Cheval cheval)
         {
-            try
-            {
-                this._cheval.Create(cheval);
+            int Success = _chevalRepository.Create(cheval);
+
+            if (Success > 0)
                 return Ok();
-            }
-            catch(Exception e)
-            {
-                return this.BadRequest();
-            }
+            else
+                return NotFound();
         }
 
         // PUT api/<ChevalController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Cheval value)
+        public IActionResult Put(int id, [FromBody] Cheval cheval)
         {
-            value.Id_Cheval = id;
-            this._cheval.Update(value);
+            this._chevalRepository.Update(id, cheval);
             return Ok();
         }
 
@@ -73,7 +70,7 @@ namespace api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-           _cheval.Delete(id);
+           _chevalRepository.Delete(id);
 
             return Ok(id);
         }

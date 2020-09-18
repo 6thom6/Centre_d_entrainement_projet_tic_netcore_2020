@@ -10,12 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using DAL;
 using api.Helpers;
 using System.Data.Common;
 using System.Data.SqlClient;
-using Microsoft.AspNetCore.Http;
 using DAL.Repository;
+using Tools.Database;
 using DAL.IRepository;
 
 namespace api
@@ -39,9 +38,9 @@ namespace api
 
             services.AddControllers();
             services.AddSingleton<DbProviderFactory>(sp => SqlClientFactory.Instance);
-            services.AddTransient(sp => new SqlConnection(ConnectionStrings));
+            services.AddSingleton(sp => new ConnectionInfo(ConnectionStrings));
+            services.AddSingleton<Connection>();
             services.AddSingleton<ChevalRepository>();
-            services.AddSingleton<ICourseRepository>();
          
         }
 

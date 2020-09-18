@@ -4,140 +4,63 @@ using System.Data.SqlClient;
 using System.Text;
 using DAL.Models;
 using DAL.IRepository;
+using Tools.Database;
+using DAL.Repository.Extensions;
+using System.Linq;
 
 namespace DAL.Repository
 {
     class CourseRepository : ICourseRepository
     {
-        public SqlConnection _connection;
+        private static Connection _connection;
 
-        public CourseRepository(SqlConnection sqlConnection)
+        public CourseRepository(Connection connection)
         {
-            _connection = sqlConnection;
+            _connection = connection;
         }
-        public List<Course> GetallCourses()
+        public IEnumerable<Course> GetallCourses()
         {
-            List<Course> GetallCourses = new List<Course>();
+            Command command = new Command("SELECT * FROM Course");
+            return _connection.ExecuteReader(command, dr => dr.CourseToDal());
 
-            using (_connection)
-            {
-                _connection.Open();
-
-                SqlCommand command = new SqlCommand("SELECT * FROM COURSE", _connection);
-
-                using SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    GetallCourses.Add(
-                        new Course
-                        {
-                            Id_Course = (int)reader["Id_Course"],
-                            Hippodrome = (string)reader["Hippodrome"],
-                            Jockey = (string)reader["Jockey"],
-                            Corde = (string)reader["Corde"],
-                            Discipline = (string)reader["Discipline"],
-                            Terrain = (string)reader["Terrain"],
-                            Poids_De_Course = (float) reader["Poids_De_Course"],
-                            Avis = reader["Avis"] == DBNull.Value ? null : (string)reader["Avis"],
-                            Date_Course = (DateTime)reader["Date_Course"],
-                            Distance = (int) reader["Distance"],
-
-
-                        }
-                        ) ;
-                }
-            }
-
-            return GetallCourses;
         }
-        public Course Get(int idAChercher)
+        public Course GetById(int id)
         {
 
-            Course GetCourses = new Course();
+            Command command = new Command("SELECT * FROM COURSE where Id_Course = @id");
+            command.AddParameter("id", id);
 
-            using (_connection)
-            {
-                _connection.Open();
+            return _connection.ExecuteReader(command, dr => dr.CourseToDal()).SingleOrDefault();
 
-                SqlCommand command = new SqlCommand("SELECT * FROM COURSE where id =@idCherch", _connection);
-                    command.Parameters.AddWithValue("idCherch", idAChercher);
 
-                using SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-
-                    new Course
-                    {
-                        Id_Course = (int)reader["Id_Course"],
-                        Hippodrome = (string)reader["Hippodrome"],
-                        Jockey = (string)reader["Jockey"],
-                        Corde = (string)reader["Corde"],
-                        Discipline = (string)reader["Discipline"],
-                        Terrain = (string)reader["Terrain"],
-                        Poids_De_Course = (float)reader["Poids_De_Course"],
-                        Avis = reader["Avis"] == DBNull.Value ? null : (string)reader["Avis"],
-                        Date_Course = (DateTime)reader["Date_Course"],
-                        Distance = (int)reader["Distance"],
-
-                    };
-             
-                }
-                return GetCourses;
-
-            }
 
 
         }
-        public void Create(Course NouvelleCourse)
+        public int Create(Course course)
         {
-            using (_connection)
-            {
-                _connection.Open();
 
-                SqlCommand command = new SqlCommand("INSERT INTO COURSE (Hippodrome," +
-                                                                        "Jockey," + //les champs de la table
-                                                                        "Corde," +
-                                                                        "Discipline," +
-                                                                        "Terrain," +
-                                                                        "Avis," +
-                                                                        "Date_Course," +
-                                                                        "Poids_De_Course," +
-                                                                        "Distance)" +
+            Command command = new Command("CreateCourse", true);
+            command.AddParameter("Hippodrome", course.Hippodrome);
+            command.AddParameter("Jockey", course.Jockey);
+            command.AddParameter("Corde", course.Corde);
+            command.AddParameter("Discipline", course.Discipline);
+            command.AddParameter("Terrain", course.Terrain);
+            command.AddParameter("Avis", course.Avis);
+            command.AddParameter("Date_Course", course.Date_Course);
+            command.AddParameter("Poids_De_Course", course.Poids_De_Course);
+            command.AddParameter("Distance", course.Distance);
 
-                                                     "VALUES            (@Hippodrome, " +
-                                                                        "@Jockey," + //les champs a rentrer
-                                                                        "@Corde, " +
-                                                                        "@Discipline, " +
-                                                                        "@Terrain, " +
-                                                                        "@Avis, " +
-                                                                        "@Date_Course," +
-                                                                        "@Poids_De_Course, " +
-                                                                        "@Distance)");
-
-                command.Parameters.AddWithValue("Hippodrome", NouvelleCourse.Hippodrome);
-                command.Parameters.AddWithValue("Jockey", NouvelleCourse.Jockey);
-                command.Parameters.AddWithValue("Corde", NouvelleCourse.Corde);
-                command.Parameters.AddWithValue("Discipline", NouvelleCourse.Discipline);
-                command.Parameters.AddWithValue("Terrain", NouvelleCourse.Terrain);
-                command.Parameters.AddWithValue("Avis", NouvelleCourse.Avis);
-                command.Parameters.AddWithValue("Date_Course", NouvelleCourse.Date_Course);
-                command.Parameters.AddWithValue("Poids_De_Course", NouvelleCourse.Poids_De_Course);
-                command.Parameters.AddWithValue("Distance", NouvelleCourse.Distance);
-
-                command.ExecuteNonQuery();
+            return _connection.ExecuteNonQuery(command);
 
 
-
-                _connection.Close();
-            }
         }
-        public void Update(Course CourseAModifier)
-        {
-            using (_connection)
-            {
-                _connection.Open();
+    
 
-                SqlCommand command = new SqlCommand("UPDATE COURSE" + "SET Hippodrome = @Hippodrome , " +
+        public int Update( int id, Course course)
+        {
+
+
+                Command command = new Command("UPDATE COURSE SET Hippodrome = @Hippodrome , " +
                                                                           "Jockey = @Jockey" + 
                                                                           "Corde = @Corde , " +
                                                                           "Discipline = @Discipline , " +
@@ -149,36 +72,33 @@ namespace DAL.Repository
 
                                                                         "WHERE Id_Course = @Id_Course");
 
-                command.Parameters.AddWithValue("Id_course", CourseAModifier.Id_Course);
-                command.Parameters.AddWithValue("Hippodrome", CourseAModifier.Hippodrome);
-                command.Parameters.AddWithValue("Jockey", CourseAModifier.Jockey);
-                command.Parameters.AddWithValue("Corde", CourseAModifier.Corde);
-                command.Parameters.AddWithValue("Discipline", CourseAModifier.Discipline);
-                command.Parameters.AddWithValue("Terrain", CourseAModifier.Terrain);
-                command.Parameters.AddWithValue("Avis", CourseAModifier.Avis);
-                command.Parameters.AddWithValue("Date_Course", CourseAModifier.Date_Course);
-                command.Parameters.AddWithValue("Poids_De_Course", CourseAModifier.Poids_De_Course);
-                command.Parameters.AddWithValue("Distance", CourseAModifier.Distance);
+                command.AddParameter("Id_Course", course.Id_Course);
+                command.AddParameter("Hippodrome", course.Hippodrome);
+                command.AddParameter("Jockey", course.Jockey);
+                command.AddParameter("Corde", course.Corde);
+                command.AddParameter("Discipline", course.Discipline);
+                command.AddParameter("Terrain", course.Terrain);
+                command.AddParameter("Avis", course.Avis);
+                command.AddParameter("Date_Course", course.Date_Course);
+                command.AddParameter("Poids_De_Course", course.Poids_De_Course);
+                command.AddParameter("Distance", course.Distance);
 
+            return _connection.ExecuteNonQuery(command);
 
-                command.ExecuteNonQuery();
-
-                _connection.Close();
             }
-        }
-        public void Delete(int idADelete)
-        {
         
-                using (_connection)
-                {
-                    _connection.Open();
-                    SqlCommand command = new SqlCommand("DELETE FROM COURSE where Id = @id");
-                    command.Parameters.AddWithValue("id", idADelete);
-                    command.ExecuteNonQuery();
-                    _connection.Close();
-                }
+        public int Delete(int id)
+        {
+
+            Command command = new Command("DELETE FROM Course where Id_Course = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteNonQuery(command);
+
             
         }
+
+
     }
 }
 

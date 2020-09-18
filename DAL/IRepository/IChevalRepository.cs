@@ -5,11 +5,10 @@ namespace DAL.IRepository
 {
     public interface IChevalRepository
     {
-        void Create(Cheval NouveauCheval);
-        void Delete(int idADelete);
-        List<Cheval> Get();
-        Cheval GetById(int idAChercher);
-        void Update(Cheval ChevalAModifier);
-
+        IEnumerable<Cheval> Get();
+        Cheval GetById(int id);
+        int Create(Cheval cheval);
+        int Update(int id, Cheval cheval);
+        int Delete(int id);
     }
 }
