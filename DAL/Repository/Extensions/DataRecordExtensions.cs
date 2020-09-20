@@ -49,6 +49,6 @@ namespace DAL.Repository.Extensions
                 Date_Embauche = record["Date_Embauche"] == DBNull.Value ?null: (DateTime?) record["Date_Embauche"],
                 Statut_Employe = (string)record["Statut_Employe"]
             };
-        }
+        } 
     }
 }

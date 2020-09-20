@@ -24,34 +24,53 @@ namespace api.Controllers
 
         // GET: api/<EmployeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<Employé> employés = _employeRepository.GetallEmploye().Select(x => x);
+            if (!(employés is null))
+
+                return Ok(employés);
+            else
+                return NotFound();
         }
 
         // GET api/<EmployeController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            Employé employé = this._employeRepository.GetById(id);
+            if (!(employé is null))
+                return Ok(employé);
+            else
+                return NotFound();
         }
 
         // POST api/<EmployeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Employé employé)
         {
+            int Success = _employeRepository.Create(employé);
+
+            if (Success > 0)
+                return Ok();
+            else
+                return NotFound();
         }
 
         // PUT api/<EmployeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Employé employé)
         {
+            this._employeRepository.Update(id, employé);
+            return Ok();
         }
 
         // DELETE api/<EmployeController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            _employeRepository.Delete(id);
+            return Ok(id);
         }
     }
 }
