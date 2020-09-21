@@ -3,12 +3,15 @@ using System.Collections.Generic;
 
 namespace DAL.IRepository
 {
-    interface IProprietaireRepository
+   public interface IProprietaireRepository
     {
-        void Create(Proprietaire NouveauProprietaire);
-        void Delete(int idADelete);
-        Proprietaire Get(int idAChercher);
-        List<Proprietaire> GetallProprietaire();
-        void Update(Proprietaire EntrainementAModifier);
+        IEnumerable<Proprietaire> GetallProprietaire();
+        Proprietaire Get(int id);
+        int Create(Proprietaire proprietaire);
+        int Update(int id, Proprietaire proprietaire);
+        int Delete(int id);
+
+   
+
     }
 }

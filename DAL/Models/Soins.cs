@@ -14,9 +14,9 @@ namespace DAL.Models
         public DateTime? Marechal { get; set; }
         public DateTime? Vermifuge { get; set; }
         public string Note_Libre { get; set; }
-        public string Type_de_soin { get; set; }
-        public string durree_indisponibilite { get; set; }
-        public DateTime? date_de_soin { get; set; }
+        public string Type_De_Soin { get; set; }
+        public string Durree_Indisponibilite { get; set; }
+        public DateTime? Date_De_Soin { get; set; }
 
 
     }

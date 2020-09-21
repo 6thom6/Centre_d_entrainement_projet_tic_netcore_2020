@@ -4,53 +4,22 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using DAL.IRepository;
+using Tools.Database;
 
 namespace DAL.Repository
 {
     class SoinsRepository : ISoinsRepository
     {
+        private static Connection _connection;
 
-        public SqlConnection _connection;
-
-        public SoinsRepository(SqlConnection sqlConnection)
+        public SoinsRepository(Connection connection)
         {
-            _connection = sqlConnection;
+            _connection = connection;
         }
-        public List<Soins> GetallSoins()
+        public IEnumerable<Soins> GetallSoins()
         {
-            List<Soins> GetallSoins = new List<Soins>();
 
-            using (_connection)
-            {
-                _connection.Open();
 
-                SqlCommand command = new SqlCommand("SELECT * FROM Soins", _connection);
-
-                using SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    GetallSoins.Add(
-                        new Soins
-                        {
-                            Id_Soins = reader["Id_Soins"] == DBNull.Value ? null : (int?)reader["Id_Soins"],
-                            Id_Cheval = (int)reader["Id_Cheval"],
-                            Id_Employe = reader["Id_Employe"] == DBNull.Value ? null : (int?)reader["Id_Employe"],
-                            Alimentation = (string)reader["Alimentation"],
-                            Complement_Alimentation = reader["Complement_Alimentation"] == DBNull.Value ? null : (string)reader["Complement_Alimentation"],
-                            Note_Libre = reader["Note_Libre"] == DBNull.Value ? null : (string)reader["Note_Libre"],
-                            Marechal = reader["Marechal"] == DBNull.Value ? null : (DateTime?)reader["Marechal"],
-                            Vermifuge = reader["Vermifuge"] == DBNull.Value ? null : (DateTime?)reader["Vermifuge"],
-                            Type_de_soin = reader["Type_de_soin"] == DBNull.Value ? null : (string)reader["Type_de_soin"],
-                            durree_indisponibilite = reader["durree_indisponibilite"] == DBNull.Value ? null : (string)reader["durree_indisponibilite"],
-                            date_de_soin = reader ["date_de_soin"] == DBNull.Value ? null : (DateTime?)reader["date_de_soin"]
-                            
-
-                        }
-                        );
-                }
-            }
-            _connection.Close();
-            return GetallSoins;
         }
         public Soins Get(int idAChercher)
         {

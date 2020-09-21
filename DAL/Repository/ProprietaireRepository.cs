@@ -4,128 +4,68 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using DAL.IRepository;
+using Tools.Database;
+using DAL.Repository.Extensions;
+using System.Linq;
 
 namespace DAL.Repository
 {
-    class ProprietaireRepository : IProprietaireRepository
+   public class ProprietaireRepository : IProprietaireRepository
     {
-        public SqlConnection _connection;
+        private static Connection _connection;
 
-        public ProprietaireRepository(SqlConnection sqlConnection)
+        public ProprietaireRepository(Connection connection)
         {
-            _connection = sqlConnection;
+            _connection = connection;
         }
-        public List<Proprietaire> GetallProprietaire()
+        public IEnumerable<Proprietaire> GetallProprietaire()
         {
-            List<Proprietaire> GetallProprietaire = new List<Proprietaire>();
-
-            using (_connection)
-            {
-                _connection.Open();
-
-                SqlCommand command = new SqlCommand("SELECT * FROM Proprietaire", _connection);
-
-                using SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    GetallProprietaire.Add(
-                        new Proprietaire
-                        {
-                            Id_Proprietaire = (int)reader["Id_Proprietaire"],
-                            Nom_Proprietaire = (string)reader["Nom_Proprietaire"],
-                            Dernier_Resultats = reader["Dernier_Resultats"] == DBNull.Value ? string.Empty : (string)reader["Dernier_Resultats"],
-                            Date_Arrivee = (DateTime)reader["Date_Arrivee"],
-
-                        }
-                        );
-                }
-            }
-            _connection.Close();
-            return GetallProprietaire;
+            Command command = new Command("SELECT * FROM Proprietaire");
+            return _connection.ExecuteReader(command, dr => dr.ProprietaireToDal());
         }
-        public Proprietaire Get(int idAChercher)
+        public Proprietaire Get(int id)
         {
-            Proprietaire GetProprietaire = new Proprietaire();
+            Command command = new Command("SELECT * FROM Proprietaire where Id_Proprietaire = @id");
+            command.AddParameter("id", id);
 
-            using (_connection)
-            {
-                _connection.Open();
-
-                SqlCommand command = new SqlCommand("SELECT * FROM Proprietaire where id = @idCherch", _connection);
-                command.Parameters.AddWithValue("idCherch", idAChercher);
-
-                using SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-
-                    new Proprietaire
-                    {
-                        Id_Proprietaire = (int)reader["Id_Proprietaire"],
-                        Nom_Proprietaire = (string)reader["Nom_Proprietaire"],
-                        Dernier_Resultats = reader["Dernier_Resultats"] == DBNull.Value ? null : (string)reader["Dernier_Resultats"],
-                        Date_Arrivee = (DateTime)reader["Date_Arrivee"],
-
-                    };
-                        
-                }
-            }
-            _connection.Close();
-            return GetProprietaire;
+            return _connection.ExecuteReader(command, dr => dr.ProprietaireToDal()).SingleOrDefault();
         }
-        public void Create(Proprietaire NouveauProprietaire)
+        public int Create(Proprietaire proprietaire)
         {
-            using (_connection)
-            {
-                _connection.Open();
+            Command command = new Command("CreateProprietaire", true);
+                  command.AddParameter("Nom_Proprietaire", proprietaire.Nom_Proprietaire);
+                command.AddParameter("Date_Arrivee", proprietaire.Date_Arrivee);
+                command.AddParameter("Dernier_Resultat", proprietaire.Dernier_Resultat);
 
-                SqlCommand command = new SqlCommand("INSERT INTO Proprietaire (Nom_Proprietaire,Effectif," + //les champs de la table
-                                                  "Date_Arrivee,Dernier_Resultat)" +
-                                                  "VALUES (@nom,effectif," + //les champs a rentrer
-                                                  "@date_arrivee, @dernier_resultat)");
-
-                command.Parameters.AddWithValue("nom", NouveauProprietaire.Nom_Proprietaire);
-                command.Parameters.AddWithValue("date_arrivee", NouveauProprietaire.Date_Arrivee);
-                command.Parameters.AddWithValue("dernier_resultat", NouveauProprietaire.Dernier_Resultats);
-
-
-
-                command.ExecuteNonQuery();
-
-                _connection.Close();
-            }
+            return _connection.ExecuteNonQuery(command);
         }
-        public void Update(Proprietaire ProprietaireAModifier)
+        public int Update(int id, Proprietaire proprietaire)
         {
-            using (_connection)
-            {
-                _connection.Open();
-
-                SqlCommand command = new SqlCommand("Nom_Proprietaire = @nom" +
-                    "Effectif = @effectif, Date_Arrivee = @date_arrivee, Dernier_Resultats = @dernier_resultat" +
-                    "WHERE Id_Proprietaire = @id_proprietaire");
-
-                command.Parameters.AddWithValue("id_proprietaire", ProprietaireAModifier.Id_Proprietaire);
-                command.Parameters.AddWithValue("nom", ProprietaireAModifier.Nom_Proprietaire);
-                command.Parameters.AddWithValue("date_arrivee", ProprietaireAModifier.Date_Arrivee);
-                command.Parameters.AddWithValue("dernier_resultat", ProprietaireAModifier.Dernier_Resultats);
 
 
 
-                command.ExecuteNonQuery();
+                Command command = new Command ("UPDATE Proprietaire SET Nom_Proprietaire = @Nom_Proprietaire, " +
+                    "                                                   Date_Arrivee = @Date_Arrivee, " +
+                    "                                                   Dernier_Resultat = @Dernier_Resultat " +
+                                                                        "WHERE Id_Proprietaire = @Id_Proprietaire");
 
-                _connection.Close();
+                command.AddParameter("Id_Proprietaire", id);
+                command.AddParameter("Nom_Proprietaire", proprietaire.Nom_Proprietaire);
+                command.AddParameter("Date_Arrivee", proprietaire.Date_Arrivee);
+                command.AddParameter("Dernier_Resultat", proprietaire.Dernier_Resultat);
+
+            return _connection.ExecuteNonQuery(command);
+
             }
-        }
-        public void Delete(int idADelete)
+        
+        public int Delete(int id)
         {
-            using (_connection)
-            {
-                _connection.Open();
-                SqlCommand command = new SqlCommand("DELETE FROM Proprietaire where ID = @id");
-                command.Parameters.AddWithValue("id", idADelete);
-                command.ExecuteNonQuery();
-                _connection.Close();
-            }
+
+            throw new Exception();
+        //Command command = new Command("DELETE FROM Proprietaire where Id_Proprietaire = @id");
+        //command.AddParameter("id", id);
+
+        //    return _connection.ExecuteNonQuery(command);
         }
     }
 }

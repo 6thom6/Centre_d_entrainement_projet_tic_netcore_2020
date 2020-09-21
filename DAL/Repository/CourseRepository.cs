@@ -82,7 +82,7 @@ namespace DAL.Repository
                 command.AddParameter("Date_Courses", course.Date_Courses);
                 command.AddParameter("Poids_De_Course", course.Poids_De_Course);
                 command.AddParameter("Distance", course.Distance);
-
+            
             return _connection.ExecuteNonQuery(command);
 
             }

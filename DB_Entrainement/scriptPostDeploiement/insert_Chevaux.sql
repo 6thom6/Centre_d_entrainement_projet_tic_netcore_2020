@@ -123,7 +123,7 @@ values
 
 insert [dbo].[Historique] ([dbo].[Historique].[Id_Cheval],
                            [dbo].[Historique].[Debourage],
-                           [dbo].[Historique].[Pre-entrainement],
+                           [dbo].[Historique].[Pre_Entrainement],
                            [dbo].[Historique].[Entraineur_precedent],
                            [dbo].[Historique].[Proprietaire_precedent])
 values

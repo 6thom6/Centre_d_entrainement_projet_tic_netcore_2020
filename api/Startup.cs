@@ -45,6 +45,8 @@ namespace api
             services.AddSingleton<CourseRepository>();
             services.AddSingleton<EmployeRepository>();
             services.AddSingleton<EntrainementRepository>();
+            services.AddSingleton<HistoRipository>();
+            services.AddSingleton<ProprietaireRepository>();
          
         }
 

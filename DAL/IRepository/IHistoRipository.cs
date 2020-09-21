@@ -3,12 +3,15 @@ using System.Collections.Generic;
 
 namespace DAL.IRepository
 {
-    interface IHistoRipository
+   public interface IHistoRipository
     {
-        void Create(Historique NouvelHistorique);
-        void Delete(int idADelete);
-        Historique Get(int idAChercher);
-        List<Historique> GetallHistorique();
-        void Update(Historique HistoriqueAModifier);
+        IEnumerable<Historique> GetallHistorique();
+        Historique Get(int id);
+        int Create(Historique historique);
+        int Update(int id, Historique historique);
+        int Delete(int id);
+
+ 
+
     }
 }

@@ -65,6 +65,28 @@ namespace DAL.Repository.Extensions
 
             };
         }
-            
+        internal static Historique HistoriqueToDal(this IDataRecord record)
+        {
+            return new Historique()
+            {
+                Id_Historique = (int)record["Id_Historique"],
+                Id_Cheval = (int)record["Id_Cheval"],
+                Debourage = record["Debourage"] == DBNull.Value ? null : (string)record["Debourage"],
+                Pre_Entrainement = record["Pre_Entrainement"] == DBNull.Value ? null : (string)record["Pre_Entrainement"],
+                Entraineur_Precedent = record["Entraineur_Precedent"] == DBNull.Value ? null : (string)record["Entraineur_Precedent"],
+                Proprietaire_Precedent = record["Proprietaire_Precedent"] == DBNull.Value ? null : (string)record["Proprietaire_Precedent"]
+            };
+        }
+        internal static Proprietaire ProprietaireToDal(this IDataRecord record)
+        {
+            return new Proprietaire()
+            {
+                Id_Proprietaire = (int)record["Id_Proprietaire"],
+                Nom_Proprietaire = (string)record["Nom_Proprietaire"],
+                Date_Arrivee = (DateTime)record["Date_Arrivee"],
+                Dernier_Resultat = record ["Dernier_Resultat"] == DBNull.Value ? null : (string)record["Dernier_Resultat"]
+            };
+        }
+
     }
 }

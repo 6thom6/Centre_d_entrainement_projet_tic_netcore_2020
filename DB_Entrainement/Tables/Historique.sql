@@ -3,7 +3,7 @@
 	[Id_historique] INT NOT NULL IDENTITY, 
     [Id_Cheval] INT NOT NULL, 
     [Debourage] NVARCHAR(50) NULL, 
-    [Pre-entrainement] NVARCHAR(50) NULL, 
+    [Pre_Entrainement] NVARCHAR(50) NULL, 
     [Entraineur_precedent] NVARCHAR(50) NULL, 
     [Proprietaire_precedent] NVARCHAR(50) NULL, 
  

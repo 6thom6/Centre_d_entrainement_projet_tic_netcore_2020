@@ -4,146 +4,67 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using DAL.IRepository;
+using Tools.Database;
+using DAL.Repository.Extensions;
+using System.Linq;
 
 namespace DAL.Repository
 {
-    class HistoRipository : IHistoRipository
+   public class HistoRipository : IHistoRipository
     {
-        public SqlConnection _connection;
+        private static Connection _connection;
 
-        public HistoRipository(SqlConnection sqlConnection)
+        public HistoRipository(Connection connection)
         {
-            _connection = sqlConnection;
+            _connection = connection;
         }
-        public List<Historique> GetallHistorique()
+        public IEnumerable<Historique> GetallHistorique()
         {
-            List<Historique> GetallHistorique = new List<Historique>();
-
-            using (_connection)
-            {
-                _connection.Open();
-
-                SqlCommand command = new SqlCommand("SELECT * FROM Historique", _connection);
-
-                using SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    GetallHistorique.Add(
-                        new Historique
-                        {
-                            Id_Historique = (int)reader["Id_Historique"],
-                            Id_Cheval = (int)reader["Id_Cheval"],
-                            Debourrage = reader["Debourrage"] == DBNull.Value ? null : (string)reader["Debourrage"],
-                            Pree_Entrainement = reader["Pre-entrainement"] == DBNull.Value ? null : (string)reader["Pre-entrainement"],
-                            Entraineur_Precedent = reader["Entraineur_Precedent"] == DBNull.Value ? null : (string)reader["Entraineur_Precedent"],
-                            Proprietaire_Precedent = reader["Proprietaire_Precedent"] == DBNull.Value ? null : (string)reader["Proprietaire_Precedent"],
-
-                        }
-                        );
-                }
-            }
-
-            return GetallHistorique;
-        }
-        public Historique Get(int idAChercher)
-        {
-            Historique GetHistorique = new Historique();
-
-            using (_connection)
-            {
-                _connection.Open();
-
-                SqlCommand command = new SqlCommand("SELECT * FROM Historique where id = @idCherch", _connection);
-                command.Parameters.AddWithValue("idCherch", idAChercher);
-
-
-                using SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-
-                    new Historique
-                    {
-                        Id_Historique = (int)reader["Id_Historique"],
-                        Id_Cheval = (int)reader["Id_Cheval"],
-                        Debourrage = reader["Debourrage"] == DBNull.Value ? null : (string)reader["Debourrage"],
-                        Pree_Entrainement = reader["Pre-entrainement"] == DBNull.Value ? null : (string)reader["Pre-entrainement"],
-                        Entraineur_Precedent = reader["Entraineur_Precedent"] == DBNull.Value ? null : (string)reader["Entraineur_Precedent"],
-                        Proprietaire_Precedent = reader["Proprietaire_Precedent"] == DBNull.Value ? null : (string)reader["Proprietaire_Precedent"],
-
-                    };
-                        
-                }
-                
-            }
-            _connection.Close();
-            return GetHistorique;
+            Command command = new Command("SELECT * FROM Historique");
+            return _connection.ExecuteReader(command, dr => dr.HistoriqueToDal());
 
         }
-        public void Create(Historique NouvelHistorique)
+        public Historique Get(int id)
         {
-            using (_connection)
-            {
-                _connection.Open();
-
-                SqlCommand command = new SqlCommand("INSERT INTO Historique (Id_Cheval,Debourrage," + //les champs de la table
-                                                     "Pree_Entrainement," +
-                                                     "Entraineur_Precedent,Proprietaire_Precedent)" +
-                                                     "VALUES (@id_cheval,@debourrage," + //les champs a rentrer
-                                                     "@pre_entrainement, @entraineur_precedent, " +
-                                                     "@proprietaire_precedent)");
-
-                command.Parameters.AddWithValue("id_cheval", NouvelHistorique.Id_Cheval);
-                command.Parameters.AddWithValue("debourrage", NouvelHistorique.Debourrage);
-                command.Parameters.AddWithValue("pre_entrainement", NouvelHistorique.Pree_Entrainement);
-                command.Parameters.AddWithValue("entraineur_precedent", NouvelHistorique.Entraineur_Precedent);
-                command.Parameters.AddWithValue("proprietaire_precedent", NouvelHistorique.Proprietaire_Precedent);
-
-
-                command.ExecuteNonQuery();
-
-
-
-                _connection.Close();
-
-            }
-        }
-        public void Update(Historique HistoriqueAModifier)
-        {
-            using (_connection)
-            {
-                _connection.Open();
-
-                SqlCommand command = new SqlCommand("UPDATE Historique SET Id_Cheval = @id_cheval" +
-                    "Débourrage =  @debourrage, Pree_Entrainement = @pre_entrainement" +
-                    "Entraineur_Precedent = @entraineur_precedent, Proprietaire_Precedent = @proprietaire_precedent" +
-                             "WHERE Id_Historique = @id_hitorique");
-
-                command.Parameters.AddWithValue("id_hitorique", HistoriqueAModifier.Id_Historique);
-                command.Parameters.AddWithValue("id_cheval", HistoriqueAModifier.Id_Cheval);
-                command.Parameters.AddWithValue("debourrage", HistoriqueAModifier.Debourrage);
-                command.Parameters.AddWithValue("pre_entrainement", HistoriqueAModifier.Pree_Entrainement);
-                command.Parameters.AddWithValue("entraineur_precedent", HistoriqueAModifier.Entraineur_Precedent);
-                command.Parameters.AddWithValue("proprietaire_precedent", HistoriqueAModifier.Proprietaire_Precedent);
-
-
-                command.ExecuteNonQuery();
-
-
-
-                _connection.Close();
-            }
+            Command command = new Command("SELECT * From Historique where Id_historique = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.HistoriqueToDal()).SingleOrDefault();
 
         }
-        public void Delete(int idADelete)
+        public int Create(Historique historique)
         {
-            using (_connection)
-            {
-                _connection.Open();
-                SqlCommand command = new SqlCommand("DELETE FROM Historique where ID = @id");
-                command.Parameters.AddWithValue("id", idADelete);
-                command.ExecuteNonQuery();
-                _connection.Close();
-            }
+            Command command = new Command("CreateHistorique", true);
+                command.AddParameter("Id_Cheval", historique.Id_Cheval);
+                command.AddParameter("Debourage", historique.Debourage);
+                command.AddParameter("Pre_Entrainement", historique.Pre_Entrainement);
+                command.AddParameter("Entraineur_Precedent", historique.Entraineur_Precedent);
+                command.AddParameter("Proprietaire_Precedent", historique.Proprietaire_Precedent);
+            return _connection.ExecuteNonQuery(command);
+
+        }
+        public int Update(int id, Historique historique)
+        {
+
+                Command command = new Command("UPDATE Historique SET Id_Cheval = @Id_Cheval" +
+                                                                    "Debourage =  @Debourage, Pre_Entrainement = @Pre_Entrainement," +
+                                                                    "Entraineur_Precedent = @entraineur_precedent, Proprietaire_Precedent = @proprietaire_precedent" +
+                                                                 "WHERE Id_Historique = @Id_Hitorique");
+
+                command.AddParameter("Id_Hitorique", id);
+                command.AddParameter("Id_Cheval", historique.Id_Cheval);
+                command.AddParameter("Debourage", historique.Debourage);
+                command.AddParameter("Pre_Entrainement", historique.Pre_Entrainement);
+                command.AddParameter("Entraineur_Precedent", historique.Entraineur_Precedent);
+                command.AddParameter("Proprietaire_Precedent", historique.Proprietaire_Precedent);
+            return _connection.ExecuteNonQuery(command);
+
+        }
+        public int Delete(int id)
+        {
+            Command command = new Command("DELETE FROM HISTORIQUE where ID_Historique = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteNonQuery(command);
         }
     }
 }
