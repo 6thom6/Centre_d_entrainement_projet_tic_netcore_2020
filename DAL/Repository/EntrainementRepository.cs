@@ -38,7 +38,7 @@ namespace DAL.Repository
                             Obstacle = reader["Obstacle"] == DBNull.Value ? null : (string)reader["Obstacle"],
                             Marcheur = reader["Marcheur"] == DBNull.Value ? null : (string)reader["Marcheur"],
                             Pre = reader["Pre"] == DBNull.Value ? null : (string)reader["Pre"],
-                            Duree = reader["Duree"] == DBNull.Value ? null : (int?)reader["Duree"],
+                            Duree = reader["Duree"] == DBNull.Value ? null : (string)reader["Duree"],
                             Id_Employe = (int)reader["Id_Employe"],
                         }
                         );
@@ -72,7 +72,7 @@ namespace DAL.Repository
                         Obstacle = reader["Obstacle"] == DBNull.Value ? string.Empty : (string)reader["Obstacle"],
                         Marcheur = reader["Marcheur"] == DBNull.Value ? string.Empty : (string)reader["Marcheur"],
                         Pre = reader["Pré"] == DBNull.Value ? null : (string)reader["Pre"],
-                        Duree = reader["Durée"] == DBNull.Value ? null : (int?)reader["Durée"],
+                        Duree = reader["Durée"] == DBNull.Value ? null : (string)reader["Durée"],
                         Id_Employe = reader["Id_Employe"] == DBNull.Value ? 0 : (int)reader["Id_Employe"],
 
                     };

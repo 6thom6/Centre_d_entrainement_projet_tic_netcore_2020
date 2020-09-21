@@ -5,10 +5,10 @@ namespace DAL.IRepository
 {
    public interface IEmployeRepository
     {
-        IEnumerable<Employé> GetallEmploye();
-        Employé GetById(int id);
-        int Create(Employé NouvelEmploye);
-        int Update(int di, Employé Employe);
+        IEnumerable<Employe> GetallEmploye();
+        Employe GetById(int id);
+        int Create(Employe NouvelEmploye);
+        int Update(int id, Employe Employe);
         int Delete(int id);
 
     }

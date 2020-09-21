@@ -6,7 +6,7 @@
     [Plat] NVARCHAR(50) NULL, 
     [Obstacle] NVARCHAR(50) NULL, 
     [Marcheur] NVARCHAR(50) NULL, 
-    [Duree] nvarchar(50) NULL, 
+    [Duree] NVARCHAR(50) NULL, 
     [Pre] NVARCHAR(50) NULL, 
     CONSTRAINT [PK_Entrainement] PRIMARY KEY ([Id_Entainement]), 
 

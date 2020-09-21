@@ -26,10 +26,10 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Employé> employés = _employeRepository.GetallEmploye().Select(x => x);
-            if (!(employés is null))
+            IEnumerable<Employe> employes = _employeRepository.GetallEmploye().Select(x => x);
+            if (!(employes is null))
 
-                return Ok(employés);
+                return Ok(employes);
             else
                 return NotFound();
         }
@@ -38,18 +38,18 @@ namespace api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Employé employé = this._employeRepository.GetById(id);
-            if (!(employé is null))
-                return Ok(employé);
+            Employe employe = this._employeRepository.GetById(id);
+            if (!(employe is null))
+                return Ok(employe);
             else
                 return NotFound();
         }
 
         // POST api/<EmployeController>
         [HttpPost]
-        public IActionResult Post([FromBody] Employé employé)
+        public IActionResult Post([FromBody] Employe employe)
         {
-            int Success = _employeRepository.Create(employé);
+            int Success = _employeRepository.Create(employe);
 
             if (Success > 0)
                 return Ok();
@@ -59,9 +59,9 @@ namespace api.Controllers
 
         // PUT api/<EmployeController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Employé employé)
+        public IActionResult Put(int id, [FromBody] Employe employe)
         {
-            this._employeRepository.Update(id, employé);
+            this._employeRepository.Update(id, employe);
             return Ok();
         }
 

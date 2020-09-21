@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using DAL.Repository;
 using Tools.Database;
 using DAL.IRepository;
+using DAL.Models;
 
 namespace api
 {
@@ -42,6 +43,8 @@ namespace api
             services.AddSingleton<Connection>();
             services.AddSingleton<ChevalRepository>();
             services.AddSingleton<CourseRepository>();
+            services.AddSingleton<EmployeRepository>();
+            services.AddSingleton<Entrainement>();
          
         }
 

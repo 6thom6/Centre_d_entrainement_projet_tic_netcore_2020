@@ -12,7 +12,7 @@
     [Alimentation] NVARCHAR(50) NOT NULL, 
     [Complement_Alimentation] NVARCHAR(50) NULL, 
     CONSTRAINT [FK_Soins_ToCheval] FOREIGN KEY ([Id_Cheval]) REFERENCES [dbo].[Cheval]([Id_Cheval]), 
-    CONSTRAINT [FK_Soins_ToEmploye] FOREIGN KEY ([Id_Employe]) REFERENCES[dbo].[Employé]([Id_Employe]), 
+    CONSTRAINT [FK_Soins_ToEmploye] FOREIGN KEY ([Id_Employe]) REFERENCES[dbo].[Employe]([Id_Employe]), 
     CONSTRAINT [PK_Soins] PRIMARY KEY ([Id_Soins]),
 
 

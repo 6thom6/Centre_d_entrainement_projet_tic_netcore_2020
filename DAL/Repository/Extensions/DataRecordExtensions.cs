@@ -35,20 +35,36 @@ namespace DAL.Repository.Extensions
                 Corde = (string)record["Corde"],
                 Discipline = (string)record["Discipline"],
                 Terrain = (string)record["Terrain"],
-                Avis = record["Avis"] == DBNull.Value ? null :(string)record ["Avis"],
-                Poids_De_Course = (float)(double)record["Poids_De_Course"],
+                Avis = record["Avis"] == DBNull.Value ? null :(string)record["Avis"],
+                Poids_De_Course = (double)record["Poids_De_Course"],
                 Date_Courses = (DateTime)record["Date_Courses"]
             };
         }
-        internal static Employé EmployéToDal (this IDataRecord record)
+        internal static Employe EmployeToDal (this IDataRecord record)
         {
-            return new Employé()
+            return new Employe()
             {
                 Id_Employe=(int)record["Id_Employe"],
                 Nom_Employe = (string)record["Nom_Employe"],
                 Date_Embauche = record["Date_Embauche"] == DBNull.Value ?null: (DateTime?) record["Date_Embauche"],
-                Statut_Employe = (string)record["Statut_Employe"]
+                Statuts_Employe = (string)record["Statuts_Employe"]
             };
-        } 
+        }
+        internal static Entrainement EntrainementToDal (this IDataRecord record)
+        {
+            return new Entrainement()
+            {
+                Id_Entainement = (int)record["Id_Entrainement"],
+                Id_Employe = (int)record ["Id_Employe"],
+                Cheval = (string) record ["Cheval"],
+                Plat = record ["Plat"] == DBNull.Value ? null : (string) record ["Plat"],
+                Obstacle = record ["Obstacle"] == DBNull.Value ? null : (string) record ["Obstacle"],
+                Marcheur = record ["Marcheur"] == DBNull.Value ? null : (string) record ["Marcheur"],
+                Duree = record ["Duree"] == DBNull.Value ? null : (string) record ["Duree"],
+                Pre = record ["Pre"] == DBNull.Value ? null : (string) record ["Pre"]
+
+            };
+        }
+            
     }
 }

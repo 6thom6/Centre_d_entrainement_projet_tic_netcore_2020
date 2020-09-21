@@ -18,56 +18,57 @@ namespace DAL.Repository
         {
             _connection = connection;
         }
-        public IEnumerable<Employé> GetallEmploye()
+        public IEnumerable<Employe> GetallEmploye()
         {
-            Command command = new Command("SELECT * FROM Employé");
-            return _connection.ExecuteReader(command, dr => dr.EmployéToDal());
+            Command command = new Command("SELECT * FROM Employe");
+            return _connection.ExecuteReader(command, dr => dr.EmployeToDal());
         }
 
-        public Employé GetById(int id)
+        public Employe GetById(int id)
         {
-            Command command = new Command("SELECT * FROM Employé where Id_Employe=@id");
+            Command command = new Command("SELECT * FROM Employe where Id_Employe=@id");
             command.AddParameter("id", id);
 
-            return _connection.ExecuteReader(command, dr => dr.EmployéToDal()).SingleOrDefault();
+            return _connection.ExecuteReader(command, dr => dr.EmployeToDal()).SingleOrDefault();
 
         }
-        public int Create(Employé employe)
+        public int Create(Employe employe)
         {
             Command command = new Command("CreateEmploye", true);
                 command.AddParameter("Nom_Employe", employe.Nom_Employe);
-                command.AddParameter("Status_Employe", employe.Statut_Employe);
+                command.AddParameter("Statuts_Employe", employe.Statuts_Employe);
                 command.AddParameter("Date_Embauche", employe.Date_Embauche);
             return _connection.ExecuteNonQuery(command);
             
         }
-        public int Update(int id, Employé employe)
+        public int Update(int id, Employe employe)
         {
             
 
-               Command command = new Command("UPDATE Employé " +
-                                                     "Nom_Employe = @Nom_Employe, " +
-                                                     "Statut_Employe = @Status_Employe, " +
-                                                     "Date_Embauche = @Date_Embauche" +
-                                                     "where Employé Id_Employé = @Id_Employe");
+               Command command = new Command("UPDATE Employe " +
+                                                     "SET Nom_Employe = @Nom_Employe, " +
+                                                     "Statuts_Employe = @Statuts_Employe, " +
+                                                     "Date_Embauche = @Date_Embauche " +
+                                                     "where Id_Employe = @Id_Employe");
 
                 command.AddParameter("Id_Employe", id);
                 command.AddParameter("Nom_Employe", employe.Nom_Employe);
-                command.AddParameter("Status_Employe", employe.Statut_Employe);
+                command.AddParameter("Statuts_Employe", employe.Statuts_Employe);
                 command.AddParameter("Date_Embauche", employe.Date_Embauche);
 
-              return _connection.ExecuteNonQuery(command);
+            return _connection.ExecuteNonQuery(command);
 
   
         }
         public int Delete(int id)
         {
-            Command command = new Command("DELETE FROM Employé where Id_Employe = id");
-            command.AddParameter("id", id);
+            throw new Exception();
+            //Command command = new Command("DELETE FROM Employe where Id_Employe = @id");
+            //command.AddParameter("id", id);
 
-            return _connection.ExecuteNonQuery(command);
+            //return _connection.ExecuteNonQuery(command);
         }
-        //controleur employe pas fait!
+        
     }
 }
 

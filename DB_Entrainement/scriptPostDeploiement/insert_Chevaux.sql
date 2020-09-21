@@ -40,9 +40,9 @@ Values
 ('Longchamps','2020-09-04','1600','droite','plat','léger','passable','lestrade','68.5'),
 ('Compiegne','2020-09-05','3900','gauche','steeple','lourd','degueux','masure','68.0')
 
-insert into [dbo].[Employé] ([dbo].[Employé].[Nom_Employe],
-                             [dbo].[Employé].[Date_Embauche],
-                             [dbo].[Employé].[Statuts_Employe])
+insert into [dbo].[Employe] ([dbo].[Employe].[Nom_Employe],
+                             [dbo].[Employe].[Date_Embauche],
+                             [dbo].[Employe].[Statuts_Employe])
 values
 ('zuliani','2020-10-01','jockey'),
 ('Lemagnen','2020-10-02','apprenti'),

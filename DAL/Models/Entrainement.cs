@@ -12,7 +12,7 @@ namespace DAL.Models
         public string Obstacle { get; set; }
         public string Marcheur { get; set; }
         public string Pre { get; set; }
-        public int? Duree { get; set; }
+        public string Duree { get; set; }
         public int Id_Employe { get; set; }
     }
 }
