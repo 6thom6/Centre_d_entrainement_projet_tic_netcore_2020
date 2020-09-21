@@ -44,7 +44,7 @@ namespace api
             services.AddSingleton<ChevalRepository>();
             services.AddSingleton<CourseRepository>();
             services.AddSingleton<EmployeRepository>();
-            services.AddSingleton<Entrainement>();
+            services.AddSingleton<EntrainementRepository>();
          
         }
 

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 
 namespace DAL.IRepository
 {
-    interface IEntrainementRepository
+    public interface IEntrainementRepository
     {
-        void Create(Entrainement NouvelEntrainement);
-        void Delete(int idADelete);
-        Entrainement Get(int idAChercher);
-        List<Entrainement> GetallEntrainement();
-        void Update(Entrainement EntrainementAModifier);
+        IEnumerable<Entrainement> GetallEntrainement();
+        Entrainement GetById(int id);
+        int Create(Entrainement entrainement);
+        int Update(int id, Entrainement entrainement);
+        int Delete(int id);
+      
+      
+        
     }
 }

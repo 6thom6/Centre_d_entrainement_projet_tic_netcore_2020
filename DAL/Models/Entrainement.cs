@@ -6,7 +6,7 @@ namespace DAL.Models
 {
     public class Entrainement
     {
-        public int Id_Entainement { get; set; }
+        public int Id_Entrainement { get; set; }
         public string Cheval { get; set; }
         public string Plat { get; set; }
         public string Obstacle { get; set; }

@@ -22,13 +22,11 @@ namespace api.Controllers
         {
             _courseRepository = course;
         }
-
         // GET: api/<CourseController>
         [HttpGet]
         public IActionResult Get()
         {
             IEnumerable<Course> courses = _courseRepository.GetallCourses().Select(x => x);
-
             if (!(courses is null))
                 return Ok(courses);
             else
