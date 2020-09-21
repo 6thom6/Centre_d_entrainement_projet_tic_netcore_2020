@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System.Text;
 using DAL.IRepository;
 using Tools.Database;
+using DAL.Repository.Extensions;
+using System.Linq;
 
 namespace DAL.Repository
 {
@@ -18,116 +20,75 @@ namespace DAL.Repository
         }
         public IEnumerable<Soins> GetallSoins()
         {
-
+            Command command = new Command("SELECT * FROM Soins");
+            return _connection.ExecuteReader(command, dr => dr.SoinsToDAl());
 
         }
-        public Soins Get(int idAChercher)
+        public Soins GetById(int id)
         {
-            Soins GetSoins = new Soins();
+            Command command = new Command("SELECT * FROM SOINS where Id_Soins = @id");
+            command.AddParameter("id", id);
 
-            using (_connection)
-            {
-                _connection.Open();
-
-                SqlCommand command = new SqlCommand("SELECT * FROM Soins where id = @idCherch", _connection);
-                command.Parameters.AddWithValue("idCherch", idAChercher);
-
-
-                using SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-
-                    new Soins
-                    {
-                        Id_Soins = reader["Id_Soins"] == DBNull.Value ? null : (int?)reader["Id_Soins"],
-                        Id_Cheval = reader["Id_Cheval"] == DBNull.Value ? 0 : (int)reader["Id_Cheval"],
-                        Id_Employe = reader["Id_Employe"] == DBNull.Value ? null : (int?)reader["Id_Employe"],
-                        Alimentation = (string)reader["Alimentation"],
-                        Complement_Alimentation = reader["Complement_Alimentation"] == DBNull.Value ? null : (string)reader["Complement_Alimentation"],
-                        Note_Libre = reader["Note_Libre"] == DBNull.Value ? null : (string)reader["Note_Libre"],
-                        Marechal = reader["Marechal"] == DBNull.Value ? null : (DateTime?)reader["Marechal"],
-                        Vermifuge = reader["Vermifuge"] == DBNull.Value ? null : (DateTime?)reader["Vermifuge"],
-                        Type_de_soin = reader["Type_de_soin"] == DBNull.Value ? null : (string)reader["Type_de_soin"],
-                        durree_indisponibilite = reader["durree_indisponibilite"] == DBNull.Value ? null : (string)reader["durree_indisponibilite"],
-                        date_de_soin = reader["date_de_soin"] == DBNull.Value ? null : (DateTime?)reader["date_de_soin"]
-
-                    };
-                        
-                }
-            }
-            _connection.Close();
-            return GetSoins;
+            return _connection.ExecuteReader(command, dr => dr.SoinsToDAl()).SingleOrDefault();
         }
-        public void Create(Soins NouveauSoins)
+        public int Create(Soins soin)
         {
-            using (_connection)
-            {
-                _connection.Open();
+            Command command = new Command("CreateSoins", true);
+                command.AddParameter("id_cheval", soin.Id_Cheval);
+                command.AddParameter("id_employe", soin.Id_Employe);
+                command.AddParameter("alimentation", soin.Alimentation);
+                command.AddParameter("complement_alimentation", soin.Complement_Alimentation);
+                command.AddParameter("note_libre", soin.Note_Libre);
+                command.AddParameter("marechal_Derniere_Visite", soin.Marechal_Derniere_Visite);
+                command.AddParameter("Vermifuge", soin.Vermifuge);
+                command.AddParameter("Type_De_Soin", soin.Type_De_Soin);
+                command.AddParameter("Durree_indisponibilite", soin.Durree_Indisponibilite);
+                command.AddParameter("Date_De_Soin", soin.Date_De_Soin);
 
-                SqlCommand command = new SqlCommand("INSERT INTO Soins (Id_Cheval,Id_Employe," + //les champs de la table
-                                                  "Alimentation,Complement_Alimentation," +
-                                                  "Note_Libre,Marechal,Vermifuge, Type_de_soin, durree_indisponibilite, date_de_soin)" +
-                                                  "VALUES (@id_cheval,@id_employe," + //les champs a rentrer
-                                                  "@alimentation, @complement_alimentation, " +
-                                                  "@note_libre, @marechal, @vermifuge, @type_de_soin,@ Durree_indisponibilite,@Date_de_soin)");
-         
-                command.Parameters.AddWithValue("id_cheval", NouveauSoins.Id_Cheval);
-                command.Parameters.AddWithValue("id_employe", NouveauSoins.Id_Employe);
-                command.Parameters.AddWithValue("alimentation", NouveauSoins.Alimentation);
-                command.Parameters.AddWithValue("complement_alimentation", NouveauSoins.Complement_Alimentation);
-                command.Parameters.AddWithValue("note_libre", NouveauSoins.Note_Libre);
-                command.Parameters.AddWithValue("marechal", NouveauSoins.Marechal);
-                command.Parameters.AddWithValue("vermifuge", NouveauSoins.Vermifuge);
-                command.Parameters.AddWithValue("type_de_soin", NouveauSoins.Type_de_soin);
-                command.Parameters.AddWithValue("Durree_indisponibilite", NouveauSoins.durree_indisponibilite);
-                command.Parameters.AddWithValue("Date_de_soin", NouveauSoins.date_de_soin);
+            return _connection.ExecuteNonQuery(command);
 
-
-                command.ExecuteNonQuery();
-
-                _connection.Close();
-            }
         }
-        public void Update(Soins SoinsAModifier)
+        public int Update(int id, Soins soin)
         {
-            using (_connection)
-            {
-                _connection.Open();
 
-                SqlCommand command = new SqlCommand("UPDATE Soins SET Id_Cheval = @id_cheval" +
-                    "Id_Employe = @id_employe, Alimentation =@alimentation,Complement_Alimentation = @ complement_alimentation, " +
-                    "Note_Libre = @note_libre, Marechal = @marechal, Vermifuge = @vermifuge, Type_de_soin = @type_de_soin," +
-                    "durree_indisponibilite=@durree_indisponibilite,date_de_soin=@date_de_soin" +
-                    "WHERE Id_Soins = @id_soins ");
+                Command command = new Command("UPDATE Soins SET Id_Cheval = @Id_Cheval" +
+                                                               "Id_Employe = @Id_Employe, " +
+                                                               "Alimentation = @Alimentation," +
+                                                               "Complement_Alimentation = @Complement_Alimentation, " +
+                                                               "Note_Libre = @Note_Libre, " +
+                                                               "Marechal_Derniere_Visite = @Marechal_Derniere_Visite, " +
+                                                               "Vermifuge = @Vermifuge, " +
+                                                               "Type_De_Soin = @Type_De_Soin," +
+                                                               "Durree_Indisponibilite = @Durree_Indisponibilite," +
+                                                               "Date_De_Soin = @Date_De_Soin " +
+                                                                 "WHERE Id_Soins = @id_soins ");
 
-                command.Parameters.AddWithValue("id_soins", SoinsAModifier.Id_Soins);
-                command.Parameters.AddWithValue("id_cheval", SoinsAModifier.Id_Cheval);
-                command.Parameters.AddWithValue("id_employe", SoinsAModifier.Id_Employe);
-                command.Parameters.AddWithValue("alimentation", SoinsAModifier.Alimentation);
-                command.Parameters.AddWithValue("complement_alimentation", SoinsAModifier.Complement_Alimentation);
-                command.Parameters.AddWithValue("note_libre", SoinsAModifier.Note_Libre);
-                command.Parameters.AddWithValue("marechal", SoinsAModifier.Marechal);
-                command.Parameters.AddWithValue("vermifuge", SoinsAModifier.Vermifuge);
-                command.Parameters.AddWithValue("type_de_soin", SoinsAModifier.Type_de_soin);
-                command.Parameters.AddWithValue("durrée_indisponibilité", SoinsAModifier.durree_indisponibilite);
-                command.Parameters.AddWithValue("date_de_soin", SoinsAModifier.date_de_soin);
+                command.AddParameter("Id_Soins",id);
+                command.AddParameter("Id_Cheval", soin.Id_Cheval);
+                command.AddParameter("Id_Employe", soin.Id_Employe);
+                command.AddParameter("Alimentation", soin.Alimentation);
+                command.AddParameter("Complement_Alimentation", soin.Complement_Alimentation);
+                command.AddParameter("Note_Libre", soin.Note_Libre);
+                command.AddParameter("Marechal_Derniere_Visite", soin.Marechal_Derniere_Visite);
+                command.AddParameter("Vermifuge", soin.Vermifuge);
+                command.AddParameter("type_De_Soin", soin.Type_De_Soin);
+                command.AddParameter("Durrée_Indisponibilité", soin.Durree_Indisponibilite);
+                command.AddParameter("Date_De_Soin", soin.Date_De_Soin);
 
-                command.ExecuteNonQuery();
+            return _connection.ExecuteNonQuery(command);
 
-                _connection.Close();
-            }
+
+            
         }
-        public void Delete(int idADelete)
+        public int Delete(int id)
         {
-            using (_connection)
-            {
-                _connection.Open();
-                SqlCommand command = new SqlCommand("DELETE FROM Soins where ID = @id");
-                command.Parameters.AddWithValue("id", idADelete);
-                command.ExecuteNonQuery();
-                _connection.Close();
-            }
+            Command command = new Command("DELETE FROM SOINS where Id_Soins = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteNonQuery(command);
+
         }
+
 
     }
 }

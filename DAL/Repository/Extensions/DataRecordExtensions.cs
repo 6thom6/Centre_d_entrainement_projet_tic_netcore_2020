@@ -87,6 +87,25 @@ namespace DAL.Repository.Extensions
                 Dernier_Resultat = record ["Dernier_Resultat"] == DBNull.Value ? null : (string)record["Dernier_Resultat"]
             };
         }
+        internal static Soins SoinsToDAl(this IDataRecord record)
+        {
+            return new Soins()
+            {
+                Id_Soins = (int)record["Id_Soins"],
+                Id_Cheval = (int)record["Id_Cheval"],
+                Id_Employe = (int)record["Id_Employe"],
+                Vermifuge = record["Vermifuge"] == DBNull.Value ? null : (DateTime?)record["Vermifuge"],
+                Marechal_Derniere_Visite = record["Marechal_Derniere_Visite"] == DBNull.Value ? null : (DateTime?)record["Marechal_Derniere_Visite"],
+                Note_Libre = record["Note_Libre"] == DBNull.Value ? null : (string)record["Note_Libre"],
+                Type_De_Soin = record["Type_De_Soin"] == DBNull.Value ? null : (string)record["Type_De_Soin"],
+                Durree_Indisponibilite = record["Durree_Indisponibilite"] == DBNull.Value ? null : (string)record["Durree_Indisponibilite"],
+                Date_De_Soin = record["Date_De_Soin"] == DBNull.Value ? null : (DateTime?)record["Date_De_Soin"],
+                Alimentation = (string)record["Alimentation"],
+                Complement_Alimentation = record ["Complement_Alimentation"] == DBNull.Value ? null : (String)record["Complement_Alimentation"],
+            };
+
+            
+        }
 
     }
 }

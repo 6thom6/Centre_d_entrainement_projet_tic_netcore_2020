@@ -5,10 +5,10 @@ namespace DAL.IRepository
 {
     interface ISoinsRepository
     {
-        void Create(Soins NouveauSoins);
-        void Delete(int idADelete);
-        Soins Get(int idAChercher);
-        List<Soins> GetallSoins();
-        void Update(Soins SoinsAModifier);
+        IEnumerable<Soins> GetallSoins();
+        Soins GetById(int id);
+        int Create(Soins Soins);
+        int Update(int id, Soins Soin);
+        int Delete(int id);
     }
 }

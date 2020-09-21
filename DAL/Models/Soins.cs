@@ -11,7 +11,7 @@ namespace DAL.Models
         public int? Id_Employe { get; set; }
         public string Alimentation { get; set; }
         public string Complement_Alimentation { get; set; }
-        public DateTime? Marechal { get; set; }
+        public DateTime? Marechal_Derniere_Visite { get; set; }
         public DateTime? Vermifuge { get; set; }
         public string Note_Libre { get; set; }
         public string Type_De_Soin { get; set; }
