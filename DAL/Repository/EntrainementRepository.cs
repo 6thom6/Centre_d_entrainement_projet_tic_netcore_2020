@@ -40,6 +40,7 @@ namespace DAL.Repository
             command.AddParameter("Marcheur", entrainement.Marcheur);
             command.AddParameter("Duree", entrainement.Marcheur);
             command.AddParameter("Pre", entrainement.Pre);
+            command.AddParameter("Date_Entrainement", entrainement.Date_Entrainement);
 
             return _connection.ExecuteNonQuery(command);
 
@@ -51,7 +52,8 @@ namespace DAL.Repository
                 Command command = new Command("UPDATE Entrainement SET Cheval = @Cheval, Plat = @Plat," +
                                                                      "Obstacle = @Obstacle , Marcheur = @Marcheur, " +
                                                                      "Pre = @Pre , Duree = @Duree, " +
-                                                                     "Id_Employe = @Id_Employe " +
+                                                                     "Id_Employe = @Id_Employe," +
+                                                                     "Date_Entrainement = @Date_Entrainement " +
                     "where Id_Entrainement = @Id_Entrainement");
 
                 command.AddParameter("Id_entrainement", id);
@@ -62,6 +64,7 @@ namespace DAL.Repository
                 command.AddParameter("Pre", entrainement.Pre);
                 command.AddParameter("Duree", entrainement.Duree);
                 command.AddParameter("Id_Employe", entrainement.Id_Employe);
+                command.AddParameter("Date_Entrainement", entrainement.Date_Entrainement);
 
 
             return _connection.ExecuteNonQuery(command);

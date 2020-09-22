@@ -16,13 +16,14 @@ insert into [dbo].[Entrainement] ([dbo].[Entrainement].[Cheval],
                                   [dbo].[Entrainement].[Marcheur],
                                   [dbo].[Entrainement].[Duree],
                                   [dbo].[Entrainement].[Pre],
-                                  [dbo].[Entrainement].Id_Employe)
+                                  [dbo].[Entrainement].Id_Employe,
+                                  [dbo].[Entrainement].Date_Entrainement)
 values 
-('dala','1000m','2tours','none','2h','none','1'),
-('khani','1500m','3tours','none','2h','none','2'),
-('zarkandar','2000m','6tours','none','2h30','none','3'),
-('dubawi','3500m','2tours','none','2h','none','4'),
-('alpha spirit','3000m','none','2h','1h','none','5')
+('dala','1000m','2tours','none','2h','none','1','2020-09-12'),
+('khani','1500m','3tours','none','2h','none','2','2020-08-21'),
+('zarkandar','2000m','6tours','none','2h30','none','3','2020-07-14'),
+('dubawi','3500m','2tours','none','2h','none','4','2020-09-12'),
+('alpha spirit','3000m','none','2h','1h','none','5','2020-09-17')
 
 insert into [dbo].[Course] ([dbo].[Couse].[Hippodrome],
                             [dbo].[Couse].[Date_Courses],

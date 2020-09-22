@@ -8,6 +8,7 @@
     [Marcheur] NVARCHAR(50) NULL, 
     [Duree] NVARCHAR(50) NULL, 
     [Pre] NVARCHAR(50) NULL, 
+    [Date_Entrainement] DATE NOT NULL, 
     CONSTRAINT [PK_Entrainement] PRIMARY KEY ([Id_Entrainement]), 
 
 

@@ -44,6 +44,7 @@ namespace DAL.Repository
             command.AddParameter("Poids", cheval.Poids);
             command.AddParameter("Race", cheval.Race);
             command.AddParameter("Age", cheval.Age);
+            command.AddParameter("Sexe", cheval.Sexe);
 
             return _connection.ExecuteNonQuery(command);
         }
@@ -60,7 +61,8 @@ namespace DAL.Repository
                                                                    "Id_Soins = @Id_soins, " +
                                                                    "Poids = @Poids, " +
                                                                    "Race = @Race," +
-                                                                   "Age = @Age " +
+                                                                   "Age = @Age, " +
+                                                                   "Sexe = @Sexe " +
                                                  "WHERE Id_Cheval = @Id_cheval");
             command.AddParameter("Id_Cheval", id);
             command.AddParameter("Nom_Cheval", cheval.NomCheval);
@@ -73,6 +75,7 @@ namespace DAL.Repository
             command.AddParameter("Poids", cheval.Poids);
             command.AddParameter("Race", cheval.Race);
             command.AddParameter("Age", cheval.Age);
+            command.AddParameter("Sexe", cheval.Sexe);
 
             return _connection.ExecuteNonQuery(command);
         }
@@ -83,6 +86,35 @@ namespace DAL.Repository
             command.AddParameter("id", id);
 
             return _connection.ExecuteNonQuery(command);
+        }
+
+        public Proprietaire GetProprietaire(int id)
+        {
+            Command command = new Command("SELECT P.Nom_Proprietaire" +
+                "                          FROM Cheval C JOIN Proprietaire P" +
+                "                               ON C.Id_Proprietaire = P.Id_Proprietaire" +
+                "                           WHERE C.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => dr.ProprietaireToDal()).SingleOrDefault();
+        }
+
+        public IEnumerable<Entrainement> GetEntrainements(int id)
+        {
+            Command command = new Command("SELECT C.Nom_cheval," +
+                "                                 E.Plat," +
+                "                                 E.Obstacle," +
+                "                                 E.Marcheur," +
+                "                                 E.Duree," +
+                "                                 E.Pre " +
+                "                           FROM Cheval C JOIN mym_Cheval_Entrainement CE " +
+                "                                   ON C.Id_Cheval = CE.MYM_ChevaliId_Cheval " +
+                "                                JOIN Entrainement E " +
+                "                                   ON CE.MYM_Entrainementid_Entrainement = E.Id_Entrainement " +
+                "                           WHERE C.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => dr.EntrainementToDal());
         }
     }
 }

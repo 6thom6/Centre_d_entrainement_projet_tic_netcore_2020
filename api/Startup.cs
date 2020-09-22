@@ -47,6 +47,8 @@ namespace api
             services.AddSingleton<EntrainementRepository>();
             services.AddSingleton<HistoRipository>();
             services.AddSingleton<ProprietaireRepository>();
+            services.AddSingleton<SoinsRepository>();
+            services.AddSingleton<VaccinationRepository>();
          
         }
 

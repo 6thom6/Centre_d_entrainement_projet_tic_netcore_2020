@@ -45,8 +45,8 @@ namespace DAL.Repository
 
 
                 Command command = new Command ("UPDATE Proprietaire SET Nom_Proprietaire = @Nom_Proprietaire, " +
-                    "                                                   Date_Arrivee = @Date_Arrivee, " +
-                    "                                                   Dernier_Resultat = @Dernier_Resultat " +
+                                                                        "Date_Arrivee = @Date_Arrivee, " +
+                                                                        "Dernier_Resultat = @Dernier_Resultat " +
                                                                         "WHERE Id_Proprietaire = @Id_Proprietaire");
 
                 command.AddParameter("Id_Proprietaire", id);

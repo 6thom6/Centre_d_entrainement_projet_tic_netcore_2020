@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAL.IRepository
 {
-    interface ISoinsRepository
+   public interface ISoinsRepository
     {
         IEnumerable<Soins> GetallSoins();
         Soins GetById(int id);

@@ -61,7 +61,8 @@ namespace DAL.Repository.Extensions
                 Obstacle = record["Obstacle"] == DBNull.Value ? null : (string)record["Obstacle"],
                 Marcheur = record["Marcheur"] == DBNull.Value ? null : (string)record["Marcheur"],
                 Duree = record["Duree"] == DBNull.Value ? null : (string)record["Duree"],
-                Pre = record["Pre"] == DBNull.Value ? null : (string)record["Pre"]
+                Pre = record["Pre"] == DBNull.Value ? null : (string)record["Pre"],
+                Date_Entrainement = (DateTime)record["Date_Entrainement"]
 
             };
         }
@@ -105,6 +106,15 @@ namespace DAL.Repository.Extensions
             };
 
             
+        }
+        internal static Vaccination VaccinationToDal(this IDataRecord record)
+        {
+            return new Vaccination()
+            {
+                Id_Vaccination = (int)record["Id_Vaccination"],
+                Nom_Vaccin = record["Nom_Vaccin"] == DBNull.Value ? null : (string)record["Nom_Vaccin"],
+                Delai_Indisponibilite = record ["Delai_Indisponibilite"] == DBNull.Value ? null : (DateTime?)record["Delai_Indisponibilite"],
+            };
         }
 
     }

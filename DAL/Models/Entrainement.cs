@@ -14,5 +14,6 @@ namespace DAL.Models
         public string Pre { get; set; }
         public string Duree { get; set; }
         public int Id_Employe { get; set; }
+        public DateTime Date_Entrainement { get; set; }
     }
 }

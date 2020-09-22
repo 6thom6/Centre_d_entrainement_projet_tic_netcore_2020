@@ -3,12 +3,15 @@ using System.Collections.Generic;
 
 namespace DAL.IRepository
 {
-    interface IVaccinationRepository
+   public interface IVaccinationRepository
     {
-        void Create(Vaccination Nouvellevaccination);
-        void Delete(int idADelete);
-        Vaccination Get(int idAChercher);
-        List<Vaccination> GetallVaccination();
-        void Update(Vaccination VaccinationAModifier);
+        IEnumerable<Vaccination> GetallVaccination();
+        Vaccination GetById(int id);
+        int Update(int id, Vaccination vaccination);
+        int Create(Vaccination vaccination);
+        int Delete(int id);
+
+
+
     }
 }

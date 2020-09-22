@@ -5,10 +5,11 @@
 	@Obstacle NVARCHAR (50),
 	@Marcheur NVARCHAR (50),
 	@Duree NVARCHAR (50),
-	@Pre NVARCHAR (50)
+	@Pre NVARCHAR (50),
+	@Date_Entrainement DATE
 AS
 	
 BEGIN
-		INSERT INTO Entrainement (Id_Employe, Cheval,Plat,Obstacle,Marcheur,Duree,Pre)
-		VALUES (@Id_Employe, @Cheval, @Plat, @Obstacle,@Marcheur,@Duree,@Pre)
+		INSERT INTO Entrainement (Id_Employe, Cheval,Plat,Obstacle,Marcheur,Duree,Pre,Date_Entrainement)
+		VALUES (@Id_Employe, @Cheval, @Plat, @Obstacle,@Marcheur,@Duree,@Pre,@Date_Entrainement)
 END

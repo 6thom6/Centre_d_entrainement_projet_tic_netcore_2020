@@ -81,6 +81,7 @@
     <Build Include="Procédures\CreateHistorique.sql" />
     <Build Include="Procédures\CreateProprietaire.sql" />
     <Build Include="Procédures\CreateSoins.sql" />
+    <Build Include="Procédures\CreateVaccination.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="DB_Entrainement.refactorlog" />

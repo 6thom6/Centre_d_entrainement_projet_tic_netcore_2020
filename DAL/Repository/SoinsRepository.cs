@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace DAL.Repository
 {
-    class SoinsRepository : ISoinsRepository
+    public class SoinsRepository : ISoinsRepository
     {
         private static Connection _connection;
 
@@ -51,7 +51,7 @@ namespace DAL.Repository
         public int Update(int id, Soins soin)
         {
 
-                Command command = new Command("UPDATE Soins SET Id_Cheval = @Id_Cheval" +
+                Command command = new Command("UPDATE Soins SET Id_Cheval = @Id_Cheval," +
                                                                "Id_Employe = @Id_Employe, " +
                                                                "Alimentation = @Alimentation," +
                                                                "Complement_Alimentation = @Complement_Alimentation, " +
@@ -72,7 +72,7 @@ namespace DAL.Repository
                 command.AddParameter("Marechal_Derniere_Visite", soin.Marechal_Derniere_Visite);
                 command.AddParameter("Vermifuge", soin.Vermifuge);
                 command.AddParameter("type_De_Soin", soin.Type_De_Soin);
-                command.AddParameter("Durrée_Indisponibilité", soin.Durree_Indisponibilite);
+                command.AddParameter("Durree_Indisponibilite", soin.Durree_Indisponibilite);
                 command.AddParameter("Date_De_Soin", soin.Date_De_Soin);
 
             return _connection.ExecuteNonQuery(command);
