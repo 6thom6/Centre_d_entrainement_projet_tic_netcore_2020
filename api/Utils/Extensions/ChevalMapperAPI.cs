@@ -24,19 +24,21 @@ namespace api.Utils.Extensions
         {
             return new ChevalComplet()
             {
-                IdCheval = cheval.IdCheval,
+                Id_Cheval = cheval.Id_Cheval,
                 NomCheval = cheval.NomCheval,
                 PereCheval = cheval.PereCheval,
                 MereCheval = cheval.MereCheval,
                 SortieProvisoire = cheval.SortieProvisoire,
                 RaisonSortie = cheval.RaisonSortie,
-                Proprietaire = chevalRepository.GetProprietaire(cheval.IdProprietaire),
-                IdSoins = cheval.IdSoins,
+                Proprietaire = chevalRepository.GetProprietaire(cheval.Id_Proprietaire),
+                Id_Soins = cheval.Id_Soins,
                 Poids = cheval.Poids,
                 Race = cheval.Race,
                 Age = cheval.Age,
                 Sexe = cheval.Sexe,
-                Entrainements = chevalRepository.GetAllEntrainementById(cheval.IdCheval)
+                Entrainements = chevalRepository.GetAllEntrainementById(cheval.Id_Cheval),
+                Employes = chevalRepository.GetAllEmployeById(cheval.Id_Cheval),
+                Courses = chevalRepository.GetallCoursesById(cheval.Id_Cheval)
             };
         }
     }

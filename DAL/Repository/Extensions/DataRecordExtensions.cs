@@ -10,14 +10,14 @@ namespace DAL.Repository.Extensions
         {
             return new Cheval()
             {
-                IdCheval = (int)record["Id_Cheval"],
+                Id_Cheval = (int)record["Id_Cheval"],
                 NomCheval = (string)record["Nom_cheval"],
                 PereCheval = (string)record["Pere_Cheval"],
                 MereCheval = (string)record["Mere_Cheval"],
                 SortieProvisoire = record["Sortie_Provisoire"] is DBNull ? null : (string)record["Sortie_Provisoire"],
                 RaisonSortie = record["Raison_Sortie"] is DBNull ? null : (string)record["Raison_Sortie"],
-                IdProprietaire = (int)record["Id_Proprietaire"],
-                IdSoins = record["Id_Soins"] == DBNull.Value ? null : (int?)record["Id_Soins"],
+                Id_Proprietaire = (int)record["Id_Proprietaire"],
+                Id_Soins = record["Id_Soins"] == DBNull.Value ? null : (int?)record["Id_Soins"],
                 Poids = record["Poids"] == DBNull.Value ? null : (int?)record["Poids"],
                 Race = record["Race"].ToString(),
                 Age = (int)record["Age"],
@@ -28,7 +28,7 @@ namespace DAL.Repository.Extensions
         {
             return new Course()
             {
-                Id_Courses = (int)record["Id_Courses"],
+            //    Id_Courses = (int)record["Id_Courses"],
                 Distance = (int)record["Distance"],
                 Hippodrome = (string)record["Hippodrome"],
                 Jockey = (string)record["Jockey"],
@@ -44,9 +44,9 @@ namespace DAL.Repository.Extensions
         {
             return new Employe()
             {
-                Id_Employe=(int)record["Id_Employe"],
+                Id_Employe = (int)record["Id_Employe"],
                 Nom_Employe = (string)record["Nom_Employe"],
-                Date_Embauche = record["Date_Embauche"] == DBNull.Value ?null: (DateTime?) record["Date_Embauche"],
+                Date_Embauche = record["Date_Embauche"] == DBNull.Value ? null : (DateTime?)record["Date_Embauche"],
                 Statuts_Employe = (string)record["Statuts_Employe"]
             };
         }

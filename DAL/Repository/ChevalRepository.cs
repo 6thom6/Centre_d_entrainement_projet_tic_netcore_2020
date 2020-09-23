@@ -4,6 +4,7 @@ using DAL.IRepository;
 using Tools.Database;
 using DAL.Repository.Extensions;
 using System.Linq;
+using System;
 
 namespace DAL.Repository
 {
@@ -35,6 +36,11 @@ namespace DAL.Repository
             return _connection.ExecuteReader(command, dr => dr.ChevalToDAL()).SingleOrDefault();
         }
 
+        public Proprietaire GetProprietaire(object id_Proprietaire)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Create(Cheval cheval)
         {
             Command command = new Command("CreateCheval", true);
@@ -43,8 +49,8 @@ namespace DAL.Repository
             command.AddParameter("Mere_Cheval", cheval.MereCheval);
             command.AddParameter("Sortie_Provisoire", cheval.SortieProvisoire);
             command.AddParameter("Raison_Sortie", cheval.RaisonSortie);
-            command.AddParameter("Id_Proprietaire", cheval.IdProprietaire);
-            command.AddParameter("Id_Soins", cheval.IdSoins);
+            command.AddParameter("Id_Proprietaire", cheval.Id_Proprietaire);
+            command.AddParameter("Id_Soins", cheval.Id_Soins);
             command.AddParameter("Poids", cheval.Poids);
             command.AddParameter("Race", cheval.Race);
             command.AddParameter("Age", cheval.Age);
@@ -74,8 +80,8 @@ namespace DAL.Repository
             command.AddParameter("Mere_Cheval", cheval.MereCheval);
             command.AddParameter("Sortie_Provisoire", cheval.SortieProvisoire);
             command.AddParameter("Raison_Sortie", cheval.RaisonSortie);
-            command.AddParameter("Id_proprietaire", cheval.IdProprietaire);
-            command.AddParameter("Id_soins", cheval.IdSoins);
+            command.AddParameter("Id_proprietaire", cheval.Id_Proprietaire);
+            command.AddParameter("Id_soins", cheval.Id_Soins);
             command.AddParameter("Poids", cheval.Poids);
             command.AddParameter("Race", cheval.Race);
             command.AddParameter("Age", cheval.Age);
@@ -94,7 +100,10 @@ namespace DAL.Repository
 
         public Proprietaire GetProprietaire(int id)
         {
-            Command command = new Command("SELECT * " +
+            Command command = new Command("SELECT P.Nom_Proprietaire, " +
+                "                                 P.Dernier_Resultat, " +
+                "                                 P.Id_Proprietaire, " +
+                "                                 P.Date_Arrivee " +
                 "                          FROM Cheval C JOIN Proprietaire P" +
                 "                               ON C.Id_Proprietaire = P.Id_Proprietaire" +
                 "                           WHERE C.Id_Cheval = @id");
@@ -105,16 +114,16 @@ namespace DAL.Repository
 
         public IEnumerable<Entrainement> GetAllEntrainementById(int id)
         {
-            Command command = new Command("SELECT E.Id_Entrainement," +
-                "                                 E.Date_Entrainement," +
+            Command command = new Command("SELECT E.Date_Entrainement," +
                 "                                 E.Plat," +
                 "                                 E.Obstacle," +
                 "                                 E.Marcheur," +
                 "                                 E.Duree," +
-                "                                 E.Pre " +
+                "                                 E.Pre," +
+                "                                 E.Id_Entrainement " + 
                 "                           FROM Cheval C JOIN Participe_Entrainement_cheval_employé CE" +
                 "                                   ON C.Id_Cheval = CE.Id_Cheval " +
-                "                                JOIN Entrainement E " +
+                "                                 JOIN Entrainement E " +
                 "                                   ON CE.Id_Entrainement = E.Id_Entrainement " +
                 "                           WHERE C.Id_Cheval = @id");
             command.AddParameter("id", id);
@@ -122,9 +131,38 @@ namespace DAL.Repository
             return _connection.ExecuteReader(command, dr => dr.EntrainementToDal());
         }
 
-        public IEnumerable<Course>GetallCoursesById(int id)
+        public IEnumerable<Course> GetallCoursesById(int id)
         {
-            Command commande = new Command("")
+            Command commande = new Command("select Date_Courses, " +
+                "                                  Hippodrome, " +
+                "                                  Discipline, " +
+                "                                  Distance, " +
+                "                                  Jockey, " +
+                "                                  Poids_De_Course, " +
+                "                                  Terrain, " +
+                "                                  Corde, " +
+                "                                  Avis " +
+                "                              from Course c join mym_Course_cheval m" +
+                "                                     on m.CoursesId_Course = c.Id_Courses" +
+                "                              where m.ChevalId_Cheval = @id");
+            commande.AddParameter("id", id);
+
+            return _connection.ExecuteReader(commande, dr => dr.CourseToDal());
+        }
+        public IEnumerable<Employe> GetAllEmployeById(int id)
+        {
+            Command command = new Command("select E.Nom_Employe," +
+                "                                 E.Id_Employe, " +
+                "                                 E.Statuts_Employe," +
+                "                                 E.Date_Embauche " + 
+                "                             FROM Cheval C join Participe_Entrainement_cheval_employé PE       " +
+                "                                   ON C.Id_Cheval = PE.Id_Cheval " +
+                "                                 join Employe E " +
+                "                                   ON PE.Id_Employe = E.Id_Employe " +
+                "                             where C.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => dr.EmployeToDal());
         }
 
     }
