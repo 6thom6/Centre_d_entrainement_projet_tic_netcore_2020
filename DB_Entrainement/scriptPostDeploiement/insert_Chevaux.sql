@@ -10,20 +10,19 @@ Modèle de script de post-déploiement
 --------------------------------------------------------------------------------------
 */
 
-insert into [dbo].[Entrainement] ([dbo].[Entrainement].[Cheval],
+insert into [dbo].[Entrainement] (
                                   [dbo].[Entrainement].[Plat],
                                   [dbo].[Entrainement].[Obstacle],
                                   [dbo].[Entrainement].[Marcheur],
                                   [dbo].[Entrainement].[Duree],
                                   [dbo].[Entrainement].[Pre],
-                                  [dbo].[Entrainement].Id_Employe,
                                   [dbo].[Entrainement].Date_Entrainement)
 values 
-('dala','1000m','2tours','none','2h','none','1','2020-09-12'),
-('khani','1500m','3tours','none','2h','none','2','2020-08-21'),
-('zarkandar','2000m','6tours','none','2h30','none','3','2020-07-14'),
-('dubawi','3500m','2tours','none','2h','none','4','2020-09-12'),
-('alpha spirit','3000m','none','2h','1h','none','5','2020-09-17')
+('1000m','2tours','none','2h','none','2020-09-12'),
+('1500m','3tours','none','2h','none','2020-08-21'),
+('2000m','6tours','none','2h30','none','2020-07-14'),
+('3500m','2tours','none','2h','none','2020-09-12'),
+('3000m','none','2h','1h','none','2020-09-17')
 
 insert into [dbo].[Course] ([dbo].[Couse].[Hippodrome],
                             [dbo].[Couse].[Date_Courses],
@@ -134,18 +133,7 @@ values
 ('5','dugarry','marion','leblanc','dubuisson'),
 ('2','malenfant','malenfant','dubois','kartus');
 
-insert mym_Vaccination_Cheval (ChevalId_Cheval, VaccinationId_Vaccination)
-
-values
-
-('5','1'),
-('4','2'),
-('3','4'),
-('1','5'),
-('2','3')
-
-
-insert mym_Cheval_Entrainement (MYM_ChevaliId_Cheval, MYM_Entrainementid_Entrainement)
+insert mym_Vaccination_Cheval (Id_Cheval, Id_Vaccination)
 
 values
 
@@ -166,13 +154,12 @@ values
 ('1','5'),
 ('2','3')
 
-insert mym_Cheval_Entrainement (MYM_ChevaliId_Cheval, MYM_Entrainementid_Entrainement)
+insert Participe_Entrainement_cheval_employé (Id_Entrainement, Id_Employe, Id_Cheval)
 
-values 
+values
 
-('5','1'),
-('4','2'),
-('3','4'),
-('1','5'),
-('2','3')
-
+('1','2','3'),
+('2','3','4'),
+('3','4','5'),
+('4','5','1'),
+('5','1','2')

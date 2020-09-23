@@ -33,8 +33,6 @@ namespace DAL.Repository
         public int Create(Entrainement entrainement)
         {
             Command command = new Command("CreateEntrainement", true);
-            command.AddParameter("Id_Employe", entrainement.Id_Employe);
-            command.AddParameter("Cheval", entrainement.Cheval);
             command.AddParameter("Plat", entrainement.Plat);
             command.AddParameter("Obstacle", entrainement.Obstacle);
             command.AddParameter("Marcheur", entrainement.Marcheur);
@@ -49,21 +47,17 @@ namespace DAL.Repository
         {
 
 
-                Command command = new Command("UPDATE Entrainement SET Cheval = @Cheval, Plat = @Plat," +
-                                                                     "Obstacle = @Obstacle , Marcheur = @Marcheur, " +
-                                                                     "Pre = @Pre , Duree = @Duree, " +
-                                                                     "Id_Employe = @Id_Employe," +
-                                                                     "Date_Entrainement = @Date_Entrainement " +
-                    "where Id_Entrainement = @Id_Entrainement");
+                Command command = new Command("UPDATE Entrainement SET  Plat = @Plat," +
+                                                                        "Obstacle = @Obstacle , Marcheur = @Marcheur, " +
+                                                                        "Pre = @Pre , Duree = @Duree, " +
+                                                                        "Date_Entrainement = @Date_Entrainement " +
+                                                                    "where Id_Entrainement = @Id_Entrainement");
 
-                command.AddParameter("Id_entrainement", id);
-                command.AddParameter("Cheval", entrainement.Cheval);
                 command.AddParameter("Plat", entrainement.Plat);
                 command.AddParameter("Obstacle", entrainement.Obstacle);
                 command.AddParameter("Marcheur", entrainement.Marcheur);
                 command.AddParameter("Pre", entrainement.Pre);
                 command.AddParameter("Duree", entrainement.Duree);
-                command.AddParameter("Id_Employe", entrainement.Id_Employe);
                 command.AddParameter("Date_Entrainement", entrainement.Date_Entrainement);
 
 

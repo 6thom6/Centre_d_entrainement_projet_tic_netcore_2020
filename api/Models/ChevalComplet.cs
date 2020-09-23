@@ -21,5 +21,6 @@ namespace api.Models
         public int Age { get; set; }
         public string Sexe { get; set; }
         public IEnumerable<Entrainement> Entrainements { get; set; }
+        public IEnumerable<Employe> Employes { get; set; }
     }
 }

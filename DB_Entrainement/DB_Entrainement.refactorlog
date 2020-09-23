@@ -49,4 +49,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Date_Entrainement" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="e89f0c8d-6a9c-4ccc-9c31-44ef59ce7ff0" ChangeDateTime="09/23/2020 10:36:26">
+    <Property Name="ElementName" Value="[dbo].[Participe_Entrainement_cheval_employé].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Participe_Entrainement_cheval_employé]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id_Entrainement" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="50d140f8-7c19-4e38-8448-22f5e75dc8b5" ChangeDateTime="09/23/2020 10:47:53">
+    <Property Name="ElementName" Value="[dbo].[mym_Vaccination_Cheval].[ChevalId_Cheval]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[mym_Vaccination_Cheval]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id_Cheval" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a2c07d47-469f-4f5a-aadb-b729319222b2" ChangeDateTime="09/23/2020 10:48:03">
+    <Property Name="ElementName" Value="[dbo].[mym_Vaccination_Cheval].[VaccinationId_Vaccination]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[mym_Vaccination_Cheval]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id_Vaccination" />
+  </Operation>
 </Operations>

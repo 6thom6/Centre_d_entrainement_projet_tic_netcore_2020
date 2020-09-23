@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using api.Models;
+using api.Utils.Extensions;
 using DAL.IRepository;
 using DAL.Models;
 using DAL.Repository;
@@ -25,7 +27,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Cheval> chevals = _chevalRepository.Get().Select(x => x);
+            IEnumerable<ChevalComplet> chevals = _chevalRepository.Get().Select(x => x.DALChevalToAPI());
 
             if (!(chevals is null))
                 return Ok(chevals);

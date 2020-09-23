@@ -55,8 +55,6 @@ namespace DAL.Repository.Extensions
             return new Entrainement()
             {
                 Id_Entrainement = (int)record["Id_Entrainement"],
-                Id_Employe = (int)record ["Id_Employe"],
-                Cheval = (string)record ["Cheval"],
                 Plat = record["Plat"] == DBNull.Value ? null : (string)record["Plat"],
                 Obstacle = record["Obstacle"] == DBNull.Value ? null : (string)record["Obstacle"],
                 Marcheur = record["Marcheur"] == DBNull.Value ? null : (string)record["Marcheur"],

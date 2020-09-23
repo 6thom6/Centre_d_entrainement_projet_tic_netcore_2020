@@ -16,6 +16,10 @@ namespace DAL.Repository
             _connection = connection;
         }
 
+        public ChevalRepository(): this(_connection)
+        {
+        }
+
         public IEnumerable<Cheval> Get()
         {
             Command command = new Command("SELECT * FROM Cheval");
@@ -90,7 +94,7 @@ namespace DAL.Repository
 
         public Proprietaire GetProprietaire(int id)
         {
-            Command command = new Command("SELECT P.Nom_Proprietaire" +
+            Command command = new Command("SELECT * " +
                 "                          FROM Cheval C JOIN Proprietaire P" +
                 "                               ON C.Id_Proprietaire = P.Id_Proprietaire" +
                 "                           WHERE C.Id_Cheval = @id");
@@ -99,22 +103,29 @@ namespace DAL.Repository
             return _connection.ExecuteReader(command, dr => dr.ProprietaireToDal()).SingleOrDefault();
         }
 
-        public IEnumerable<Entrainement> GetEntrainements(int id)
+        public IEnumerable<Entrainement> GetAllEntrainementById(int id)
         {
-            Command command = new Command("SELECT C.Nom_cheval," +
+            Command command = new Command("SELECT E.Id_Entrainement," +
+                "                                 E.Date_Entrainement," +
                 "                                 E.Plat," +
                 "                                 E.Obstacle," +
                 "                                 E.Marcheur," +
                 "                                 E.Duree," +
                 "                                 E.Pre " +
-                "                           FROM Cheval C JOIN mym_Cheval_Entrainement CE " +
-                "                                   ON C.Id_Cheval = CE.MYM_ChevaliId_Cheval " +
+                "                           FROM Cheval C JOIN Participe_Entrainement_cheval_employé CE" +
+                "                                   ON C.Id_Cheval = CE.Id_Cheval " +
                 "                                JOIN Entrainement E " +
-                "                                   ON CE.MYM_Entrainementid_Entrainement = E.Id_Entrainement " +
+                "                                   ON CE.Id_Entrainement = E.Id_Entrainement " +
                 "                           WHERE C.Id_Cheval = @id");
             command.AddParameter("id", id);
 
             return _connection.ExecuteReader(command, dr => dr.EntrainementToDal());
         }
+
+        public IEnumerable<Course>GetallCoursesById(int id)
+        {
+            Command commande = new Command("")
+        }
+
     }
 }
