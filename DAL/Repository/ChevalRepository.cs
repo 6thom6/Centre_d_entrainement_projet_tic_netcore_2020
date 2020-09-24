@@ -141,7 +141,8 @@ namespace DAL.Repository
                 "                                  Poids_De_Course, " +
                 "                                  Terrain, " +
                 "                                  Corde, " +
-                "                                  Avis " +
+                "                                  Avis," +
+                "                                  Id_Courses " +
                 "                              from Course c join mym_Course_cheval m" +
                 "                                     on m.CoursesId_Course = c.Id_Courses" +
                 "                              where m.ChevalId_Cheval = @id");
@@ -163,6 +164,60 @@ namespace DAL.Repository
             command.AddParameter("id", id);
 
             return _connection.ExecuteReader(command, dr => dr.EmployeToDal());
+        }
+        public IEnumerable<Soins> GetAllSoinsById(int id)
+        {
+            Command command = new Command("select C.Nom_cheval, " +
+                "                                 S.Alimentation, " +
+                "                                 S.Complement_Alimentation, " +
+                "                                 S.Marechal_Derniere_Visite, " +
+                "                                 S.Vermifuge, " +
+                "                                 S.Date_De_Soin, " +
+                "                                 S.Type_De_Soin, " +
+                "                                 E.Nom_Employe, " +
+                "                                 S.Durree_Indisponibilite, " +
+                "                                 S.Note_Libre, " +
+                "                                 S.Id_Cheval, " +
+                "                                 S.Id_Employe, " +
+                "                                 S.Id_Soins" +
+                "                           from Soins S join Employe E" +
+                "                                   on E.Id_Employe = S.Id_Employe" +
+                "                                 join Cheval C" +
+                "                                   on C.Id_Cheval = S.Id_Cheval" +
+                "                           where C.Id_Cheval = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.SoinsToDAl());
+        }
+        public IEnumerable<Vaccination> GetAllVaccinationsById(int id)
+        {
+            Command command = new Command("select C.Nom_cheval, " +
+                "                                 V.Nom_vaccin, " +
+                "                                 V.Delai_Indisponibilite, " +
+                "                                 V.Id_vaccination " +
+                "                          from Vaccination V join mym_Vaccination_Cheval VC" +
+                "                                   on V.Id_vaccination = VC.Id_Vaccination" +
+                "                                 join Cheval C" +
+                "                                   on C.Id_Cheval = VC.Id_Cheval" +
+                "                          where C.Id_Cheval = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.VaccinationToDal());
+        }
+
+        public Historique Gethistorique (int id)
+        {
+            Command command = new Command("Select H.Debourage, " +
+                "                                  H.Pre_Entrainement, " +
+                "                                  H.Entraineur_precedent, " +
+                "                                  H.Proprietaire_precedent, " +
+                "                                  H.Id_Cheval, " +
+                "                                  H.Id_historique, " +
+                "                                  H.Elevage " +
+                "                           from Historique H" +
+                "                                 join Cheval C" +
+                "                                   on H.Id_Cheval = C.Id_Cheval   " +
+                "                            where C.Id_Cheval = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.HistoriqueToDal()).SingleOrDefault();
         }
 
     }

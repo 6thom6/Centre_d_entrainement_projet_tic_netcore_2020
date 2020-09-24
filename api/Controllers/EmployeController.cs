@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using DAL.IRepository;
 using DAL.Models;
 using DAL.Repository;
+using api.Models;
+using api.Utils.Extensions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,7 +28,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Employe> employes = _employeRepository.GetallEmploye().Select(x => x);
+            IEnumerable<EmployeComplet> employes = _employeRepository.GetallEmploye().Select(x => x.DALEmployeToAPI());
             if (!(employes is null))
 
                 return Ok(employes);
@@ -40,7 +42,7 @@ namespace api.Controllers
         {
             Employe employe = this._employeRepository.GetById(id);
             if (!(employe is null))
-                return Ok(employe);
+                return Ok(employe.DALEmployeToAPI());
             else
                 return NotFound();
         }

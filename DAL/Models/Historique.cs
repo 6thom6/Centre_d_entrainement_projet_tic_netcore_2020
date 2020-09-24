@@ -12,5 +12,6 @@ namespace DAL.Models
         public string Pre_Entrainement { get; set; }
         public string Entraineur_Precedent { get; set; }
         public string Proprietaire_Precedent { get; set; }
+        public string Elevage { get; set; }
     }
 }

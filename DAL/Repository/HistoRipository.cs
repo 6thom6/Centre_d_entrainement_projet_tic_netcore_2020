@@ -39,6 +39,7 @@ namespace DAL.Repository
                 command.AddParameter("Pre_Entrainement", historique.Pre_Entrainement);
                 command.AddParameter("Entraineur_Precedent", historique.Entraineur_Precedent);
                 command.AddParameter("Proprietaire_Precedent", historique.Proprietaire_Precedent);
+                command.AddParameter("Elevage", historique.Elevage);
             return _connection.ExecuteNonQuery(command);
 
         }
@@ -56,6 +57,7 @@ namespace DAL.Repository
                 command.AddParameter("Pre_Entrainement", historique.Pre_Entrainement);
                 command.AddParameter("Entraineur_Precedent", historique.Entraineur_Precedent);
                 command.AddParameter("Proprietaire_Precedent", historique.Proprietaire_Precedent);
+                command.AddParameter("Elevage", historique.Elevage);
             return _connection.ExecuteNonQuery(command);
 
         }

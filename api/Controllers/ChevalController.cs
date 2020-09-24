@@ -42,7 +42,7 @@ namespace api.Controllers
             Cheval cheval = this._chevalRepository.GetById(id);
 
             if (!(cheval is null))
-                return Ok(cheval);
+                return Ok(cheval.DALChevalToAPI());
             else 
                 return NotFound();
         }

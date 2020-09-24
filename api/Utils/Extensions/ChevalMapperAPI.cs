@@ -38,7 +38,10 @@ namespace api.Utils.Extensions
                 Sexe = cheval.Sexe,
                 Entrainements = chevalRepository.GetAllEntrainementById(cheval.Id_Cheval),
                 Employes = chevalRepository.GetAllEmployeById(cheval.Id_Cheval),
-                Courses = chevalRepository.GetallCoursesById(cheval.Id_Cheval)
+                Courses = chevalRepository.GetallCoursesById(cheval.Id_Cheval),
+                Soinss = chevalRepository.GetAllSoinsById(cheval.Id_Cheval),
+                Vaccinations= chevalRepository.GetAllVaccinationsById(cheval.Id_Cheval),
+                Historique = chevalRepository.Gethistorique(cheval.Id_Cheval)
             };
         }
     }

@@ -18,6 +18,11 @@ namespace DAL.Repository
         {
             _connection = connection;
         }
+
+        public EmployeRepository(): this(_connection)
+        {
+
+        }
         public IEnumerable<Employe> GetallEmploye()
         {
             Command command = new Command("SELECT * FROM Employe");
@@ -68,7 +73,57 @@ namespace DAL.Repository
 
             //return _connection.ExecuteNonQuery(command);
         }
-        
+        public IEnumerable<Entrainement> GetAllEntrainementById(int id)
+        {
+            Command command = new Command("select E.Nom_Employe, " +
+                "                                 C.Nom_cheval, " +
+                "                                 ENT.Date_Entrainement, " +
+                "                                 ENT.Obstacle, " +
+                "                                 ENT.Plat, " +
+                "                                 ENT.Marcheur, " +
+                "                                 ENT.Pre, " +
+                "                                 ENT.Duree, " +
+                "                                 E.Statuts_Employe, " +
+                "                                 E.Date_Embauche," +
+                "                                 ENT.Id_Entrainement" +
+                " " +
+                "                          from Cheval C join Participe_Entrainement_cheval_employé PEC" +
+                "                                       on C.Id_Cheval = PEC.Id_Cheval" +
+                "                                 join Employe E" +
+                "                                       on PEC.Id_Employe = E.Id_Employe" +
+                "                                 join Entrainement ENT" +
+                "                                       on ENT.Id_Entrainement = PEC.Id_Entrainement" +
+                "                           where E.Id_Employe = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => dr.EntrainementToDal());
+        }
+        public IEnumerable<Soins> GetAllSoinsById(int id)
+        {
+            Command command = new Command("select C.Nom_cheval, " +
+                "                                 S.Alimentation, " +
+                "                                 S.Complement_Alimentation, " +
+                "                                 S.Marechal_Derniere_Visite," +
+                "                                 S.Vermifuge, " +
+                "                                 S.Date_De_Soin, " +
+                "                                 S.Type_De_Soin, " +
+                "                                 E.Nom_Employe, " +
+                "                                 S.Durree_Indisponibilite," +
+                "                                 S.Note_Libre," +
+                "                                 S.Id_Cheval, " +
+                "                                 S.Id_Employe, " +
+                "                                 S.Id_Soins" +
+                "                           from Soins S join Employe E" +
+                "                                   on E.Id_Employe = S.Id_Employe" +
+                "                                 join Cheval C" +
+                "                                   on C.Id_Cheval = S.Id_Cheval" +
+                "                           where E.Id_Employe = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => dr.SoinsToDAl());
+
+        }
+
     }
 }
 

@@ -73,7 +73,8 @@ namespace DAL.Repository.Extensions
                 Debourage = record["Debourage"] == DBNull.Value ? null : (string)record["Debourage"],
                 Pre_Entrainement = record["Pre_Entrainement"] == DBNull.Value ? null : (string)record["Pre_Entrainement"],
                 Entraineur_Precedent = record["Entraineur_Precedent"] == DBNull.Value ? null : (string)record["Entraineur_Precedent"],
-                Proprietaire_Precedent = record["Proprietaire_Precedent"] == DBNull.Value ? null : (string)record["Proprietaire_Precedent"]
+                Proprietaire_Precedent = record["Proprietaire_Precedent"] == DBNull.Value ? null : (string)record["Proprietaire_Precedent"],
+                Elevage = record ["Elevage"] == DBNull.Value    ?   null : (string)record ["Elevage"]
             };
         }
         internal static Proprietaire ProprietaireToDal(this IDataRecord record)

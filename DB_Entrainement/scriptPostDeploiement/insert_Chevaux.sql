@@ -125,13 +125,14 @@ insert [dbo].[Historique] ([dbo].[Historique].[Id_Cheval],
                            [dbo].[Historique].[Debourage],
                            [dbo].[Historique].[Pre_Entrainement],
                            [dbo].[Historique].[Entraineur_precedent],
-                           [dbo].[Historique].[Proprietaire_precedent])
+                           [dbo].[Historique].[Proprietaire_precedent],
+                           [dbo].[Historique].[Elevage])
 values
-('2','malenfant','malenfant','dubois','dubuisson'),
-('4','perceval','perceval','nami','dubuisson'),
-('3','caradoc','perceval','dubois','leona'),
-('5','dugarry','marion','leblanc','dubuisson'),
-('2','malenfant','malenfant','dubois','kartus');
+('2','malenfant','malenfant','dubois','dubuisson', 'haras_saint_voir'),
+('4','perceval','perceval','nami','dubuisson', 'wertheimer'),
+('3','caradoc','perceval','dubois','leona','Aga_Khan'),
+('5','dugarry','marion','leblanc','dubuisson', 'Papot'),
+('1','malenfant','malenfant','dubois','kartus','Devin')
 
 insert mym_Vaccination_Cheval (Id_Cheval, Id_Vaccination)
 

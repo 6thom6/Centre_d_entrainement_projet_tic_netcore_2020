@@ -23,5 +23,8 @@ namespace api.Models
         public IEnumerable<Entrainement> Entrainements { get; set; }
         public IEnumerable<Employe> Employes { get; set; }
         public IEnumerable <Course> Courses { get; set; }
+        public IEnumerable <Soins> Soinss { get; set; }
+        public IEnumerable<Vaccination> Vaccinations { get; set; }
+        public Historique Historique { get; set; }
     }
 }
