@@ -6,6 +6,7 @@ using DAL.Models;
 using DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
 using DAL.IRepository;
+using api.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,10 +18,13 @@ namespace api.Controllers
 
     {
         private IEntrainementRepository _entrainementRepository;
+        private IEmployeRepository _employeRepository;
 
-        public EntrainementController(EntrainementRepository entrainement)
+        public EntrainementController(EntrainementRepository entrainement, EmployeRepository employeRepository)
         {
             _entrainementRepository = entrainement;
+            this._employeRepository = employeRepository;
+
         }
         // GET: api/<EntrainementController>
         [HttpGet]
@@ -32,6 +36,26 @@ namespace api.Controllers
             else
                 return NotFound();
         }
+
+        [HttpGet("{id}/employeCheval")]
+        public IActionResult GetAllEmployeByEntrainementId(int id)
+        {
+            IEnumerable<Employe> employeChevals = _entrainementRepository.GetAllEmployeByEntrainementId(id);
+
+            if (employeChevals is null) return NotFound();
+
+            return Ok(employeChevals);
+        }
+        [HttpGet("{id}/Employe")]
+        public IActionResult GetAllEmployeAndChevalByEntrainementId(int id)
+        {
+            IEnumerable<EmployeCheval> employes = _entrainementRepository.GetAllEmployeAndChevalByEntrainementId(id);
+            
+            if (employes is null)
+                return NotFound();
+            return Ok(employes);
+        }
+
 
         // GET api/<EntrainementController>/5
         [HttpGet("{id}")]

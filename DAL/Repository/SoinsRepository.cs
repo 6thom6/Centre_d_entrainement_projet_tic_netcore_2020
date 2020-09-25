@@ -18,6 +18,11 @@ namespace DAL.Repository
         {
             _connection = connection;
         }
+        public SoinsRepository(): this(_connection)
+        {
+
+        }
+
         public IEnumerable<Soins> GetallSoins()
         {
             Command command = new Command("SELECT * FROM Soins");
@@ -87,6 +92,43 @@ namespace DAL.Repository
 
             return _connection.ExecuteNonQuery(command);
 
+        }
+
+        public string GetNomCheval (int id)
+        {
+            Command command = new Command("SELECT c.Nom_cheval FROM Soins s JOIN Cheval c ON s.Id_Cheval = c.Id_Cheval WHERE s.Id_Soins = @Id; ");
+            command.AddParameter("Id", id);
+
+            return _connection.ExecuteReader(command, (dr) => (string)dr["Nom_cheval"]).FirstOrDefault();
+        }
+        public string GetNomEmploye(int id)
+        {
+            Command command = new Command(" SELECT c.Nom_Employe FROM Soins s JOIN Employe c ON s.Id_Employe = c.Id_Employe WHERE s.Id_Soins = @Id; ");
+            command.AddParameter("Id", id);
+
+            return _connection.ExecuteReader(command, (dr)=>(string)dr["Nom_Employe"]).FirstOrDefault();
+        }
+        public string GetStatutsEmploye(int id)
+        {
+            Command command = new Command(" SELECT c.Statuts_Employe FROM Soins s JOIN Employe c ON s.Id_Employe = c.Id_Employe WHERE s.Id_Soins = @Id; ");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, (dr) => (string)dr["Statuts_Employe"]).FirstOrDefault();
+
+        }
+        public string GetSexCheval (int id)
+        {
+            Command command = new Command(" SELECT c.Sexe FROM Soins s JOIN Cheval c ON s.Id_Cheval = c.Id_Cheval HERE s.Id_Soins = @id; ");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Sexe"]).FirstOrDefault();
+        }
+        public int GetAgeCheval(int id)
+        {
+            Command command = new Command(" SELECT c.Age FROM Soins s JOIN Cheval c ON s.Id_Cheval = c.Id_Cheval HERE s.Id_Soins = @id; ");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (int) dr["Age"]).FirstOrDefault();
         }
 
 

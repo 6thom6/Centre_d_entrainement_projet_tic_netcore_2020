@@ -25,23 +25,23 @@ namespace api.Utils.Extensions
             return new ChevalComplet()
             {
                 Id_Cheval = cheval.Id_Cheval,
-                NomCheval = cheval.NomCheval,
+                Nom_Cheval = cheval.Nom_Cheval,
                 PereCheval = cheval.PereCheval,
                 MereCheval = cheval.MereCheval,
                 SortieProvisoire = cheval.SortieProvisoire,
                 RaisonSortie = cheval.RaisonSortie,
-                Proprietaire = chevalRepository.GetProprietaire(cheval.Id_Proprietaire),
+                Proprietaire = chevalRepository.GetProprietaire(cheval.Id_Proprietaire).DALProprietaireSimpleToAPI(),
                 Id_Soins = cheval.Id_Soins,
                 Poids = cheval.Poids,
                 Race = cheval.Race,
                 Age = cheval.Age,
                 Sexe = cheval.Sexe,
-                Entrainements = chevalRepository.GetAllEntrainementById(cheval.Id_Cheval),
-                Employes = chevalRepository.GetAllEmployeById(cheval.Id_Cheval),
-                Courses = chevalRepository.GetallCoursesById(cheval.Id_Cheval),
-                Soinss = chevalRepository.GetAllSoinsById(cheval.Id_Cheval),
-                Vaccinations= chevalRepository.GetAllVaccinationsById(cheval.Id_Cheval),
-                Historique = chevalRepository.Gethistorique(cheval.Id_Cheval)
+                //Entrainements = chevalRepository.GetAllEntrainementById(cheval.Id_Cheval),
+                //Employes = chevalRepository.GetAllEmployeById(cheval.Id_Cheval),
+                //Courses = chevalRepository.GetallCoursesById(cheval.Id_Cheval),
+                //Soinss = chevalRepository.GetAllSoinsById(cheval.Id_Cheval),
+                //Vaccinations= chevalRepository.GetAllVaccinationsById(cheval.Id_Cheval),
+                //Historique = chevalRepository.Gethistorique(cheval.Id_Cheval)
             };
         }
     }

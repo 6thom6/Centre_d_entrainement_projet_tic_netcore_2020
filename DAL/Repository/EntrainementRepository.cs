@@ -17,6 +17,7 @@ namespace DAL.Repository
         {
             _connection = connection;
         }
+        public EntrainementRepository(): this(_connection) { }
         public IEnumerable<Entrainement> GetallEntrainement()
         {
             Command command = new Command("SELECT * FROM Entrainement");
@@ -71,6 +72,56 @@ namespace DAL.Repository
 
         }
 
+        public IEnumerable<EmployeCheval> GetAllEmployeAndChevalByEntrainementId(int id)
+        {
+            Command command = new Command("SELECT E.*, C.* FROM Participe_Entrainement_cheval_employe pece JOIN Cheval C ON C.Id_Cheval = pece.Id_Cheval JOIN Employe E ON E.Id_Employe = pece.Id_Employe WHERE pece.Id_Entrainement = @Id;");
 
+            command.AddParameter("Id", id);
+
+            return _connection.ExecuteReader(command, (dr) => dr.EmployeChevalToDAL());
+        }
+
+        public IEnumerable<EmployeCheval> GetAllEmployeByEntrainementId(int id)
+        {
+            Command command = new Command("SELECT E.Nom_Employe FROM Participe_Entrainement_cheval_employé " +
+                                                    "pece JOIN Employe E ON E.Id_Employe = pece.Id_Employe " +
+                                                    "WHERE pece.Id_Entrainement = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => dr.EmployeChevalToDAL());
+               
+
+        }
+
+        IEnumerable<Employe> IEntrainementRepository.GetAllEmployeByEntrainementId(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public string GetNomChevalParEntrainement(int id)
+        {
+            Command command = new Command("select c.Nom_cheval from Entrainement e join Participe_Entrainement_cheval_employé PECE on e.Id_Entrainement = PECE.Id_Entrainement join Cheval C on c.Id_Cheval = PECE.Id_Cheval where E.Id_Entrainement = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_Cheval"]).FirstOrDefault();
+        }
+        public string GetEmployeByEntrainementId (int id)
+        {
+            Command command = new Command("select e.Nom_Employe from Entrainement ent join Participe_Entrainement_cheval_employé PCE on ent.Id_Entrainement = PCE.Id_Entrainement join Employe e on e.Id_Employe = PCE.Id_Entrainement where Id_Cheval = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_Employe"]).FirstOrDefault();
+        }
+        public int GetAgeChevalParEntrainement(int id)
+        {
+            Command command = new Command("select c.Age from Entrainement e join Participe_Entrainement_cheval_employé PECE on e.Id_Entrainement = PECE.Id_Entrainement join Cheval C on c.Id_Cheval = PECE.Id_Cheval where E.Id_Entrainement = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (int)dr["Age"]).FirstOrDefault();
+        }
+        public string GetSexParEntrainement(int id)
+        {
+            Command command = new Command("select c.Sexe from Entrainement e join Participe_Entrainement_cheval_employé PECE on e.Id_Entrainement = PECE.Id_Entrainement join Cheval C on c.Id_Cheval = PECE.Id_Cheval where E.Id_Entrainement = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Sexe"]).FirstOrDefault();
+        }
     }
 }

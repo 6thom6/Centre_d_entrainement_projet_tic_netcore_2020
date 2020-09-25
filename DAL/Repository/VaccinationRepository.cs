@@ -18,6 +18,7 @@ namespace DAL.Repository
         {
             _connection = connection;
         }
+        public VaccinationRepository(): this(_connection) { }
         public IEnumerable<Vaccination> GetallVaccination()
         {
             Command command = new Command("SELECT * FROM Vaccination");
@@ -66,5 +67,31 @@ namespace DAL.Repository
 
             return _connection.ExecuteNonQuery(command);
         }
+        public string GetVaccinParCheval(int id)
+        {
+            Command command = new Command("select v.Nom_vaccin from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_vaccin"]).FirstOrDefault();
+
+        }
+        public int GetIDVaccinParCheval(int id)
+        {
+            Command command = new Command("select v.Id_vaccination from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (int)dr["Id_vaccination"]).FirstOrDefault();
+
+        }
+        public DateTime GetDelaiVaccinParCheval(int id)
+        {
+            Command command = new Command("select v.Delai_Indisponibilite from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (DateTime)dr["Delai_Indisponibilite"]).FirstOrDefault();
+
+        }
+
+
     }
 }

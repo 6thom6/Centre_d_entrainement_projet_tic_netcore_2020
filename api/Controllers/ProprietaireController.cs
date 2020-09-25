@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using DAL.IRepository;
 using DAL.Models;
 using DAL.Repository;
+using api.Models;
+using api.Utils.Extensions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,7 +29,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Proprietaire> proprietaires = _proprietaireRipository.GetallProprietaire().Select(x => x);
+            IEnumerable<ProprietaireSimple> proprietaires = _proprietaireRipository.GetallProprietaire().Select(x => x.DALProprietaireToAPI());
             if (!(proprietaires is null))
                 return Ok(proprietaires);
             else
@@ -41,7 +43,7 @@ namespace api.Controllers
         {
             Proprietaire proprietaire = this._proprietaireRipository.Get(id);
             if (!(proprietaire is null))
-                return Ok(proprietaire);
+                return Ok(proprietaire.DALProprietaireToAPI());
             else
                 return NotFound();
         }

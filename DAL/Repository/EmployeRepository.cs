@@ -100,6 +100,7 @@ namespace DAL.Repository
         }
         public IEnumerable<Soins> GetAllSoinsById(int id)
         {
+            //nom cheval?!lkjhf&
             Command command = new Command("select C.Nom_cheval, " +
                 "                                 S.Alimentation, " +
                 "                                 S.Complement_Alimentation, " +
@@ -121,6 +122,14 @@ namespace DAL.Repository
             command.AddParameter("id", id);
 
             return _connection.ExecuteReader(command, dr => dr.SoinsToDAl());
+
+        }
+        public string ChevalParEmploye(int id)
+        {
+            Command command = new Command("select c.Nom_cheval from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_cheval"]).FirstOrDefault();
 
         }
 
