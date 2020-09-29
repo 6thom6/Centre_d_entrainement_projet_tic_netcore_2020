@@ -19,9 +19,9 @@ namespace api.Utils.Extensions
                 return new SoinsRepository();
             }
         }
-        internal static SoinEmployeCheval DalSoinEmployeChevalToAPI (this Soins soins)
+        internal static SoinEmployeChevalAPI DalSoinEmployeChevalToAPI (this Soins soins)
         {
-            return new SoinEmployeCheval()
+            return new SoinEmployeChevalAPI()
             {
                 Nom_Cheval = soinsRepository.GetNomCheval(soins.Id_Soins??0),
                 Type_De_Soin = soins.Type_De_Soin,

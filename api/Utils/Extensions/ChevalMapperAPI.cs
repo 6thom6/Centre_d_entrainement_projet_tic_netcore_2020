@@ -20,9 +20,9 @@ namespace api.Utils.Extensions
             }
         }
 
-        internal static ChevalComplet DALChevalToAPI(this Cheval cheval)
+        internal static ChevalCompletAPI DALChevalToAPI(this Cheval cheval)
         {
-            return new ChevalComplet()
+            return new ChevalCompletAPI()
             {
                 Id_Cheval = cheval.Id_Cheval,
                 Nom_Cheval = cheval.Nom_Cheval,

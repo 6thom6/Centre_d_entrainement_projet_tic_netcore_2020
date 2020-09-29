@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class ProprietaireCourse
+    public class ProprietaireCourseAPI
     {
         public string Nom_Proprietaire { get; set; }
         public string Nom_Cheval { get; set; }

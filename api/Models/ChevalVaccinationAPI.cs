@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class ChevalVaccination
+    public class ChevalVaccinationAPI
     {
         public string Nom_Cheval { get; set; }
         public string Race { get; set; }

@@ -19,9 +19,9 @@ namespace api.Utils.Extensions
                 return new ProprietaireRepository();
             }
         }
-        internal static ProprietaireSimple DALProprietaireSimpleToAPI(this Proprietaire ProprietaireSimple)
+        internal static ProprietaireSimpleAPI DALProprietaireSimpleToAPI(this Proprietaire ProprietaireSimple)
         {
-            return new ProprietaireSimple()
+            return new ProprietaireSimpleAPI()
             {
                 Nom_Proprietaire = ProprietaireSimple.Nom_Proprietaire,
                 Date_Arrivee = ProprietaireSimple.Date_Arrivee,

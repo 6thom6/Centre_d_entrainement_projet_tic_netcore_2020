@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class SoinEmployeCheval
+    public class SoinEmployeChevalAPI
     {
         public string Type_De_Soin { get; set; }
         public DateTime? Date_De_Soin { get; set; }

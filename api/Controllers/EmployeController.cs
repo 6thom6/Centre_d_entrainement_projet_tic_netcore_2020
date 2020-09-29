@@ -28,7 +28,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<EmployeComplet> employes = _employeRepository.GetallEmploye().Select(x => x.DALEmployeToAPI());
+            IEnumerable<EmployeCompletAPI> employes = _employeRepository.GetallEmploye().Select(x => x.DALEmployeToAPI());
             if (!(employes is null))
 
                 return Ok(employes);

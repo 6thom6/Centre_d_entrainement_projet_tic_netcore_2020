@@ -19,9 +19,9 @@ namespace api.Utils.Extensions
                 return new EmployeRepository();
             }
         }
-        internal static EmployeComplet DALEmployeToAPI (this Employe employe)
+        internal static EmployeCompletAPI DALEmployeToAPI (this Employe employe)
         {
-            return new EmployeComplet()
+            return new EmployeCompletAPI()
             {
                 Id_Employe = employe.Id_Employe,
                 Nom_Employe = employe.Nom_Employe,

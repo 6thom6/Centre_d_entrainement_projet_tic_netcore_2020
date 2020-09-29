@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class EmployeComplet
+    public class EmployeCompletAPI
     {
         public int Id_Employe { get; set; }
         public string Nom_Employe { get; set; }

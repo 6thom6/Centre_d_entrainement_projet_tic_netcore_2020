@@ -1,17 +1,18 @@
-﻿using System;
+﻿using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class ProprietaireCourseCheval
+    public class ChevalCourseAPI
     {
-        public string Nom_Proprietaire { get; set; }
         public string Nom_Cheval { get; set; }
-        public int Age { get; set; }
         public string Race { get; set; }
         public string Sexe { get; set; }
+        public int Age { get; set; }
+        public int Id_Courses { get; set; }
         public int Distance { get; set; }
         public string Hippodrome { get; set; }
         public string Jockey { get; set; }

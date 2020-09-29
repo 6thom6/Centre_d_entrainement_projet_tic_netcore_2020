@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-   public class ChevalHistorique
+   public class ChevalHistoriqueAPI
     {
         public string Nom_Cheval { get; set; }
-        public string PereCheval { get; set; }
-        public string MereCheval { get; set; }
+        public string Pere_Cheval { get; set; }
+        public string Mere_Cheval { get; set; }
         public string Race { get; set; }
         public int Age { get; set; }
         public string Sexe { get; set; }

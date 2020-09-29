@@ -18,10 +18,19 @@ namespace api.Utils.Extensions
                 return new VaccinationRepository();
             }
         }
-        internal static ChevalVaccination DALVaccinatinChevalToApi(this Vaccination vaccination)
+        internal static ChevalVaccinationAPI DALVaccinatinChevalToApi(this Vaccination vaccination)
         {
-            return new ChevalVaccination()
+            return new ChevalVaccinationAPI()
             {
+                Nom_Cheval = VaccinationRepository.GetNomChevalVaccin(vaccination.Id_Vaccination),
+                Race = VaccinationRepository.GetRaceChevalVaccin(vaccination.Id_Vaccination),
+                Age = VaccinationRepository.GetAgeChevalParVaccin(vaccination.Id_Vaccination),
+                Sexe = VaccinationRepository.GetSexeChevalVaccin(vaccination.Id_Vaccination),
+                Id_Vaccination = vaccination.Id_Vaccination,
+                Nom_Vaccin = vaccination.Nom_Vaccin,
+                Delai_Indisponibilite = vaccination.Delai_Indisponibilite
+                
+
 
             };
         }

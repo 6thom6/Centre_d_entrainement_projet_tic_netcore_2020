@@ -29,7 +29,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<ProprietaireSimple> proprietaires = _proprietaireRipository.GetallProprietaire().Select(x => x.DALProprietaireToAPI());
+            IEnumerable<ProprietaireSimpleAPI> proprietaires = _proprietaireRipository.GetallProprietaire().Select(x => x.DALProprietaireSimpleToAPI());
             if (!(proprietaires is null))
                 return Ok(proprietaires);
             else
@@ -43,7 +43,7 @@ namespace api.Controllers
         {
             Proprietaire proprietaire = this._proprietaireRipository.Get(id);
             if (!(proprietaire is null))
-                return Ok(proprietaire.DALProprietaireToAPI());
+                return Ok(proprietaire.DALProprietaireChevalToAPI());
             else
                 return NotFound();
         }

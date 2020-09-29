@@ -18,9 +18,9 @@ namespace api.Utils.Extensions
                 return new ProprietaireRepository();
             }
         }
-        internal static ProprietaireCourse DALProprietaireToAPI(this Proprietaire proprietaire)
+        internal static ProprietaireCourseAPI DALProprietaireToAPI(this Proprietaire proprietaire)
         {
-            return new ProprietaireCourse()
+            return new ProprietaireCourseAPI()
             {
                 Nom_Proprietaire = proprietaire.Nom_Proprietaire,
                 Nom_Cheval = ProprietaireRepository.ChevalCouruParProprietaire(proprietaire.Id_Proprietaire),

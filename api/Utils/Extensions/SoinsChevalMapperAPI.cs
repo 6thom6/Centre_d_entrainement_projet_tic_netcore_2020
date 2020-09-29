@@ -19,9 +19,9 @@ namespace api.Utils.Extensions
                 return new SoinsRepository();
             }
         }
-        internal static SoinsCheval DalSoinsChevalToAPI(this Soins soins)
+        internal static SoinsChevalAPI DalSoinsChevalToAPI(this Soins soins)
         {
-            return new SoinsCheval()
+            return new SoinsChevalAPI()
             {
                Nom_Cheval = soinsRepository.GetNomCheval(soins.Id_Soins ?? 0),
                Age = soinsRepository.GetAgeCheval(soins.Id_Soins??0),
@@ -31,6 +31,8 @@ namespace api.Utils.Extensions
                Durree_Indisponibilite = soins.Durree_Indisponibilite,
                Marechal_Derniere_Visite = soins.Marechal_Derniere_Visite,
                Vermifuge = soins.Vermifuge,
+               Alimentation = soins.Alimentation,
+               Complement_Alimentation = soins.Complement_Alimentation,
               
             };
         }

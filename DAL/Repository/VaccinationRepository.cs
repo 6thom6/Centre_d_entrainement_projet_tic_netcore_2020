@@ -67,28 +67,39 @@ namespace DAL.Repository
 
             return _connection.ExecuteNonQuery(command);
         }
-        public string GetVaccinParCheval(int id)
+
+
+
+        public string GetNomChevalVaccin(int id)
         {
-            Command command = new Command("select v.Nom_vaccin from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where c.Id_Cheval = @id");
+            Command command = new Command(" select c.Nom_cheval from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where V.Id_vaccination = @id");
             command.AddParameter("id", id);
 
-            return _connection.ExecuteReader(command, dr => (string)dr["Nom_vaccin"]).FirstOrDefault();
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_cheval"]).FirstOrDefault();
 
         }
-        public int GetIDVaccinParCheval(int id)
+        public string GetRaceChevalVaccin(int id)
         {
-            Command command = new Command("select v.Id_vaccination from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where c.Id_Cheval = @id");
+            Command command = new Command("select c.Race from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where V.Id_vaccination = @id");
             command.AddParameter("id", id);
 
-            return _connection.ExecuteReader(command, dr => (int)dr["Id_vaccination"]).FirstOrDefault();
+            return _connection.ExecuteReader(command, dr => (string)dr["Race"]).FirstOrDefault();
 
         }
-        public DateTime GetDelaiVaccinParCheval(int id)
+        public int GetAgeChevalParVaccin(int id)
         {
-            Command command = new Command("select v.Delai_Indisponibilite from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where c.Id_Cheval = @id");
+            Command command = new Command(" select c.Age from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where V.Id_vaccination = @id");
             command.AddParameter("id", id);
 
-            return _connection.ExecuteReader(command, dr => (DateTime)dr["Delai_Indisponibilite"]).FirstOrDefault();
+            return _connection.ExecuteReader(command, dr => (int)dr["Age"]).FirstOrDefault();
+
+        }
+        public string GetSexeChevalVaccin(int id)
+        {
+            Command command = new Command(" select c.Sexe from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where V.Id_vaccination = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Sexe"]).FirstOrDefault();
 
         }
 

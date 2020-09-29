@@ -132,6 +132,86 @@ namespace DAL.Repository
             return _connection.ExecuteReader(command, dr => (string)dr["Nom_cheval"]).FirstOrDefault();
 
         }
+        public DateTime DateEntrainementParEmploye(int id)
+        {
+            Command command = new Command("select ent.Date_Entrainement from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (DateTime)dr["Nom_cheval"]).FirstOrDefault();
+
+        }
+        public string ChevalEntrainementAgeParEmploye(int id)
+        {
+            Command command = new Command("select ent.Nom_cheval from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_cheval"]).FirstOrDefault();
+
+        }
+        public string ChevalEntrainementPlatParEmploye(int id)
+        {
+            Command command = new Command("select ent.Plat from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Plat"]).FirstOrDefault();
+
+        }
+        public string ChevalEntrainementObstacleParEmploye(int id)
+        {
+            Command command = new Command("select ent.Obstacle from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Obstacle"]).FirstOrDefault();
+
+        }
+        public string ChevalEntrainementMarcheurParEmploye(int id)
+        {
+            Command command = new Command("select ent.Marcheur from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Marcheur"]).FirstOrDefault();
+
+        }
+        public string ChevalEntrainementPreParEmploye(int id)
+        {
+            Command command = new Command("select ent.Pre from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Pre"]).FirstOrDefault();
+
+        }
+        public string ChevalEntrainementDureeParEmploye(int id)
+        {
+            Command command = new Command("select ent.Duree from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Duree"]).FirstOrDefault();
+
+        }
+        public string ChevalEntrainerParEmploye(int id)
+        {
+            Command command = new Command("select C.Nom_cheval from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_cheval"]).FirstOrDefault();
+
+        }
+        public string ChevalEntrainerSexeParEmploye(int id)
+        {
+            Command command = new Command("select C.Sexe from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Sexe"]).FirstOrDefault();
+
+        }
+        public int ChevalEntrainerAgeParEmploye(int id)
+        {
+            Command command = new Command("select C.Age from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Entrainement ENT on PECE.Id_Entrainement = ENT.Id_Entrainement join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (int)dr["Age"]).FirstOrDefault();
+
+        }
 
     }
 }

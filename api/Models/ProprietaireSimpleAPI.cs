@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class ProprietaireSimple
+    public class ProprietaireSimpleAPI
     {
         public string Nom_Proprietaire { get; set; }
         public string Dernier_Resultat { get; set; }

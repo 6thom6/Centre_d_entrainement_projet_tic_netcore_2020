@@ -35,12 +35,242 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => dr.ChevalToDAL()).SingleOrDefault();
         }
+        public string GetPlatParCheval(int id)
+        {
+            Command command = new Command(" select E.Plat from Cheval C join Participe_Entrainement_cheval_employé PECE on C.Id_Cheval = PECE.Id_Cheval join Entrainement E on E.Id_Entrainement = PECE.Id_Entrainement where C.Id_Cheval =@id");
+            command.AddParameter("id", id);
 
-        //public Proprietaire GetProprietaire(object id_Proprietaire)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            return _connection.ExecuteReader(command, dr => (string)dr["Plat"]).FirstOrDefault();
+        }
+        public string GetObstacleParCheval(int id)
+        {
+            Command command = new Command(" select E.Obstacle from Cheval C join Participe_Entrainement_cheval_employé PECE on C.Id_Cheval = PECE.Id_Cheval join Entrainement E on E.Id_Entrainement = PECE.Id_Entrainement where C.Id_Cheval=@id");
+            command.AddParameter("id", id);
 
+            return _connection.ExecuteReader(command, dr => (string)dr["Obstacle"]).FirstOrDefault();
+        }
+        public string GetMarcheurParCheval(int id)
+        {
+            Command command = new Command(" select E.Marcheur from Cheval C join Participe_Entrainement_cheval_employé PECE on C.Id_Cheval = PECE.Id_Cheval join Entrainement E on E.Id_Entrainement = PECE.Id_Entrainement where C.Id_Cheval=@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Marcheur"]).FirstOrDefault();
+        }
+        public string GetPreParCheval(int id)
+        {
+            Command command = new Command(" select E.Pre from Cheval C join Participe_Entrainement_cheval_employé PECE on C.Id_Cheval = PECE.Id_Cheval join Entrainement E on E.Id_Entrainement = PECE.Id_Entrainement where C.Id_Cheval=@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Pre"]).FirstOrDefault();
+        }
+        public string GetDureeParCheval(int id)
+        {
+            Command command = new Command(" select E.Duree from Cheval C join Participe_Entrainement_cheval_employé PECE on C.Id_Cheval = PECE.Id_Cheval join Entrainement E on E.Id_Entrainement = PECE.Id_Entrainement where C.Id_Cheval=@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Duree"]).FirstOrDefault();
+        }
+        public DateTime GetDateEntrainementParCheval(int id)
+        {
+            Command command = new Command(" select E.Date_Entrainement from Cheval C join Participe_Entrainement_cheval_employé PECE on C.Id_Cheval = PECE.Id_Cheval join Entrainement E on E.Id_Entrainement = PECE.Id_Entrainement where C.Id_Cheval=@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (DateTime)dr["Date_Entrainement"]).FirstOrDefault();
+        }
+        public DateTime GetDateCourseParCheval(int id)
+        {
+            Command command = new Command(" select c.Date_Courses from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (DateTime)dr["Date_Courses"]).FirstOrDefault();
+        }
+        public DateTime GetDateSoinsParCheval(int id)
+        {
+            Command command = new Command(" select S.Date_De_Soin from Soins S join Cheval C on S.Id_Cheval = C.Id_Cheval where c.Id_Cheval =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (DateTime)dr["Date_De_Soin"]).FirstOrDefault();
+        }
+        public DateTime GetDateVermifugeParCheval(int id)
+        {
+            Command command = new Command(" select S.Vermifuge from Soins S join Cheval C on S.Id_Cheval = C.Id_Cheval where c.Id_Cheval =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (DateTime)dr["Vermifuge"]).FirstOrDefault();
+        }
+        public DateTime GetDateMarechalParCheval(int id)
+        {
+            Command command = new Command(" select S.Marechal_Derniere_Visite from Soins S join Cheval C on S.Id_Cheval = C.Id_Cheval where c.Id_Cheval =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (DateTime)dr["Marechal_Derniere_Visite"]).FirstOrDefault();
+        }
+        public string GetTypeDeSoinsParCheval(int id)
+        {
+            Command command = new Command(" select S.Type_De_Soin from Soins S join Cheval C on S.Id_Cheval = C.Id_Cheval where c.Id_Cheval =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Type_De_Soin"]).FirstOrDefault();
+        }
+        public string GetNoteLibreDeSoinsParCheval(int id)
+        {
+            Command command = new Command(" select S.Note_Libre from Soins S join Cheval C on S.Id_Cheval = C.Id_Cheval where c.Id_Cheval =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Note_Libre"]).FirstOrDefault();
+        }
+        public string GetAlimentationParCheval(int id)
+        {
+            Command command = new Command(" select S.Alimentation from Soins S join Cheval C on S.Id_Cheval = C.Id_Cheval where c.Id_Cheval =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Alimentation"]).FirstOrDefault();
+        }
+        public string GetComplementAlimentationParCheval(int id)
+        {
+            Command command = new Command(" select S.Complement_Alimentation from Soins S join Cheval C on S.Id_Cheval = C.Id_Cheval where c.Id_Cheval =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Complement_Alimentation"]).FirstOrDefault();
+        }
+        public string GetDureeIndisponibiliteParCheval(int id)
+        {
+            Command command = new Command(" select S.Durree_Indisponibilite from Soins S join Cheval C on S.Id_Cheval = C.Id_Cheval where c.Id_Cheval =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Durree_Indisponibilite"]).FirstOrDefault();
+        }
+
+
+
+        public string GetHippodromeCourseParCheval(int id)
+        {
+            Command command = new Command(" select c.Hippodrome from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Hippodrome"]).FirstOrDefault();
+        }
+
+        public int GetIdCourseParCheval(int id)
+        {
+            Command command = new Command(" select c.Id_Courses from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (int)dr["Id_Courses"]).FirstOrDefault();
+        }
+        public string GetCordeCourseParCheval(int id)
+        {
+            Command command = new Command(" select c.Corde from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Corde"]).FirstOrDefault();
+        }
+        public int GetDistanceCourseParCheval(int id)
+        {
+            Command command = new Command(" select c.Distance from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (int)dr["Distance"]).FirstOrDefault();
+        }
+        public string GetDisciplineCourseParCheval(int id)
+        {
+            Command command = new Command(" select c.Distance from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Distance"]).FirstOrDefault();
+        }
+        public string GetTerrainCourseParCheval(int id)
+        {
+            Command command = new Command(" select c.Terrain from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Terrain"]).FirstOrDefault();
+
+        }
+        public string GetAvisCourseParCheval(int id)
+        {
+            Command command = new Command(" select c.Avis from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Avis"]).FirstOrDefault();
+
+        }
+        public string GetJockeyParCheval(int id)
+        {
+            Command command = new Command(" select c.Jockey from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Jockey"]).FirstOrDefault();
+
+        }
+        public float GetPoidsDeCourseParCheval(int id)
+        {
+            Command command = new Command(" select c.Poids_De_Course from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (float)dr["Poids_De_Course"]).FirstOrDefault();
+
+        }
+        public DateTime GetDelaiVaccinParCheval(int id)
+        {
+            Command command = new Command("select v.Delai_Indisponibilite from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (DateTime)dr["Delai_Indisponibilite"]).FirstOrDefault();
+
+        }
+        public string GetVaccinParCheval(int id)
+        {
+            Command command = new Command("select v.Nom_vaccin from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_vaccin"]).FirstOrDefault();
+
+        }
+        public int GetIDVaccinParCheval(int id)
+        {
+            Command command = new Command("select v.Id_vaccination from Vaccination V join mym_Vaccination_Cheval mym on V.Id_vaccination = mym.Id_Vaccination join Cheval c on c.Id_Cheval = mym.Id_Cheval where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (int)dr["Id_vaccination"]).FirstOrDefault();
+
+        }
+
+        public string GetElevageCheval(int id)
+        {
+            Command command = new Command(" select h.Elevage from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Elevage"]).FirstOrDefault();
+        }
+        public string GetProprietaire_PrecedentCheval(int id)
+        {
+            Command command = new Command("select h.Proprietaire_precedent from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Proprietaire_precedent"]).FirstOrDefault();
+        }
+        public string GetDebourrageChevalParHisto(int id)
+        {
+            Command command = new Command(" select h.Debourage from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Debourage"]).FirstOrDefault();
+        }
+        public string GetPre_EntrainementChevalParHisto(int id)
+        {
+            Command command = new Command(" select h.Pre_Entrainement from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Pre_Entrainement"]).FirstOrDefault();
+        }
+        public string GetEntraineur_PrecedentChevalParHisto(int id)
+        {
+            Command command = new Command(" select h.Entraineur_precedent from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Entraineur_precedent"]).FirstOrDefault();
+        }
         public int Create(Cheval cheval)
         {
             Command command = new Command("CreateCheval", true);

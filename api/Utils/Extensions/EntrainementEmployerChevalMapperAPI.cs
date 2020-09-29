@@ -19,9 +19,9 @@ namespace api.Utils.Extensions
                 return new EntrainementRepository();
             }
         }
-        internal static EntrainementEmployeCheval DALEntrainementEmployeChevalToAPI (this Entrainement entrainement)
+        internal static EntrainementEmployeChevalAPI DALEntrainementEmployeChevalToAPI (this Entrainement entrainement)
         {
-            return new EntrainementEmployeCheval()
+            return new EntrainementEmployeChevalAPI()
             {
                 Nom_Cheval = entrainementRepository.GetNomChevalParEntrainement(entrainement.Id_Entrainement),
                 Date_Entrainement = entrainement.Date_Entrainement,

@@ -27,7 +27,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<ChevalComplet> chevals = _chevalRepository.Get().Select(x => x.DALChevalToAPI());
+            IEnumerable<ChevalCompletAPI> chevals = _chevalRepository.Get().Select(x => x.DALChevalToAPI());
 
             if (!(chevals is null))
                 return Ok(chevals);

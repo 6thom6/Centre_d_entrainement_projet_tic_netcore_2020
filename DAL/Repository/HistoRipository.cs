@@ -18,6 +18,8 @@ namespace DAL.Repository
         {
             _connection = connection;
         }
+
+        public HistoRipository(): this(_connection) { }
         public IEnumerable<Historique> GetallHistorique()
         {
             Command command = new Command("SELECT * FROM Historique");
@@ -68,5 +70,51 @@ namespace DAL.Repository
 
             return _connection.ExecuteNonQuery(command);
         }
+        public string GetNomChevalParHisto(int id)
+        {
+            Command command = new Command(" select c.Nom_cheval from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_historique = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_cheval"]).FirstOrDefault();
+        }
+        public string GetNomPereChevalParHisto(int id)
+        {
+            Command command = new Command(" select c.Pere_cheval from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_historique = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Pere_cheval"]).FirstOrDefault();
+        }
+        public string GetNomMereChevalParHisto(int id)
+        {
+            Command command = new Command(" select c.Mere_cheval from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_historique = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Mere_cheval"]).FirstOrDefault();
+        }
+        public string GetRaceChevalParHisto(int id)
+        {
+            Command command = new Command(" select c.Race from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_historique = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Race"]).FirstOrDefault();
+        }
+        public int GetAgeChevalParHisto(int id)
+        {
+            Command command = new Command(" select c.Age from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_historique = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (int)dr["Race"]).FirstOrDefault();
+        }
+        public string GetSexeChevalParHisto(int id)
+        {
+            Command command = new Command(" select c.Sexe from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_historique = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Sexe"]).FirstOrDefault();
+        }
+
+
+
+
     }
 }

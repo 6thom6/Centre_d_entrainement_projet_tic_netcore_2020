@@ -21,9 +21,9 @@ namespace api.Utils.Extensions
             }
         }
 
-        internal static ProprietaireCheval DALProprietaireChevalToAPI(this Proprietaire proprietaire)
+        internal static ProprietaireChevalAPI DALProprietaireChevalToAPI(this Proprietaire proprietaire)
         {
-            return new ProprietaireCheval()
+            return new ProprietaireChevalAPI()
             {
                 Nom_Proprietaire = proprietaire.Nom_Proprietaire,
                 Date_Arrivee = proprietaire.Date_Arrivee,
