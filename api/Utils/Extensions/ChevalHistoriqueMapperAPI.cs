@@ -29,9 +29,9 @@ namespace api.Utils.Extensions
                 Race = cheval.Race,
                 Age = cheval.Age,
                 Sexe = cheval.Sexe,
-                Debourage = chevalRepository.GetDebourrageChevalParHisto(cheval.Id_Cheval),
-                Pre_Entrainement = chevalRepository.GetPre_EntrainementChevalParHisto(cheval.Id_Cheval),
-                Entraineur_Precedent = chevalRepository.GetEntraineur_PrecedentChevalParHisto(cheval.Id_Cheval),
+                Debourage = chevalRepository.GetDebourrageChevalParcheval(cheval.Id_Cheval),
+                Pre_Entrainement = chevalRepository.GetPre_EntrainementChevalParcheval(cheval.Id_Cheval),
+                Entraineur_Precedent = chevalRepository.GetEntraineur_PrecedentChevalParcheval(cheval.Id_Cheval),
                 Proprietaire_Precedent = chevalRepository.GetProprietaire_PrecedentCheval(cheval.Id_Cheval),
                 Elevage = chevalRepository.GetElevageCheval(cheval.Id_Cheval)
             };

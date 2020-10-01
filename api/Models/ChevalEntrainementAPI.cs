@@ -7,6 +7,7 @@ namespace api.Models
 {
     public class ChevalEntrainementAPI
     {
+        public string Nom_Employe { get; set; }
         public DateTime Date_Entrainement { get; set; }
         public string Nom_Cheval { get; set; }
         public string Race { get; set; }

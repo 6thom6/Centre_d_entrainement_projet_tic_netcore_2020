@@ -28,8 +28,8 @@ namespace DAL.IRepository
         string GetHippodromeCourseParCheval(int id);
         int GetIdCourseParCheval(int id);
         string GetCordeCourseParCheval(int id);
-        string GetPre_EntrainementChevalParHisto(int id);
-        string GetDebourrageChevalParHisto(int id);
+        string GetPre_EntrainementChevalParcheval(int id);
+        string GetDebourrageChevalParcheval(int id);
         string GetProprietaire_PrecedentCheval(int id);
         string GetElevageCheval(int id);
         int GetIDVaccinParCheval(int id);
@@ -38,8 +38,13 @@ namespace DAL.IRepository
         float GetPoidsDeCourseParCheval(int id);
         string GetJockeyParCheval(int id);
         string GetAvisCourseParCheval(int id);
-        string GetTerrainCourseParCheval(Cheval id);
         string GetDisciplineCourseParCheval(int id);
         int GetDistanceCourseParCheval(int id);
+        string GetTerrainCourseParCheval(int id);
+        IEnumerable<SoinsCheval> SoinsParCheval(int id);
+        IEnumerable<ChevalCourse> CourseParCheval(int id);
+        IEnumerable<ChevalEntrainement> chevalEntrainements(int id);
+        IEnumerable<SoinEmployeCheval> soinEmployeChevals(int id);
+        IEnumerable<EmployeCheval> EntrainementEmployeChevals(int id);
     }
 }

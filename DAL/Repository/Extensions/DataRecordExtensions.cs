@@ -28,7 +28,7 @@ namespace DAL.Repository.Extensions
             return new EmployeCheval()
             {
                 Nom_Employe = (string)record["Nom_Employe"],
-                Nom_Cheval = (string)record["Nom_Cheval"],
+                Nom_Cheval = (string)record["Nom_cheval"],
                 Statuts_Employe = (string)record["Statuts_Employe"]
             };
         }

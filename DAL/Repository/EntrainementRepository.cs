@@ -74,30 +74,30 @@ namespace DAL.Repository
 
         public IEnumerable<EmployeCheval> GetAllEmployeAndChevalByEntrainementId(int id)
         {
-            Command command = new Command("SELECT E.*, C.* FROM Participe_Entrainement_cheval_employe pece JOIN Cheval C ON C.Id_Cheval = pece.Id_Cheval JOIN Employe E ON E.Id_Employe = pece.Id_Employe WHERE pece.Id_Entrainement = @Id;");
+            Command command = new Command("SELECT E.*, C.* FROM Participe_Entrainement_cheval_employé pece JOIN Cheval C ON C.Id_Cheval = pece.Id_Cheval JOIN Employe E ON E.Id_Employe = pece.Id_Employe WHERE pece.Id_Entrainement = @Id;");
 
             command.AddParameter("Id", id);
 
             return _connection.ExecuteReader(command, (dr) => dr.EmployeChevalToDAL());
         }
 
-        public IEnumerable<EmployeCheval> GetAllEmployeByEntrainementId(int id)
+        public IEnumerable<Employe> GetAllEmployeByEntrainementId(int id)
         {
-            Command command = new Command("SELECT E.Nom_Employe FROM Participe_Entrainement_cheval_employé " +
+            Command command = new Command("SELECT E.* FROM Participe_Entrainement_cheval_employé " +
                                                     "pece JOIN Employe E ON E.Id_Employe = pece.Id_Employe " +
                                                     "WHERE pece.Id_Entrainement = @id");
             command.AddParameter("id", id);
 
-            return _connection.ExecuteReader(command, dr => dr.EmployeChevalToDAL());
+            return _connection.ExecuteReader(command, dr => dr.EmployeToDal());
                
 
         }
 
-        public IEnumerable<ChevalEntrainement> GetNomChevalParEntrainement(int id)
+        public string GetNomChevalParEntrainement(int id)
         {
             Command command = new Command("select c.Nom_cheval from Entrainement e join Participe_Entrainement_cheval_employé PECE on e.Id_Entrainement = PECE.Id_Entrainement join Cheval C on c.Id_Cheval = PECE.Id_Cheval where E.Id_Entrainement = @id");
             command.AddParameter("id", id);
-            return _connection.ExecuteReader(command, dr => dr.ChevalEntrainementToDal());
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_cheval"]).FirstOrDefault();
         }
         public string GetEmployeByEntrainementId (int id)
         {

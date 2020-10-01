@@ -7,6 +7,7 @@ using DAL.IRepository;
 using DAL.Models;
 using DAL.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -76,13 +77,46 @@ namespace api.Controllers
 
             return Ok(id);
         }
-        public IActionResult GetTerrainCourseparCheval(Cheval id)
+        [HttpGet("{id}/ChevalSoins")]
+        public IActionResult GetSoinsByIdCheval(int id)
         {
-            Cheval cheval = this._chevalRepository.GetTerrainCourseParCheval(id).Select(x => x.DalChevalCourseToApi());
-            if (!(cheval is null))
-                return Ok(cheval.DalChevalCourseToApi());
-            else
+            IEnumerable<SoinsCheval> soinsChevals = _chevalRepository.SoinsParCheval(id);
+            if (soinsChevals is null)
                 return NotFound();
+            return Ok(soinsChevals);
         }
+        [HttpGet("{id}/ChevalCourse")]
+        public IActionResult GetCoursesByIdCheval (int id)
+        {
+            IEnumerable<ChevalCourse> chevalCourses = _chevalRepository.CourseParCheval(id);
+            if (chevalCourses is null)
+                return NotFound();
+            return Ok(chevalCourses);
+        }
+        [HttpGet("{id}/EntrainementCheval")]
+        public IActionResult GetEntrainementParCheval(int id)
+        {
+            IEnumerable<ChevalEntrainement> chevalEntrainements = _chevalRepository.chevalEntrainements(id);
+            if (chevalEntrainements is null)
+                return NotFound();
+            return Ok(chevalEntrainements);
+        }
+        [HttpGet ("{id}/EmployeEntraine")]
+        public IActionResult GetEmployeEntraineParCheval(int id)
+        {
+            IEnumerable<EmployeCheval> employeChevals = _chevalRepository.EntrainementEmployeChevals(id);
+            if (employeChevals is null)
+                return NotFound();
+            return Ok(employeChevals);
+        }
+        [HttpGet("{id}/EmployeSoins")]
+        public IActionResult EmployeSoignant(int id)
+        {
+            IEnumerable<SoinEmployeCheval> soinEmployeChevals = _chevalRepository.soinEmployeChevals(id);
+            if (soinEmployeChevals is null)
+                return NotFound();
+            return Ok(soinEmployeChevals);
+        }
+
     }
 }

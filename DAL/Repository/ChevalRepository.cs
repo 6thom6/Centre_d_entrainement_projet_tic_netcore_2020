@@ -27,7 +27,37 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => dr.ChevalToDAL());
         }
+        public IEnumerable<SoinsCheval>SoinsParCheval(int id)
+        {
+            Command command = new Command("select C.Nom_cheval, s.Type_De_Soin, s.Date_De_Soin, s.Durree_Indisponibilite, c.Age, c.Sexe, s.Marechal_Derniere_Visite, s.Vermifuge, s.Alimentation, s.Complement_Alimentation from Cheval c join Soins s on c.Id_Cheval = s.Id_Cheval where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.SoinsChevalToDal());
+        }
+        public IEnumerable<ChevalCourse>CourseParCheval(int id)
+        {
+            Command command = new Command("select c.Nom_cheval, c.Age, c.Sexe, c.Race, co.* from Cheval C join mym_Course_cheval my on c.Id_Cheval = my.ChevalId_Cheval join Course CO on my.CoursesId_Course = co.Id_Courses where c.Id_Cheval =@id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.ChevalCourseToDal());
+        }
+        public IEnumerable <ChevalEntrainement>chevalEntrainements(int id)
+        {
+            Command command = new Command("select E.Date_Entrainement, EM.Nom_Employe, c.Nom_cheval, c.Race, c.Sexe, c.Age, E.Plat, E.Obstacle, E.Marcheur, E.Pre, E.Duree from Cheval C join Participe_Entrainement_cheval_employé Pece on c.Id_Cheval = Pece.Id_Cheval join Entrainement E on e.Id_Entrainement = Pece.Id_Entrainement join Employe EM on Pece.Id_Employe = EM.Id_Employe where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.ChevalEntrainementToDal());
+        }
+        public IEnumerable <SoinEmployeCheval>soinEmployeChevals(int id)
+        {
+            Command command = new Command("select e.Nom_Employe, s.Type_De_Soin, s.Date_De_Soin, s.Durree_Indisponibilite, c.Nom_cheval,e.Statuts_Employe from Soins s join Employe e on e.Id_Employe = s.Id_Employe join Cheval c on s.Id_Cheval = c.Id_Cheval where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.SoinEmployeChevalToDal());
+        }
 
+        public IEnumerable<EmployeCheval>EntrainementEmployeChevals (int id)
+        {
+            Command command = new Command("select E.Nom_Employe, e.Statuts_Employe, c.Nom_cheval from Cheval C join Participe_Entrainement_cheval_employé PECE on c.Id_Cheval = PECE.Id_Cheval join Employe E on PECE.Id_Employe = E.Id_Employe  where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.EmployeChevalToDAL());
+        }
         public Cheval GetById(int id)
         {
             Command command = new Command("SELECT * FROM CHEVAL where ID_Cheval = @id");
@@ -41,6 +71,13 @@ namespace DAL.Repository
             command.AddParameter("id", id);
 
             return _connection.ExecuteReader(command, dr => (string)dr["Plat"]).FirstOrDefault();
+        }
+        public string GetEmployeEntraineParCheval(int id)
+        {
+            Command command = new Command("select E.Nom_Employe from Cheval C join Participe_Entrainement_cheval_employé PECE on c.Id_Cheval = PECE.Id_Cheval join Employe E on PECE.Id_Employe = E.Id_Employe  where c.Id_Cheval = @id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => (string)dr["Nom_Employe"]).FirstOrDefault();
         }
         public string GetObstacleParCheval(int id)
         {
@@ -140,9 +177,6 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => (string)dr["Durree_Indisponibilite"]).FirstOrDefault();
         }
-
-
-
         public string GetHippodromeCourseParCheval(int id)
         {
             Command command = new Command(" select c.Hippodrome from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
@@ -150,7 +184,6 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => (string)dr["Hippodrome"]).FirstOrDefault();
         }
-
         public int GetIdCourseParCheval(int id)
         {
             Command command = new Command(" select c.Id_Courses from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
@@ -158,7 +191,7 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => (int)dr["Id_Courses"]).FirstOrDefault();
         }
-        string IChevalRepository.GetCordeCourseParCheval(int id)
+        public string GetCordeCourseParCheval(int id)
         {
             Command command = new Command(" select c.Corde from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
             command.AddParameter("id", id);
@@ -235,7 +268,6 @@ namespace DAL.Repository
             return _connection.ExecuteReader(command, dr => (int)dr["Id_vaccination"]).FirstOrDefault();
 
         }
-
         public string GetElevageCheval(int id)
         {
             Command command = new Command(" select h.Elevage from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_Cheval = @id");
@@ -250,21 +282,21 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => (string)dr["Proprietaire_precedent"]).FirstOrDefault();
         }
-        public string GetDebourrageChevalParHisto(int id)
+        public string GetDebourrageChevalParcheval(int id)
         {
             Command command = new Command(" select h.Debourage from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_Cheval = @id");
             command.AddParameter("id", id);
 
             return _connection.ExecuteReader(command, dr => (string)dr["Debourage"]).FirstOrDefault();
         }
-        public string GetPre_EntrainementChevalParHisto(int id)
+        public string GetPre_EntrainementChevalParcheval(int id)
         {
             Command command = new Command(" select h.Pre_Entrainement from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_Cheval = @id");
             command.AddParameter("id", id);
 
             return _connection.ExecuteReader(command, dr => (string)dr["Pre_Entrainement"]).FirstOrDefault();
         }
-        public string GetEntraineur_PrecedentChevalParHisto(int id)
+        public string GetEntraineur_PrecedentChevalParcheval(int id)
         {
             Command command = new Command(" select h.Entraineur_precedent from Historique h join Cheval c on h.Id_Cheval = c.Id_Cheval where Id_Cheval = @id");
             command.AddParameter("id", id);
@@ -288,9 +320,7 @@ namespace DAL.Repository
 
             return _connection.ExecuteNonQuery(command);
         }
-
-
-        public int Update(int id, Cheval cheval)
+       public int Update(int id, Cheval cheval)
         {
             Command command = new Command("UPDATE CHEVAL SET Nom_cheval= @Nom_Cheval, " +
                                                                    "Pere_Cheval= @Pere_Cheval, " +
@@ -319,7 +349,6 @@ namespace DAL.Repository
 
             return _connection.ExecuteNonQuery(command);
         }
-
         public int Delete(int id)
         {
             Command command = new Command("DELETE FROM CHEVAL where Id_Cheval = @id");
@@ -327,7 +356,6 @@ namespace DAL.Repository
 
             return _connection.ExecuteNonQuery(command);
         }
-
         public Proprietaire GetProprietaire(int id)
         {
             Command command = new Command("SELECT P.Nom_Proprietaire, " +
@@ -341,6 +369,8 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => dr.ProprietaireSimpleToDal()).SingleOrDefault();
         }
+
+ 
 
 
 

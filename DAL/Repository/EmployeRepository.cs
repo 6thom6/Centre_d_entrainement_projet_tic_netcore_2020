@@ -124,13 +124,20 @@ namespace DAL.Repository
             return _connection.ExecuteReader(command, dr => dr.SoinsToDAl());
 
         }
-        public string ChevalParEmploye(int id)
+        public string NomChevalParEmploye(int id)
         {
             Command command = new Command("select c.Nom_cheval from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
             command.AddParameter("id", id);
 
             return _connection.ExecuteReader(command, dr => (string)dr["Nom_cheval"]).FirstOrDefault();
 
+        }
+        public IEnumerable <Cheval> ChevalParEmploye (int id)
+        {
+            Command command = new Command("Select c.* from Employe e join Participe_Entrainement_cheval_employé PECE on e.Id_Employe = PECE.Id_Employe join Cheval C on PECE.Id_Cheval = c.Id_Cheval where e.Id_Employe =@id");
+            command.AddParameter("id", id);
+
+            return _connection.ExecuteReader(command, dr => dr.ChevalToDAL());
         }
         public DateTime DateEntrainementParEmploye(int id)
         {

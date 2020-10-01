@@ -24,7 +24,7 @@ namespace api.Utils.Extensions
             {
                 Nom_Employe = employe.Nom_Employe,
                 Statuts_Employe = employe.Statuts_Employe,
-                Nom_Cheval = employeRepository.ChevalParEmploye(employe.Id_Employe)
+                Nom_Cheval = employeRepository.NomChevalParEmploye(employe.Id_Employe)
             };
         }
     }

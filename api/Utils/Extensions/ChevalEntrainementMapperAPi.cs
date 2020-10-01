@@ -23,7 +23,8 @@ namespace api.Utils.Extensions
         {
             return new ChevalEntrainementAPI()
             {
-               Date_Entrainement = chevalRepository.GetDateEntrainementParCheval(cheval.Id_Cheval),
+                Nom_Employe = chevalRepository.GetEmployeEntraineParCheval(cheval.Id_Cheval),
+                Date_Entrainement = chevalRepository.GetDateEntrainementParCheval(cheval.Id_Cheval),
                 Nom_Cheval = cheval.Nom_Cheval,
                 Race = cheval.Race,
                 Sexe = cheval.Sexe,
@@ -33,6 +34,7 @@ namespace api.Utils.Extensions
                 Marcheur = chevalRepository.GetMarcheurParCheval(cheval.Id_Cheval),
                 Pre = chevalRepository.GetPreParCheval(cheval.Id_Cheval),
                 Duree = chevalRepository.GetDureeParCheval(cheval.Id_Cheval),
+                
                
             };
         }

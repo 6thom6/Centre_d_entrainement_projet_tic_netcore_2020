@@ -74,5 +74,30 @@ namespace api.Controllers
             _employeRepository.Delete(id);
             return Ok(id);
         }
+        [HttpGet("{id}/employeEntrainement")]
+        public IActionResult EntrainementParEmploye(int id)
+        {
+            IEnumerable<Entrainement> entrainements = _employeRepository.GetAllEntrainementById(id);
+            if (entrainements is null)
+                return NotFound();
+            return Ok(entrainements);
+            
+        }
+        [HttpGet("{id}/SoinEmploye")]
+        public IActionResult SoinsParEmploye(int id)
+        {
+            IEnumerable<Soins> soinsChevals = _employeRepository.GetAllSoinsById(id);
+            if (soinsChevals is null)
+                return NotFound();
+            return Ok(soinsChevals);
+        }
+        [HttpGet("{id}/ChevalEmploye")]
+        public IActionResult ChevalParEmploye(int id)
+        {
+            IEnumerable<Cheval> chevals = _employeRepository.ChevalParEmploye(id);
+            if (chevals is null)
+                return NotFound();
+            return Ok(chevals);
+        }
     }
 }
