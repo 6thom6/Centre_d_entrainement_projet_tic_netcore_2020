@@ -11,6 +11,10 @@ namespace DAL.IRepository
         int Update(int id, Entrainement entrainement);
         int Delete(int id);
         IEnumerable<EmployeCheval> GetAllEmployeAndChevalByEntrainementId(int id);
-        IEnumerable<Employe> GetAllEmployeByEntrainementId(int id);
+        IEnumerable<EmployeCheval> GetAllEmployeByEntrainementId(int id);
+        string GetEmployeByEntrainementId(int id);
+        string GetSexParEntrainement(int id);
+        int GetAgeChevalParEntrainement(int id);
+        IEnumerable<ChevalEntrainement> GetNomChevalParEntrainement(int id);
     }
 }

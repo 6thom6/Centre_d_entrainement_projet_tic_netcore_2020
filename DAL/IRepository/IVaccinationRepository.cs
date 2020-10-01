@@ -10,8 +10,9 @@ namespace DAL.IRepository
         int Update(int id, Vaccination vaccination);
         int Create(Vaccination vaccination);
         int Delete(int id);
-
-
-
+        string GetSexeChevalVaccin(int id);
+        int GetAgeChevalParVaccin(int id);
+        string GetRaceChevalVaccin(int id);
+        string GetNomChevalVaccin(int id);
     }
 }

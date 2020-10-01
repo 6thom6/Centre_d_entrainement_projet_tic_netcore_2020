@@ -36,6 +36,14 @@ namespace api
             DBConnexionStrings dBConnexionStrings = dbConnexionStringSection.Get<DBConnexionStrings>();
             string ConnectionStrings = dbConnexionStringSection.Get<DBConnexionStrings>().ConnexionStrings;
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200").AllowAnyHeader();
+                    });
+            });
 
             services.AddControllers();
             services.AddSingleton<DbProviderFactory>(sp => SqlClientFactory.Instance);
@@ -63,6 +71,8 @@ namespace api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

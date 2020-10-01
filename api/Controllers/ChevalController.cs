@@ -76,5 +76,13 @@ namespace api.Controllers
 
             return Ok(id);
         }
+        public IActionResult GetTerrainCourseparCheval(Cheval id)
+        {
+            Cheval cheval = this._chevalRepository.GetTerrainCourseParCheval(id).Select(x => x.DalChevalCourseToApi());
+            if (!(cheval is null))
+                return Ok(cheval.DalChevalCourseToApi());
+            else
+                return NotFound();
+        }
     }
 }

@@ -158,7 +158,7 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => (int)dr["Id_Courses"]).FirstOrDefault();
         }
-        public string GetCordeCourseParCheval(int id)
+        string IChevalRepository.GetCordeCourseParCheval(int id)
         {
             Command command = new Command(" select c.Corde from Cheval CH join mym_Course_cheval mym on ch.Id_Cheval = mym.ChevalId_Cheval join Course c on mym.CoursesId_Course = c.Id_Courses where ch.Id_Cheval = @id");
             command.AddParameter("id", id);

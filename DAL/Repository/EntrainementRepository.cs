@@ -93,15 +93,11 @@ namespace DAL.Repository
 
         }
 
-        IEnumerable<Employe> IEntrainementRepository.GetAllEmployeByEntrainementId(int id)
-        {
-            throw new NotImplementedException();
-        }
-        public string GetNomChevalParEntrainement(int id)
+        public IEnumerable<ChevalEntrainement> GetNomChevalParEntrainement(int id)
         {
             Command command = new Command("select c.Nom_cheval from Entrainement e join Participe_Entrainement_cheval_employé PECE on e.Id_Entrainement = PECE.Id_Entrainement join Cheval C on c.Id_Cheval = PECE.Id_Cheval where E.Id_Entrainement = @id");
             command.AddParameter("id", id);
-            return _connection.ExecuteReader(command, dr => (string)dr["Nom_Cheval"]).FirstOrDefault();
+            return _connection.ExecuteReader(command, dr => dr.ChevalEntrainementToDal());
         }
         public string GetEmployeByEntrainementId (int id)
         {

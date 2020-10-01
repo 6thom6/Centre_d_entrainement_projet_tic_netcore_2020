@@ -35,7 +35,7 @@ namespace api.Utils.Extensions
                 Poids_De_Course = chevalRepository.GetPoidsDeCourseParCheval(cheval.Id_Cheval),
                 Terrain = chevalRepository.GetTerrainCourseParCheval(cheval.Id_Cheval),
                 Avis = chevalRepository.GetAvisCourseParCheval(cheval.Id_Cheval),
-                Corde = chevalRepository.GetCordeCourseParCheval(cheval.Id_Cheval)
+                Corde = ((DAL.IRepository.IChevalRepository)chevalRepository).GetCordeCourseParCheval(cheval.Id_Cheval)
             };
         }
     }

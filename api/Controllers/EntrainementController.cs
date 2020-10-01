@@ -40,7 +40,7 @@ namespace api.Controllers
         [HttpGet("{id}/employeCheval")]
         public IActionResult GetAllEmployeByEntrainementId(int id)
         {
-            IEnumerable<Employe> employeChevals = _entrainementRepository.GetAllEmployeByEntrainementId(id);
+            IEnumerable<Employe> employeChevals = (IEnumerable<Employe>)_entrainementRepository.GetAllEmployeByEntrainementId(id);
 
             if (employeChevals is null) return NotFound();
 
@@ -50,7 +50,7 @@ namespace api.Controllers
         public IActionResult GetAllEmployeAndChevalByEntrainementId(int id)
         {
             IEnumerable<EmployeCheval> employes = _entrainementRepository.GetAllEmployeAndChevalByEntrainementId(id);
-            
+
             if (employes is null)
                 return NotFound();
             return Ok(employes);
@@ -96,4 +96,5 @@ namespace api.Controllers
             return Ok();
         }
     }
+
 }
