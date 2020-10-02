@@ -27,7 +27,7 @@ namespace api.Utils.Extensions
             {
                 Nom_Proprietaire = proprietaire.Nom_Proprietaire,
                 Date_Arrivee = proprietaire.Date_Arrivee,
-                NomCheval = proprietaireRepository.ChevauxParProprio(proprietaire.Id_Proprietaire),
+                Nom_Cheval = proprietaireRepository.ChevauxParProprio(proprietaire.Id_Proprietaire),
                 PereCheval = proprietaireRepository.PereChevalParProprio(proprietaire.Id_Proprietaire),
                 MereCheval = proprietaireRepository.MereChevalParProprio(proprietaire.Id_Proprietaire),
                 SortieProvisoire = proprietaireRepository.SortieProvisoirParProprio(proprietaire.Id_Proprietaire),

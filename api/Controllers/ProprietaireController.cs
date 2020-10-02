@@ -37,16 +37,6 @@ namespace api.Controllers
        
         }
 
-        // GET api/<ProprietaireController>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            Proprietaire proprietaire = this._proprietaireRipository.Get(id);
-            if (!(proprietaire is null))
-                return Ok(proprietaire.DALProprietaireChevalToAPI());
-            else
-                return NotFound();
-        }
 
         // POST api/<ProprietaireController>
         [HttpPost]

@@ -20,9 +20,9 @@ namespace api.Utils.Extensions
             }
         }
 
-        internal static ChevalCompletAPI DALChevalToAPI(this Cheval cheval)
+        internal static Cheval DALChevalToAPI(this Cheval cheval)
         {
-            return new ChevalCompletAPI()
+            return new Cheval()
             {
                 Id_Cheval = cheval.Id_Cheval,
                 Nom_Cheval = cheval.Nom_Cheval,
@@ -30,7 +30,6 @@ namespace api.Utils.Extensions
                 MereCheval = cheval.MereCheval,
                 SortieProvisoire = cheval.SortieProvisoire,
                 RaisonSortie = cheval.RaisonSortie,
-                Proprietaire = chevalRepository.GetProprietaire(cheval.Id_Proprietaire).DALProprietaireSimpleToAPI(),
                 Id_Soins = cheval.Id_Soins,
                 Poids = cheval.Poids,
                 Race = cheval.Race,

@@ -27,8 +27,8 @@ namespace api.Utils.Extensions
                 Nom_Employe = employe.Nom_Employe,
                 Date_Embauche = employe.Date_Embauche,
                 Statuts_Employe = employe.Statuts_Employe,
-                entrainements = EmployeRepository.GetAllEntrainementById(employe.Id_Employe),
-                soins = EmployeRepository.GetAllSoinsById(employe.Id_Employe),
+                //entrainements = EmployeRepository.GetAllEntrainementById(employe.Id_Employe),
+                //soins = EmployeRepository.GetAllSoinsById(employe.Id_Employe),
 
 
             };

@@ -25,7 +25,6 @@ namespace api.Utils.Extensions
             {
                 Nom_Proprietaire = ProprietaireSimple.Nom_Proprietaire,
                 Date_Arrivee = ProprietaireSimple.Date_Arrivee,
-                Dernier_Resultat = ProprietaireSimple.Dernier_Resultat,
             };
         }
     }

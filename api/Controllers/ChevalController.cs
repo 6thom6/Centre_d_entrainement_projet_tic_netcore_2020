@@ -28,7 +28,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<ChevalCompletAPI> chevals = _chevalRepository.Get().Select(x => x.DALChevalToAPI());
+            IEnumerable<Cheval> chevals = _chevalRepository.Get().Select(x => x.DALChevalToAPI());
 
             if (!(chevals is null))
                 return Ok(chevals);
@@ -134,14 +134,6 @@ namespace api.Controllers
             if (chevalHistoriques is null)
                 return NotFound();
             return Ok(chevalHistoriques);
-        }
-        [HttpGet ("{id}/ChevalProprietaire")]
-        public IActionResult ChevalProprietaire (int id)
-        {
-            IEnumerable<ProprietaireCheval> proprietaireChevals = _chevalRepository.proprietaireChevals(id);
-            if (proprietaireChevals is null)
-                return NotFound();
-            return Ok(proprietaireChevals);
         }
 
     }

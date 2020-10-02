@@ -9,7 +9,7 @@ namespace api.Models
     {
         public string Nom_Proprietaire { get; set; }
         public DateTime Date_Arrivee { get; set; }
-        public string NomCheval { get; set; }
+        public string Nom_Cheval { get; set; }
         public string PereCheval { get; set; }
         public string MereCheval { get; set; }
         public string SortieProvisoire { get; set; }

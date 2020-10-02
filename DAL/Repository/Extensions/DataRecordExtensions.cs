@@ -223,6 +223,7 @@ namespace DAL.Repository.Extensions
         {
             return new ChevalEntrainement()
             {
+                Nom_Employe = (string)record["Nom_Employe"],
                 Nom_Cheval = (string)record["Nom_Cheval"],
                 Race = record["Race"].ToString(),
                 Age = (int)record["Age"],
@@ -273,7 +274,7 @@ namespace DAL.Repository.Extensions
             {
                 Nom_Proprietaire = (string)record["Nom_Proprietaire"],
                 Date_Arrivee = (DateTime)record["Date_Arrivee"],
-                NomCheval = (string)record["Nom_cheval"],
+                Nom_Cheval = (string)record["Nom_Cheval"],
                 PereCheval = (string)record["Pere_Cheval"],
                 MereCheval = (string)record["Mere_Cheval"],
                 SortieProvisoire = record["Sortie_Provisoire"] is DBNull ? null : (string)record["Sortie_Provisoire"],

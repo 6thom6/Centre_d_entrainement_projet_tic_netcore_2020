@@ -12,9 +12,9 @@ namespace api.Models
         public string Nom_Employe { get; set; }
         public string Statuts_Employe { get; set; }
         public DateTime? Date_Embauche { get; set; }
-        public IEnumerable<Entrainement> entrainements { get; set; }
+        //public IEnumerable<Entrainement> entrainements { get; set; }
 
-        public IEnumerable<Soins> soins { get; set; }
+        //public IEnumerable<Soins> soins { get; set; }
 
     }
 }

@@ -75,14 +75,7 @@ namespace api.Controllers
             return Ok(id);
         }
         [HttpGet("{id}/employeEntrainement")]
-        public IActionResult EntrainementParEmploye(int id)
-        {
-            IEnumerable<Entrainement> entrainements = _employeRepository.GetAllEntrainementById(id);
-            if (entrainements is null)
-                return NotFound();
-            return Ok(entrainements);
-            
-        }
+
         [HttpGet("{id}/SoinEmploye")]
         public IActionResult SoinsParEmploye(int id)
         {
