@@ -46,6 +46,12 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => dr.ProprietaireSimpleToDal()).SingleOrDefault();
         }
+        public IEnumerable<SoinsCheval>soinChevals(int id)
+        {
+            Command command = new Command("select c.Nom_cheval, s.Type_De_Soin, s.Date_De_Soin, s.Durree_Indisponibilite, c.Age, c.Sexe, s.Marechal_Derniere_Visite, s.Vermifuge, s.Alimentation, s.Complement_Alimentation  from Proprietaire p join Cheval c on p.Id_Proprietaire = c. Id_Proprietaire join Soins s on s.Id_Cheval = c.Id_Cheval where p.Id_Proprietaire = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.SoinsChevalToDal());
+        }
         public int Create(Proprietaire proprietaire)
         {
             Command command = new Command("CreateProprietaire", true);

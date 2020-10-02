@@ -93,5 +93,13 @@ namespace api.Controllers
                 return NotFound();
             return Ok(proprietaireCourses);
         }
+        [HttpGet("{id}/ProprietaireSoin")]
+        public IActionResult SoinsParProprio (int id)
+        {
+            IEnumerable<SoinsCheval> soinsChevals = _proprietaireRipository.soinChevals(id);
+            if (soinsChevals is null)
+                return NotFound();
+            return Ok(soinsChevals);
+        }
     }
 }

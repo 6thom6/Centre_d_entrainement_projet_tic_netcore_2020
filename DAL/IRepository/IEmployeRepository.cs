@@ -21,7 +21,7 @@ namespace DAL.IRepository
         string ChevalEntrainementPlatParEmploye(int id);
         string ChevalEntrainementAgeParEmploye(int id);
         DateTime DateEntrainementParEmploye(int id);
-        IEnumerable<Cheval> ChevalParEmploye(int id);
+        IEnumerable<ChevalEntrainement> ChevalParEmploye(int id);
         IEnumerable<Soins> GetAllSoinsById(int id);
         IEnumerable<Entrainement> GetAllEntrainementById(int id);
         string NomChevalParEmploye(int id);

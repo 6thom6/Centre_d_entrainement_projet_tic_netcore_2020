@@ -33,5 +33,6 @@ namespace DAL.IRepository
         Proprietaire ProprietaireParChevalId(int id, Proprietaire proprietaire);
         IEnumerable<ProprietaireCheval> proprietaireChevals(int id);
         IEnumerable<ProprietaireCourse> proprietaireCourses(int id);
+        IEnumerable<SoinsCheval> soinChevals(int id);
     }
 }

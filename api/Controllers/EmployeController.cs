@@ -94,10 +94,10 @@ namespace api.Controllers
         [HttpGet("{id}/ChevalEmploye")]
         public IActionResult ChevalParEmploye(int id)
         {
-            IEnumerable<Cheval> chevals = _employeRepository.ChevalParEmploye(id);
-            if (chevals is null)
+            IEnumerable<ChevalEntrainement> chevalEntrainements = _employeRepository.ChevalParEmploye(id);
+            if (chevalEntrainements is null)
                 return NotFound();
-            return Ok(chevals);
+            return Ok(chevalEntrainements);
         }
     }
 }
