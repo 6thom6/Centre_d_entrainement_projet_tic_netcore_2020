@@ -96,6 +96,15 @@ namespace api.Controllers
             _entrainementRepository.Delete(id);
             return Ok();
         }
+        [HttpGet("{id}/ChevalEntrainement")]
+        public IActionResult ChevalEntrainement(int id)
+        {
+            IEnumerable<EntrainementEmployeCheval> entrainementEmployeChevals = _entrainementRepository.entrainementEmployeChevals(id);
+            if (entrainementEmployeChevals is null)
+                return NotFound();
+            return Ok(entrainementEmployeChevals);
+        }
+
     }
 
 }

@@ -85,14 +85,7 @@ namespace api.Controllers
                 return NotFound();
             return Ok(soinsChevals);
         }
-        [HttpGet("{id}/ChevalCourse")]
-        public IActionResult GetCoursesByIdCheval (int id)
-        {
-            IEnumerable<ChevalCourse> chevalCourses = _chevalRepository.CourseParCheval(id);
-            if (chevalCourses is null)
-                return NotFound();
-            return Ok(chevalCourses);
-        }
+
         [HttpGet("{id}/EntrainementCheval")]
         public IActionResult GetEntrainementParCheval(int id)
         {
@@ -116,6 +109,39 @@ namespace api.Controllers
             if (soinEmployeChevals is null)
                 return NotFound();
             return Ok(soinEmployeChevals);
+        }
+        [HttpGet("{id}/ChevalVaccin")]
+        public IActionResult VaccinCheval(int id)
+        {
+            IEnumerable<ChevalVaccination> chevalVaccinations = _chevalRepository.chevalVaccinations(id);
+            if (chevalVaccinations is null)
+                return NotFound();
+            return Ok(chevalVaccinations);
+        }
+        [HttpGet ("{id}/ChevalCourse")]
+        public IActionResult CourseCheval (int id)
+        {
+            IEnumerable<ChevalCourse> chevalCourses = _chevalRepository.chevalCourses(id);
+            if (chevalCourses is null)
+                return NotFound();
+            return Ok(chevalCourses);
+
+        }
+        [HttpGet("{id}/ChevalHistorique")]
+        public IActionResult historiqueCheval(int id)
+        {
+            IEnumerable<ChevalHistorique> chevalHistoriques = _chevalRepository.chevalHistoriques(id);
+            if (chevalHistoriques is null)
+                return NotFound();
+            return Ok(chevalHistoriques);
+        }
+        [HttpGet ("{id}/ChevalProprietaire")]
+        public IActionResult ChevalProprietaire (int id)
+        {
+            IEnumerable<ProprietaireCheval> proprietaireChevals = _chevalRepository.proprietaireChevals(id);
+            if (proprietaireChevals is null)
+                return NotFound();
+            return Ok(proprietaireChevals);
         }
 
     }

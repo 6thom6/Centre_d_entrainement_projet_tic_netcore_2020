@@ -31,5 +31,7 @@ namespace DAL.IRepository
         string DisciplineCourrueParProprio(int id);
         string ChevalCouruParProprietaire(int id);
         Proprietaire ProprietaireParChevalId(int id, Proprietaire proprietaire);
+        IEnumerable<ProprietaireCheval> proprietaireChevals(int id);
+        IEnumerable<ProprietaireCourse> proprietaireCourses(int id);
     }
 }

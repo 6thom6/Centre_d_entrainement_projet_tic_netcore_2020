@@ -77,5 +77,21 @@ namespace api.Controllers
             _proprietaireRipository.Delete(id);
             return Ok(id);
         }
+        [HttpGet("{id}/ProprietaireEffectif")]
+        public IActionResult EffectifParProprio(int id)
+        {
+            IEnumerable<ProprietaireCheval> proprietaireChevals = _proprietaireRipository.proprietaireChevals(id);
+            if (proprietaireChevals is null)
+                return NotFound();
+            return Ok(proprietaireChevals);
+        }
+        [HttpGet("{id}/ProprietaireCourses")]
+        public IActionResult CoursesParProprio(int id)
+        {
+            IEnumerable<ProprietaireCourse> proprietaireCourses = _proprietaireRipository.proprietaireCourses(id);
+            if (proprietaireCourses is null)
+                return NotFound();
+            return Ok(proprietaireCourses);
+        }
     }
 }

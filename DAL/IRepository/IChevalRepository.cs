@@ -42,9 +42,12 @@ namespace DAL.IRepository
         int GetDistanceCourseParCheval(int id);
         string GetTerrainCourseParCheval(int id);
         IEnumerable<SoinsCheval> SoinsParCheval(int id);
-        IEnumerable<ChevalCourse> CourseParCheval(int id);
         IEnumerable<ChevalEntrainement> chevalEntrainements(int id);
         IEnumerable<SoinEmployeCheval> soinEmployeChevals(int id);
         IEnumerable<EmployeCheval> EntrainementEmployeChevals(int id);
+        IEnumerable<ChevalVaccination> chevalVaccinations(int id);
+        IEnumerable<ChevalCourse> chevalCourses(int id);
+        IEnumerable<ChevalHistorique> chevalHistoriques(int id);
+        IEnumerable<ProprietaireCheval> proprietaireChevals(int id);
     }
 }

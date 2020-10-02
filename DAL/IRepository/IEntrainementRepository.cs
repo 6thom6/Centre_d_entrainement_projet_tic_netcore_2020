@@ -16,5 +16,6 @@ namespace DAL.IRepository
         string GetSexParEntrainement(int id);
         int GetAgeChevalParEntrainement(int id);
         string GetNomChevalParEntrainement(int id);
+        IEnumerable<EntrainementEmployeCheval> entrainementEmployeChevals(int id);
     }
 }

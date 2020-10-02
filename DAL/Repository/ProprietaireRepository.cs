@@ -22,6 +22,18 @@ namespace DAL.Repository
         {
             _connection = connection;
         }
+        public IEnumerable<ProprietaireCheval> proprietaireChevals (int id)
+        {
+            Command command = new Command("select p.Nom_Proprietaire, p.Date_Arrivee, c.Nom_cheval, c.Pere_cheval, c.Mere_cheval, c.Sortie_provisoire, c.Raison_Sortie, c.Race, c.Age, c.Sexe from Proprietaire P join Cheval C on p.Id_Proprietaire = c.Id_Proprietaire where p.Id_Proprietaire = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.ProprietaireChevalTodDal());
+        }
+        public IEnumerable<ProprietaireCourse>proprietaireCourses (int id)
+        {
+            Command command = new Command("select p.Nom_Proprietaire, c.Nom_cheval, co.Distance, co.Hippodrome, co.Jockey, co.Corde, co.Discipline, co.Terrain, co.Avis, co.Poids_De_Course, co. Date_Courses from Proprietaire p join Cheval c on p.Id_Proprietaire = c.Id_Cheval join mym_Course_cheval mym on c.Id_Cheval = c.Id_Cheval join Course CO on mym.CoursesId_Course = co.Id_Courses where p. Id_Proprietaire=@id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.ProprietaireCourseToDal());
+        }
         public IEnumerable<Proprietaire> GetallProprietaire()
         {
             Command command = new Command("SELECT * FROM Proprietaire");

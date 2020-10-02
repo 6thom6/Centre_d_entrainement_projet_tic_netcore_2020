@@ -119,5 +119,11 @@ namespace DAL.Repository
 
             return _connection.ExecuteReader(command, dr => (string)dr["Sexe"]).FirstOrDefault();
         }
+        public IEnumerable<EntrainementEmployeCheval> entrainementEmployeChevals(int id)
+        {
+            Command command = new Command("select E.Date_Entrainement, em.Nom_Employe, c.Nom_cheval, c.Age, c.Sexe, E.Plat, e.Obstacle, e.Marcheur, e.Pre, e.Duree from Entrainement E join Participe_Entrainement_cheval_employé PECE on e.Id_Entrainement = PECE.Id_Entrainement join Cheval c on PECE.Id_Cheval = c.Id_Cheval join Employe EM on PECE.Id_Employe = em.Id_Employe where e.Id_Entrainement = @id");
+            command.AddParameter("id", id);
+            return _connection.ExecuteReader(command, dr => dr.EntrainementEmployeChevalToDal());
+        }
     }
 }
