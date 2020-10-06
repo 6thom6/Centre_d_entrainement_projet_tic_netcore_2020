@@ -1,0 +1,35 @@
+﻿** Met en surbrillance
+     Tables à reconstruire
+       Aucun
+     Index ordonnés en clusters à supprimer
+       contrainte sans nom sur [dbo].[mym_Cheval_Entrainement]
+       contrainte sans nom sur [dbo].[mym_Course_cheval]
+       contrainte sans nom sur [dbo].[mym_Employé_Entrainement]
+       contrainte sans nom sur [dbo].[mym_Vaccination_Cheval]
+     Index ordonnés en clusters à créer.
+       Aucun
+     Problèmes de données possibles
+       La colonne [dbo].[mym_Cheval_Entrainement].[Id] est en cours de suppression, des données risquent d'être perdues.
+       La colonne [dbo].[mym_Course_cheval].[Id] est en cours de suppression, des données risquent d'être perdues.
+       La colonne [dbo].[mym_Employé_Entrainement].[Id] est en cours de suppression, des données risquent d'être perdues.
+       La colonne [dbo].[mym_Vaccination_Cheval].[Id] est en cours de suppression, des données risquent d'être perdues.
+
+** Actions de l'utilisateur
+     Supprimer
+       contrainte sans nom sur [dbo].[mym_Cheval_Entrainement] (Clé primaire)
+       contrainte sans nom sur [dbo].[mym_Course_cheval] (Clé primaire)
+       contrainte sans nom sur [dbo].[mym_Employé_Entrainement] (Clé primaire)
+       contrainte sans nom sur [dbo].[mym_Vaccination_Cheval] (Clé primaire)
+     Modifier
+       [dbo].[mym_Cheval_Entrainement] (Table)
+       [dbo].[mym_Course_cheval] (Table)
+       [dbo].[mym_Employé_Entrainement] (Table)
+       [dbo].[mym_Vaccination_Cheval] (Table)
+
+** Actions de support
+
+La colonne [dbo].[mym_Cheval_Entrainement].[Id] est en cours de suppression, des données risquent d'être perdues.
+La colonne [dbo].[mym_Course_cheval].[Id] est en cours de suppression, des données risquent d'être perdues.
+La colonne [dbo].[mym_Employé_Entrainement].[Id] est en cours de suppression, des données risquent d'être perdues.
+La colonne [dbo].[mym_Vaccination_Cheval].[Id] est en cours de suppression, des données risquent d'être perdues.
+

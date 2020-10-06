@@ -1,0 +1,18 @@
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\bin\Debug\netstandard2.0\Tools.Database.deps.json
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\bin\Debug\netstandard2.0\Tools.Database.dll
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\bin\Debug\netstandard2.0\Tools.Database.pdb
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Tools.Database.csprojAssemblyReference.cache
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Tools.Database.AssemblyInfoInputs.cache
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Tools.Database.AssemblyInfo.cs
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Tools.Database.csproj.CoreCompileInputs.cache
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Tools.Database.dll
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Tools.Database.pdb
+C:\Users\tboec\Documents\TechnoFuturTic\Projet_Labo_tic-master\Centre_d_entrainement_projet_tic_netcore_2020\Tools.Database\bin\Debug\netstandard2.0\Tools.Database.deps.json
+C:\Users\tboec\Documents\TechnoFuturTic\Projet_Labo_tic-master\Centre_d_entrainement_projet_tic_netcore_2020\Tools.Database\bin\Debug\netstandard2.0\Tools.Database.dll
+C:\Users\tboec\Documents\TechnoFuturTic\Projet_Labo_tic-master\Centre_d_entrainement_projet_tic_netcore_2020\Tools.Database\bin\Debug\netstandard2.0\Tools.Database.pdb
+C:\Users\tboec\Documents\TechnoFuturTic\Projet_Labo_tic-master\Centre_d_entrainement_projet_tic_netcore_2020\Tools.Database\obj\Debug\netstandard2.0\Tools.Database.csprojAssemblyReference.cache
+C:\Users\tboec\Documents\TechnoFuturTic\Projet_Labo_tic-master\Centre_d_entrainement_projet_tic_netcore_2020\Tools.Database\obj\Debug\netstandard2.0\Tools.Database.AssemblyInfoInputs.cache
+C:\Users\tboec\Documents\TechnoFuturTic\Projet_Labo_tic-master\Centre_d_entrainement_projet_tic_netcore_2020\Tools.Database\obj\Debug\netstandard2.0\Tools.Database.AssemblyInfo.cs
+C:\Users\tboec\Documents\TechnoFuturTic\Projet_Labo_tic-master\Centre_d_entrainement_projet_tic_netcore_2020\Tools.Database\obj\Debug\netstandard2.0\Tools.Database.csproj.CoreCompileInputs.cache
+C:\Users\tboec\Documents\TechnoFuturTic\Projet_Labo_tic-master\Centre_d_entrainement_projet_tic_netcore_2020\Tools.Database\obj\Debug\netstandard2.0\Tools.Database.dll
+C:\Users\tboec\Documents\TechnoFuturTic\Projet_Labo_tic-master\Centre_d_entrainement_projet_tic_netcore_2020\Tools.Database\obj\Debug\netstandard2.0\Tools.Database.pdb

@@ -1,0 +1,17 @@
+C:\Users\remi6\source\repos\Toolbox\Toolbox_Generic\bin\Debug\netstandard2.0\Toolbox_Generic.deps.json
+C:\Users\remi6\source\repos\Toolbox\Toolbox_Generic\bin\Debug\netstandard2.0\Toolbox_Generic.dll
+C:\Users\remi6\source\repos\Toolbox\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.csprojAssemblyReference.cache
+C:\Users\remi6\source\repos\Toolbox\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.AssemblyInfoInputs.cache
+C:\Users\remi6\source\repos\Toolbox\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.AssemblyInfo.cs
+C:\Users\remi6\source\repos\Toolbox\Toolbox_Generic\bin\Debug\netstandard2.0\Toolbox_Generic.pdb
+C:\Users\remi6\source\repos\Toolbox\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.csproj.CoreCompileInputs.cache
+C:\Users\remi6\source\repos\Toolbox\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.dll
+C:\Users\remi6\source\repos\Toolbox\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.pdb
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\bin\Debug\netstandard2.0\Toolbox_Generic.deps.json
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\bin\Debug\netstandard2.0\Toolbox_Generic.dll
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\bin\Debug\netstandard2.0\Toolbox_Generic.pdb
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.csprojAssemblyReference.cache
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.AssemblyInfoInputs.cache
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.AssemblyInfo.cs
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.dll
+C:\Users\remi6\source\repos\Visual Studio Community 2019\Projet\ProjetLocation\Tools\Toolbox_Generic\obj\Debug\netstandard2.0\Toolbox_Generic.pdb

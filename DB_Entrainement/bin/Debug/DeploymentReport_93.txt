@@ -1,0 +1,44 @@
+﻿** Met en surbrillance
+     Tables à reconstruire
+       Aucun
+     Index ordonnés en clusters à supprimer
+       Aucun
+     Index ordonnés en clusters à créer.
+       Aucun
+     Problèmes de données possibles
+       Aucun
+
+** Actions de l'utilisateur
+     Créer
+       [dbo].[Cheval] (Table)
+       [dbo].[Course] (Table)
+       [dbo].[Employe] (Table)
+       [dbo].[Entrainement] (Table)
+       [dbo].[Historique] (Table)
+       [dbo].[mym_Course_cheval] (Table)
+       [dbo].[mym_Vaccination_Cheval] (Table)
+       [dbo].[Participe_Entrainement_cheval_employé] (Table)
+       [dbo].[Proprietaire] (Table)
+       [dbo].[Soins] (Table)
+       [dbo].[Vaccination] (Table)
+       [dbo].[FK_Cheval_Proprietaire] (Clé étrangère)
+       [dbo].[FK_Historique_ToCheval] (Clé étrangère)
+       [dbo].[FK_mym_Course_cheval_ToCourses] (Clé étrangère)
+       [dbo].[FK_mym_Course_cheval_ToCheval] (Clé étrangère)
+       [dbo].[FK_mym_Vaccination_ToVaccination] (Clé étrangère)
+       [dbo].[FK_mym_Vaccination_ToCheval] (Clé étrangère)
+       [dbo].[FK_Participe_Entrainement] (Clé étrangère)
+       [dbo].[FK_Participe_Cheval] (Clé étrangère)
+       [dbo].[FK_Participe_Employe] (Clé étrangère)
+       [dbo].[FK_Soins_ToCheval] (Clé étrangère)
+       [dbo].[FK_Soins_ToEmploye] (Clé étrangère)
+       [dbo].[CreateCheval] (Procédure)
+       [dbo].[CreateCourse] (Procédure)
+       [dbo].[CreateEmploye] (Procédure)
+       [dbo].[CreateEntrainement] (Procédure)
+       [dbo].[CreateHistorique] (Procédure)
+       [dbo].[CreateProprietaire] (Procédure)
+       [dbo].[CreateSoins] (Procédure)
+       [dbo].[CreateVaccination] (Procédure)
+
+** Actions de support

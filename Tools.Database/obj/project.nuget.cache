@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "PfXNi86rEWOlrxW1Ve675xfVbw5CXThenfAqHvWDlrCHOdMq4gWGFZ3pRKfrChTkm5bAqci7Nnb0ddc9U1oLbg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tboec\\Documents\\TechnoFuturTic\\Projet_Labo_tic-master\\Centre_d_entrainement_projet_tic_netcore_2020\\Tools.Database\\Tools.Database.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tboec\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\tboec\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
