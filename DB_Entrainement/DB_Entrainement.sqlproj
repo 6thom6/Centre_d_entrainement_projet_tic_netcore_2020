@@ -61,6 +61,7 @@
     <Folder Include="Procédures" />
     <Folder Include="scriptPostDeploiement" />
     <Folder Include="Procédures\ProcedureCheval" />
+    <Folder Include="View" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Proprietaire.sql" />
@@ -82,6 +83,8 @@
     <Build Include="Procédures\CreateVaccination.sql" />
     <Build Include="Tables\ManyToMany\Participe_Entrainement_cheval_employé.sql" />
     <Build Include="Procédures\ProcedureCheval\CreateCheval.sql" />
+    <Build Include="View\V_entrainementcomplet.sql" />
+    <Build Include="View\V_Coursecomplet.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="DB_Entrainement.refactorlog" />

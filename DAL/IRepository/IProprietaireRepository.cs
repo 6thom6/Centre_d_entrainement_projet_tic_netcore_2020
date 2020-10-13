@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +6,6 @@ namespace DAL.IRepository
 {
    public interface IProprietaireRepository
     {
-        IEnumerable<Proprietaire> GetallProprietaire();
         Proprietaire Get(int id);
         int Create(Proprietaire proprietaire);
         int Update(int id, Proprietaire proprietaire);
@@ -34,5 +33,6 @@ namespace DAL.IRepository
         IEnumerable<ProprietaireCheval> proprietaireChevals(int id);
         IEnumerable<ProprietaireCourse> proprietaireCourses(int id);
         IEnumerable<SoinsCheval> soinChevals(int id);
-    }
+        IEnumerable<ProprietaireCheval> GetallProprietaire();
+  }
 }

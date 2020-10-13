@@ -1,4 +1,4 @@
-﻿using api.Models;
+using api.Models;
 using DAL.Models;
 using DAL.Repository;
 using System;
@@ -29,6 +29,7 @@ namespace api.Utils.Extensions
                 PereCheval = cheval.PereCheval,
                 MereCheval = cheval.MereCheval,
                 SortieProvisoire = cheval.SortieProvisoire,
+                Id_Proprietaire = cheval.Id_Proprietaire,
                 RaisonSortie = cheval.RaisonSortie,
                 Id_Soins = cheval.Id_Soins,
                 Poids = cheval.Poids,

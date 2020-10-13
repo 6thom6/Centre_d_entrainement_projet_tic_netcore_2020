@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
@@ -18,10 +18,10 @@ namespace DAL.Repository
         {
             _connection = connection;
         }
-        public IEnumerable<Course> GetallCourses()
+        public IEnumerable<ChevalCourse> GetallCourses()
         {
-            Command command = new Command("SELECT * FROM Course");
-            return _connection.ExecuteReader(command, dr => dr.CourseToDal());
+            Command command = new Command("SELECT * FROM V_Coursecomplet");
+            return _connection.ExecuteReader(command, dr => dr.ChevalCourseToDal());
 
         }
         public Course GetById(int id)

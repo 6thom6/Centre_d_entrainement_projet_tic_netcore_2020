@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,7 +29,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<ProprietaireSimpleAPI> proprietaires = _proprietaireRipository.GetallProprietaire().Select(x => x.DALProprietaireSimpleToAPI());
+            IEnumerable<ProprietaireCheval> proprietaires = _proprietaireRipository.GetallProprietaire().Select(x => x);
             if (!(proprietaires is null))
                 return Ok(proprietaires);
             else

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,7 +25,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Historique> historique = _histoRipository.GetallHistorique().Select(x => x);
+            IEnumerable<ChevalHistorique> historique = _histoRipository.GetallHistorique().Select(x => x);
             if (!(historique is null))
                 return Ok(historique);
             else

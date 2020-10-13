@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+using DAL.Models;
 using System;
 using System.Data;
 
@@ -43,7 +43,7 @@ namespace DAL.Repository.Extensions
                 MereCheval = (string)record["Mere_Cheval"],
                 SortieProvisoire = record["Sortie_Provisoire"] is DBNull ? null : (string)record["Sortie_Provisoire"],
                 RaisonSortie = record["Raison_Sortie"] is DBNull ? null : (string)record["Raison_Sortie"],
-                Id_Proprietaire = (int)record["Id_Proprietaire"],
+                Id_Proprietaire = record["Id_Proprietaire"] is DBNull ? null : (int?)record["Id_Proprietaire"],
                 Id_Soins = record["Id_Soins"] == DBNull.Value ? null : (int?)record["Id_Soins"],
                 Poids = record["Poids"] == DBNull.Value ? null : (int?)record["Poids"],
                 Race = record["Race"].ToString(),

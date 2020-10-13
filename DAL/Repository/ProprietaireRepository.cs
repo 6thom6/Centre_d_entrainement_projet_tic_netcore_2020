@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -34,10 +34,10 @@ namespace DAL.Repository
             command.AddParameter("id", id);
             return _connection.ExecuteReader(command, dr => dr.ProprietaireCourseToDal());
         }
-        public IEnumerable<Proprietaire> GetallProprietaire()
+        public IEnumerable<ProprietaireCheval> GetallProprietaire()
         {
-            Command command = new Command("SELECT * FROM Proprietaire");
-            return _connection.ExecuteReader(command, dr => dr.ProprietaireSimpleToDal());
+            Command command = new Command("select p.Nom_Proprietaire, p.Date_Arrivee, c.Nom_cheval, c.Pere_cheval, c.Mere_cheval, c.Sortie_provisoire, c.Raison_Sortie, c.Race, c.Age, c.Sexe from Proprietaire P join Cheval C on p.Id_Proprietaire = c.Id_Proprietaire");
+            return _connection.ExecuteReader(command, dr => dr.ProprietaireChevalTodDal());
         }
         public Proprietaire Get(int id)
         {
@@ -57,7 +57,6 @@ namespace DAL.Repository
             Command command = new Command("CreateProprietaire", true);
                   command.AddParameter("Nom_Proprietaire", proprietaire.Nom_Proprietaire);
                 command.AddParameter("Date_Arrivee", proprietaire.Date_Arrivee);
-                command.AddParameter("Dernier_Resultat", proprietaire.Dernier_Resultat);
 
             return _connection.ExecuteNonQuery(command);
         }
@@ -67,14 +66,12 @@ namespace DAL.Repository
 
 
                 Command command = new Command ("UPDATE Proprietaire SET Nom_Proprietaire = @Nom_Proprietaire, " +
-                                                                        "Date_Arrivee = @Date_Arrivee, " +
-                                                                        "Dernier_Resultat = @Dernier_Resultat " +
+                                                                        "Date_Arrivee = @Date_Arrivee, "  +
                                                                         "WHERE Id_Proprietaire = @Id_Proprietaire");
 
                 command.AddParameter("Id_Proprietaire", id);
                 command.AddParameter("Nom_Proprietaire", proprietaire.Nom_Proprietaire);
                 command.AddParameter("Date_Arrivee", proprietaire.Date_Arrivee);
-                command.AddParameter("Dernier_Resultat", proprietaire.Dernier_Resultat);
 
             return _connection.ExecuteNonQuery(command);
 

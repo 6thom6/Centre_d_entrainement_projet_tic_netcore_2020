@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +26,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Soins> soins = _soinsRepository.GetallSoins().Select(x => x);
+            IEnumerable<SoinsCheval> soins = _soinsRepository.GetallSoins().Select(x => x);
             if (!(soins is null))
                 return Ok(soins);
             else

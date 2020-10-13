@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -23,10 +23,10 @@ namespace DAL.Repository
 
         }
 
-        public IEnumerable<Soins> GetallSoins()
+        public IEnumerable<SoinsCheval> GetallSoins()
         {
-            Command command = new Command("SELECT * FROM Soins");
-            return _connection.ExecuteReader(command, dr => dr.SoinsToDAl());
+            Command command = new Command("select C.Nom_cheval, s.Type_De_Soin, s.Date_De_Soin, s.Durree_Indisponibilite, c.Age, c.Sexe, s.Marechal_Derniere_Visite, s.Vermifuge, s.Alimentation, s.Complement_Alimentation from Cheval c join Soins s on c.Id_Cheval = s.Id_Cheval");
+            return _connection.ExecuteReader(command, dr => dr.SoinsChevalToDal());
 
         }
         public Soins GetById(int id)

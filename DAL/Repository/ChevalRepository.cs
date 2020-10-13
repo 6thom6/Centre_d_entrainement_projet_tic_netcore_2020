@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+using DAL.Models;
 using System.Collections.Generic;
 using DAL.IRepository;
 using Tools.Database;
@@ -58,6 +58,7 @@ namespace DAL.Repository
             command.AddParameter("id", id);
             return _connection.ExecuteReader(command, dr => dr.ProprietaireChevalTodDal());
         }
+
         public IEnumerable<EmployeCheval>EntrainementEmployeChevals (int id)
         {
             Command command = new Command("select E.Nom_Employe, e.Statuts_Employe, c.Nom_cheval from Cheval C join Participe_Entrainement_cheval_employé PECE on c.Id_Cheval = PECE.Id_Cheval join Employe E on PECE.Id_Employe = E.Id_Employe  where c.Id_Cheval = @id");
@@ -96,6 +97,13 @@ namespace DAL.Repository
             command.AddParameter("id", id);
 
             return _connection.ExecuteReader(command, dr => (string)dr["Nom_Employe"]).FirstOrDefault();
+        }
+        public string GetproprietaireParCheval(int id)
+        {
+           Command command = new Command("select P.Nom_Proprietaire from Cheval C join Proprietaire P on c.Id_Proprietaire = p.Id_Proprietaire where c.Id_Cheval = @id");
+           command.AddParameter("id", id);
+
+           return _connection.ExecuteReader(command, dr => (string)dr["Nom_Proprietaire"]).FirstOrDefault();
         }
         public string GetObstacleParCheval(int id)
         {
@@ -345,7 +353,7 @@ namespace DAL.Repository
                                                                    "Mere_Cheval=@Mere_Cheval," +
                                                                    "Sortie_Provisoire = @Sortie_Provisoire, " +
                                                                    "Raison_Sortie = @Raison_Sortie," +
-                                                                   "Id_Proprietaire = @Id_Proprietaire, " +
+                                                                   "Nom_Proprietaire = @Nom_Proprietaire, " +
                                                                    "Id_Soins = @Id_soins, " +
                                                                    "Poids = @Poids, " +
                                                                    "Race = @Race," +
@@ -358,7 +366,7 @@ namespace DAL.Repository
             command.AddParameter("Mere_Cheval", cheval.MereCheval);
             command.AddParameter("Sortie_Provisoire", cheval.SortieProvisoire);
             command.AddParameter("Raison_Sortie", cheval.RaisonSortie);
-            command.AddParameter("Id_proprietaire", cheval.Id_Proprietaire);
+            command.AddParameter("Id_Proprietaire", cheval.Id_Proprietaire);
             command.AddParameter("Id_soins", cheval.Id_Soins);
             command.AddParameter("Poids", cheval.Poids);
             command.AddParameter("Race", cheval.Race);

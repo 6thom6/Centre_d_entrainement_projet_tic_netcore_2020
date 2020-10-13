@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DAL.Models;
 
@@ -49,5 +49,6 @@ namespace DAL.IRepository
         IEnumerable<ChevalCourse> chevalCourses(int id);
         IEnumerable<ChevalHistorique> chevalHistoriques(int id);
         IEnumerable<ProprietaireCheval> proprietaireChevals(int id);
-    }
+    string GetproprietaireParCheval(int id);
+  }
 }

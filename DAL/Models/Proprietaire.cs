@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +8,6 @@ namespace DAL.Models
     {
         public int Id_Proprietaire { get; set; }
         public string Nom_Proprietaire { get; set; }
-        public string Dernier_Resultat { get; set; }
         public DateTime Date_Arrivee { get; set; }
 
     }

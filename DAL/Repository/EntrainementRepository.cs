@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DAL.Models;
 using DAL.IRepository;
@@ -41,7 +41,7 @@ namespace DAL.Repository
             command.AddParameter("Pre", entrainement.Pre);
             command.AddParameter("Date_Entrainement", entrainement.Date_Entrainement);
 
-            return _connection.ExecuteNonQuery(command);
+            return (int) _connection.ExecuteScalar(command);
 
         }
         public int Update(int id, Entrainement entrainement)
@@ -79,6 +79,11 @@ namespace DAL.Repository
             command.AddParameter("Id", id);
 
             return _connection.ExecuteReader(command, (dr) => dr.EmployeChevalToDAL());
+        }
+        public IEnumerable<EntrainementEmployeCheval> GetAllEmployeChevalEntrainement()
+        {
+            Command command = new Command("select * from V_entrainementcomplet");
+            return _connection.ExecuteReader(command, (dr) => dr.EntrainementEmployeChevalToDal());
         }
 
         public IEnumerable<Employe> GetAllEmployeByEntrainementId(int id)

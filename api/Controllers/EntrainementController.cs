@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,7 +30,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Entrainement> entrainements = _entrainementRepository.GetallEntrainement().Select(x => x);
+            IEnumerable<EntrainementEmployeCheval> entrainements = _entrainementRepository.GetAllEmployeChevalEntrainement().Select(x => x);
             if (!(entrainements is null))
                 return Ok(entrainements);
             else
@@ -96,7 +96,7 @@ namespace api.Controllers
             _entrainementRepository.Delete(id);
             return Ok();
         }
-        [HttpGet("{id}/ChevalEntrainement")]
+        [HttpGet("{id}/EmployeChevalEntrainement")]
         public IActionResult ChevalEntrainement(int id)
         {
             IEnumerable<EntrainementEmployeCheval> entrainementEmployeChevals = _entrainementRepository.entrainementEmployeChevals(id);

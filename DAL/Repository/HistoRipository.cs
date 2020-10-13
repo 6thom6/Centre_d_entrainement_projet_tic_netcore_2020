@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -20,10 +20,10 @@ namespace DAL.Repository
         }
 
         public HistoRipository(): this(_connection) { }
-        public IEnumerable<Historique> GetallHistorique()
+        public IEnumerable<ChevalHistorique> GetallHistorique()
         {
-            Command command = new Command("SELECT * FROM Historique");
-            return _connection.ExecuteReader(command, dr => dr.HistoriqueToDal());
+            Command command = new Command("select c.Nom_cheval,c.Pere_cheval,c.Mere_cheval,c.Race,c.Age,c.Sexe,h.Debourage,h.Pre_Entrainement,h.Entraineur_precedent, h.Proprietaire_precedent, h.Elevage from Cheval c join Historique h on c.Id_Cheval = h.Id_Cheval");
+            return _connection.ExecuteReader(command, dr => dr.ChevalHistoriqueToDal());
 
         }
         public Historique Get(int id)

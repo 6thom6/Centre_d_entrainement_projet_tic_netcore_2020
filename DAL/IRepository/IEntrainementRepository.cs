@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+using DAL.Models;
 using System.Collections.Generic;
 
 namespace DAL.IRepository
@@ -17,5 +17,6 @@ namespace DAL.IRepository
         int GetAgeChevalParEntrainement(int id);
         string GetNomChevalParEntrainement(int id);
         IEnumerable<EntrainementEmployeCheval> entrainementEmployeChevals(int id);
-    }
+    IEnumerable<EntrainementEmployeCheval> GetAllEmployeChevalEntrainement();
+  }
 }

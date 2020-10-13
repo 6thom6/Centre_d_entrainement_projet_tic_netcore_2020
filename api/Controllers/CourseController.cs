@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +26,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Course> courses = _courseRepository.GetallCourses().Select(x => x);
+            IEnumerable<ChevalCourse> courses = _courseRepository.GetallCourses().Select(x => x);
             if (!(courses is null))
                 return Ok(courses);
             else

@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Cheval]
+CREATE TABLE [dbo].[Cheval]
 (
 	[Id_Cheval] INT NOT NULL IDENTITY,
     [Nom_cheval]NVARCHAR(50) NOT NULL,
@@ -6,7 +6,7 @@
     [Mere_cheval] NVARCHAR(50) NOT NULL, 
     [Sortie_provisoire] NVARCHAR(50) NULL, 
     [Raison_Sortie] NVARCHAR(MAX) NULL, 
-    [Id_Proprietaire] INT NOT NULL, 
+    [Id_Proprietaire] INT NULL, 
     [Id_Soins] INT NULL,
     [Poids] INT NULL, 
     [Race] NVARCHAR(50) NOT NULL,
