@@ -30,7 +30,7 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<EntrainementEmployeCheval> entrainements = _entrainementRepository.GetAllEmployeChevalEntrainement().Select(x => x);
+            IEnumerable<EntrainementEmployeCheval> entrainements = _entrainementRepository.GetAllEmployeChevalEntrainement()?.Select(x => x);
             if (!(entrainements is null))
                 return Ok(entrainements);
             else
